@@ -4,6 +4,9 @@ const PageRecomended = () => {
   return (
     <>
         <p>PageRecomended</p>
+        <p>PageRecomended</p>
+        <p>PageRecomended</p>
+        <p>PageRecomended</p>
     </>
   )
 }
