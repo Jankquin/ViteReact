@@ -7,7 +7,7 @@ import PostDetail from "./Pages/PostDetail";
 import PageRecomended from "./Pages/PageRecomended";
 import PageMostView from "./Pages/PageMostView";
 
-import AdminPanel from "./Pages/AdminPanel";
+import PageDashboard from "./Pages/PageDashboard";
 
 const App = () => {
     return (
@@ -23,7 +23,7 @@ const App = () => {
                                 <Route path="/:id" element={<PostDetail />} />
                                 <Route path="/recomended" element={<PageRecomended />} />
                                 <Route path="/mostview" element={<PageMostView />} />
-                                <Route path="/adminpanel" element={<AdminPanel />} />
+                                <Route path="/adminpanel" element={<PageDashboard />} />
                             </Routes>
                         </div>
                     </div>

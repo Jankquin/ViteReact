@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AdminPanel = () => {
+const PageDashboard = () => {
     return (
         <>
             <p className='text-white'>asdasdasd</p>
@@ -9,4 +9,4 @@ const AdminPanel = () => {
     )
 }
 
-export default AdminPanel
+export default PageDashboard
