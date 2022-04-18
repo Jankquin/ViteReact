@@ -6,7 +6,7 @@ const Tb_Post = () => {
     const [UsePost, setUsePost] = useState([]); 
 
     useEffect(() => {
-        const QPost = query(collection(db, "Tb_Posts"), orderBy("id", "desc"), limit("10"));
+        const QPost = query(collection(db, "Tb_Posts"), orderBy("id", "desc"));
         const FirstLoadAsync = async () => {       
             const DPost = await getDocs(QPost);     
             setUsePost(DPost.docs.map((doc) => ({ ...doc.data()})));

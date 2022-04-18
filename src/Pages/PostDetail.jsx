@@ -76,7 +76,7 @@ const PostDetail = () => {
                 <div className='bg-neutral-700 rounded-sm p-3 mb-10'>
                     {GetSimilar.map(doc => {
                         return (
-                            <Link to={`/${doc.id}`} key={doc.id} className="hover:bg-neutral-800 text-white rounded-sm block p-3" onClick={OnTop}>
+                            <Link to={`/${doc.id}`} key={doc.id} className="hover:bg-neutral-800 text-white text-sm font-thin rounded-sm block p-3" onClick={OnTop}>
                                 {doc.title}
                             </Link>
                         )

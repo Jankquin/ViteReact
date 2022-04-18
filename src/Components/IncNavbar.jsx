@@ -59,7 +59,7 @@ const IncNavbar = () => {
                         </div>
 
                         <div className="lg:basis-3/12 md:basis-2/12 md:bg-transparent bg-neutral-900/50 flex justify-end">
-                            <Link to="/adminpanel" className="flex px-3">
+                            <Link to="/" className="flex px-3">
                                 <i className="bi-list text-xl text-white self-center"></i>
                             </Link>
                         </div>

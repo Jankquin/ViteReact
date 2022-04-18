@@ -40,7 +40,7 @@ const PagePost = () => {
             <div className="grid grid-cols-4 gap-1 mb-10">
                 {sliceData.map(doc => {
                     return (
-                        <Link to={`/${doc.id}`} key={doc.id} className="group overflow-hidden w-full mb-3">    
+                        <Link to={`/${doc.id}`} key={doc.id} className="group hover:bg-neutral-700 hover:drop-shadow-sm rounded-sm overflow-hidden w-full mb-3">    
                             <img src="https://git-covers.pages.dev/images/victorian-maid-maria.jpg" className="rounded-sm" alt={doc.title} height="40"/> 
                             <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-white text-sm font-thin px-2 py-1">{doc.title} Lorem ipsum dolor sit amet.</h3>
                             <div className="flex justify-center pb-3">
