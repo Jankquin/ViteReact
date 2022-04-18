@@ -4,7 +4,7 @@ import IncNavbar from "./Components/IncNavbar";
 import IncFooter from "./Components/IncFooter";
 import PagePost from "./Pages/PagePost";
 import PostDetail from "./Pages/PostDetail";
-import AdminPanel from "./Pages/AdminPanel";
+// import AdminPanel from "./Pages/AdminPanel";
 import PageRecomended from "./Pages/PageRecomended";
 import PageMostView from "./Pages/PageMostView";
 
@@ -21,7 +21,7 @@ const App = () => {
                             <Routes>
                                 <Route path="/" element={<PagePost  />} />
                                 <Route path="/:id" element={<PostDetail />} />
-                                <Route path="/admin" element={<AdminPanel />} />
+                                {/* <Route path="/admin" element={<AdminPanel />} /> */}
                                 <Route path="/recomended" element={<PageRecomended />} />
                                 <Route path="/mostview" element={<PageMostView />} />
                             </Routes>
