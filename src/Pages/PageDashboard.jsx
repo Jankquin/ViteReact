@@ -85,7 +85,7 @@ const PageDashboard = () => {
     // Add Post
     const [Panel, setPanel] = useState("Valonime")
     const [Modal, setModal] = useState("")
-    const [Genre, setGenre] = useState(["Teacher"])
+    const [Genre, setGenre] = useState([])
     
     const AddGenre = (event) => {
         setGenre( arr => [...arr, `${event}`]);
@@ -99,10 +99,24 @@ const PageDashboard = () => {
     if (Genre.includes("Anal"))         {var Anal = true}
     if (Genre.includes("BDSM"))         {var BDSM = true}
     if (Genre.includes("Big Boobs"))    {var Big_Boobs = true}
+    if (Genre.includes("Teacher"))      {var Teacher = true}
+    if (Genre.includes("Glasses"))      {var Glasses = true}
     
+
+    const Status = (event) => {
+        const Check = Genre.includes(event) 
+
+        if(Check){
+            setGenre(Genre.filter(doc => doc !== event));
+        }else{
+            setGenre( arr => [...arr, `${event}`]);
+        }
+    }
+    console.log(Genre)
     
     return (
         <>
+            <>
             <div className="flex h-screen">
                 <div className="lg:basis-3/12 bg-neutral-700 p-5">
                     <ul>
@@ -223,6 +237,7 @@ const PageDashboard = () => {
                     <style>{css}</style>
                 </div>
             }
+            </>
 
             {Modal == "AddPost"  &&
                 <div className="bg-neutral-900/[.8] fixed w-full h-full top-0 left-0 shadow-lg">
@@ -243,8 +258,24 @@ const PageDashboard = () => {
                                     </form>
 
                                     <div className="mb-10">
-
                                         {Genre}
+
+                                        <form action="" className="my-10">
+                                            <input id="Teacher" className="hidden" type="checkbox" onClick={(event) => Status("Teacher")}/>
+                                            {Teacher ?
+                                                <label className="bg-neutral-700 cursor-pointer text-xs rounded-sm px-3 py-2 mr-1" htmlFor="Teacher">Teacher</label>
+                                                :
+                                                <label className="hover:bg-neutral-900 bg-neutral-800 cursor-pointer text-xs rounded-sm px-3 py-2 mr-1" htmlFor="Teacher">Teacher</label>
+                                            }
+
+                                            <input id="Glasses" className="hidden" type="checkbox" onClick={(event) => Status("Glasses")}/>
+                                            {Glasses ?
+                                                <label className="bg-neutral-700 cursor-pointer text-xs rounded-sm px-3 py-2 mr-1" htmlFor="Glasses">Glasses</label>
+                                                :
+                                                <label className="hover:bg-neutral-900 bg-neutral-800 cursor-pointer text-xs rounded-sm px-3 py-2 mr-1" htmlFor="Glasses">Glasses</label>
+                                            }
+                                        </form>
+                                        
 
                                         {Ahegao ?
                                             <button className="bg-neutral-900 text-xs font-thin uppercase rounded-sm mr-1 py-2 px-2.5" onClick={(event) => RemoveGenre("Ahegao")}>Ahegao</button>
