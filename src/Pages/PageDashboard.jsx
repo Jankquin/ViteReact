@@ -85,7 +85,7 @@ const PageDashboard = () => {
     // Add Post
     const [Panel, setPanel] = useState("Valonime")
     const [Modal, setModal] = useState("")
-    const [Genre, setGenre] = useState([])
+    const [Genre, setGenre] = useState(["Teacher"])
     
     const AddGenre = (event) => {
         setGenre( arr => [...arr, `${event}`]);
@@ -94,18 +94,11 @@ const PageDashboard = () => {
     const RemoveGenre = (event) => {
         setGenre(Genre.filter(doc => doc !== event));
     };
-
-    console.log(Genre)
-
-    if(Genre.includes("Ahegao")){
-        var Ahegao = true;
-    }if(Genre.includes("Anal")) {
-        var Anal = true;
-    }if (Genre.includes("BDSM")) {
-        var BDSM = true;
-    }if (Genre.includes("Big Boobs")) {
-        var Big_Boobs = true;
-    }
+   
+    if (Genre.includes("Ahegao"))       {var Ahegao = true}
+    if (Genre.includes("Anal"))         {var Anal = true}
+    if (Genre.includes("BDSM"))         {var BDSM = true}
+    if (Genre.includes("Big Boobs"))    {var Big_Boobs = true}
     
     
     return (
@@ -170,8 +163,6 @@ const PageDashboard = () => {
                 </div>
             </div>
 
-
-
             {ModalPost == true &&
                 <div className="bg-neutral-900/[.8] fixed w-full h-full top-0 left-0 shadow-lg">
                     <div className="bg-neutral-800 absolute w-full bottom-0 animate-fadeIn">
@@ -197,7 +188,6 @@ const PageDashboard = () => {
                 </div>
             }
 
-
             {ModalUpdate  &&
                 <div className="bg-neutral-900/[.8] fixed w-full h-full top-0 left-0 shadow-lg">
                     <div className="bg-neutral-800 absolute w-full bottom-0 animate-fadeIn">
@@ -216,7 +206,6 @@ const PageDashboard = () => {
                 </div>
             }
 
-
             {ModalDelete  &&
                 <div className="bg-neutral-900/[.8] fixed w-full h-full top-0 left-0 shadow-lg">
                     <div className="bg-neutral-800 absolute w-full bottom-0 animate-fadeIn">
@@ -234,8 +223,6 @@ const PageDashboard = () => {
                     <style>{css}</style>
                 </div>
             }
-           
-           
 
             {Modal == "AddPost"  &&
                 <div className="bg-neutral-900/[.8] fixed w-full h-full top-0 left-0 shadow-lg">
@@ -256,6 +243,9 @@ const PageDashboard = () => {
                                     </form>
 
                                     <div className="mb-10">
+
+                                        {Genre}
+
                                         {Ahegao ?
                                             <button className="bg-neutral-900 text-xs font-thin uppercase rounded-sm mr-1 py-2 px-2.5" onClick={(event) => RemoveGenre("Ahegao")}>Ahegao</button>
                                             :  
