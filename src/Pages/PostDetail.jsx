@@ -9,16 +9,15 @@ const PostDetail = () => {
     const {id} = useParams();
     
     const DataPost          = Tb_Post().UsePost;  
-    const DataSimilar       = Tb_Similar()._Post;
-    const GetPostDetail     = DataPost.find(doc => doc.id == id);
+    const DataSimilar       = Tb_Similar().UseSimilar;
+    const GetPostDetail     = DataPost.find(doc => doc.Id == id);
     const SetSimilar        = DataSimilar.slice(0, -4);
-    const GetSimilar        = DataPost.filter(doc => doc.title.toLowerCase().includes(SetSimilar.toString().toLowerCase()));
-        
+    const GetSimilar        = DataPost.filter(doc => doc.Title.toLowerCase().includes(SetSimilar.toString().toLowerCase()));
+
     const OnTop             = () => {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
     }
-
 
 
     return (
@@ -32,17 +31,17 @@ const PostDetail = () => {
                         {GetPostDetail != null && (
                             <div className="mb-10">   
                                 <div className="bg-neutral-700 rounded-sm h-80 mb-3">
-                                    <iframe className='w-full h-full' src={GetPostDetail.embed} scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
+                                    {/* <iframe className='w-full h-full' src={GetPostDetail.embed} scrolling="no" frameborder="0" allowfullscreen="true"></iframe> */}
                                 </div>
 
                                 <div className="flex justify-between py-3">
                                     <div className="flex">
                                         <div className="bg-[url('https://git-covers.pages.dev/images/victorian-maid-maria.jpg')] bg-no-repeat bg-cover bg-center self-center border-2 rounded-full drop-shadow-sm w-10 h-10  mr-5"></div>
                                         <div>
-                                            <h3 className="text-white">{GetPostDetail.title}</h3>
+                                            <h3 className="text-white">{GetPostDetail.Title}</h3>
                                             <div className="flex pb-3">
                                                 <i className="bi-eye-fill text-white text-sm self-center mr-3"></i>
-                                                <div className="text-white text-xs self-center font-light">{GetPostDetail.view}</div>
+                                                <div className="text-white text-xs self-center font-light">{GetPostDetail.View}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -70,8 +69,8 @@ const PostDetail = () => {
                             <div className='bg-neutral-700 rounded-sm p-3 mb-10'>
                                 {GetSimilar.map(doc => {
                                     return (
-                                        <Link to={`/${doc.id}`} key={doc.id} className="hover:bg-neutral-800 text-white text-sm font-thin rounded-sm block p-3" onClick={OnTop}>
-                                            {doc.title}
+                                        <Link to={`/${doc.Id}`} key={doc.Id} className="hover:bg-neutral-800 text-white text-sm font-thin rounded-sm block p-3" onClick={OnTop}>
+                                            {doc.Title}
                                         </Link>
                                     )
                                 })}

@@ -4,26 +4,26 @@ import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { db } from "./Config";
 
 const Tb_Similar = () => {
-    const [_Post, set_Post] = useState([]); 
+    const [UseSimilar, setUseSimilar] = useState([]); 
     const {id} = useParams();
 
     useEffect(() => {
-        const QPost = query(collection(db, "Tb_Posts"), orderBy("id", "desc"), limit("10"));
+        const QPost = query(collection(db, "Tb_Post"), orderBy("Id", "desc"), limit("10"));
         const FirstLoadAsync    = async () => {       
             const DPost         = await getDocs(QPost);     
             const Data          = DPost.docs.map((doc) => ({ ...doc.data()}));
-            const DataPost      = Data.find(doc => doc.id == id);
+            const DataPost      = Data.find(doc => doc.Id == id);
             if(DataPost){
-                set_Post(DataPost.title);
+                setUseSimilar(DataPost.Title);
             }else{
-                set_Post('Not Found');
+                setUseSimilar('Not Found');
             }
         };
 
         FirstLoadAsync();
     }, []);
 
-    return {_Post}
+    return {UseSimilar}
 }
 
 export default Tb_Similar;

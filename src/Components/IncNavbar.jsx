@@ -18,7 +18,7 @@ const IncNavbar = () => {
         } else {
             setLabelSearch(false);
         }
-        setFound(DataPost.filter(doc => doc.title.toLowerCase().includes(SearchWord.toLowerCase())));
+        setFound(DataPost.filter(doc => doc.Title.toLowerCase().includes(SearchWord.toLowerCase())));
     }
 
     const ModalSearchClose = () => {
@@ -90,8 +90,8 @@ const IncNavbar = () => {
                                     <>
                                         {Found.slice(0, 5).map((value, key) => {
                                             return (
-                                                <a href={`/${value.id}`} key={value.id}className="hover:bg-neutral-700 text-white rounded-sm block p-5 mb-1" onClick={ModalSearchClose} >
-                                                    <small>{value.title} </small>
+                                                <a href={`/${value.Id}`} key={value.Id}className="hover:bg-neutral-700 text-white rounded-sm block p-5 mb-1" onClick={ModalSearchClose} >
+                                                    <small>{value.Title} </small>
                                                 </a>
                                             );
                                         })}
