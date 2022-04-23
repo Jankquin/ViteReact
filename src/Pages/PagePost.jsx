@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Link } from 'react-router-dom'
 import Tb_Post from '../Firebase/Tb_Post'
 import Tb_Recomended from '../Firebase/Tb_Recomended'
-import IncNavbar from "../Components/IncNavbar";
 
 const PagePost = () => {
     const [LoadMore, setLoadMore] = useState(4);
@@ -19,8 +18,6 @@ const PagePost = () => {
 
     return (
         <>
-            <IncNavbar />
-
             <div className="container mx-auto mt-28 px-3 py-5">
                 <div className="flex justify-center mb-10">
                     <div className="lg:basis-5/12 md:basis-8/12 basis-full">

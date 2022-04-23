@@ -125,7 +125,6 @@ const PageDashboard = () => {
             var id = 0;
         }
 
-        // console.log(InputId)
         const Data = doc(db, 'Tb_Post', `${id}`);
 
         setDoc(Data, { 
@@ -178,14 +177,14 @@ const PageDashboard = () => {
 
 
     const css = `
-    body {
-        overflow: hidden;
-    }
-`
+        body {
+            overflow: hidden;
+        }
+    `
 
     return (
         <>
-            <div className="flex h-screen">
+            <div className="flex mt-28">
                 <div className="lg:basis-3/12 md:basis-4/12 md:block hidden bg-neutral-700 p-5">
                     <ul>
                         <li>
@@ -244,9 +243,9 @@ const PageDashboard = () => {
 
             {Modal == "AddPost"  &&
                 <div className="bg-neutral-900/[.8] fixed w-full h-full top-0 left-0 shadow-lg">
-                    <div className="bg-neutral-800 absolute w-full bottom-0 animate-fadeIn">
-                        <div className="container mx-auto px-3 py-10">
-                            <div className="lg:w-5/12 md:w-8/12 w-full text-white text-center mx-auto">
+                    <div className="bg-neutral-800 absolute w-full bottom-0 animate-fadeIn h-4/6 overflow-y-scroll py-3">
+                        <div className="container mx-auto">
+                            <div className="lg:w-5/12 md:w-8/12 w-full md:px-0 px-3 text-white text-center mx-auto">
                                 <form action="" className="my-10">
                                     <input className="bg-neutral-700 outline-none rounded-sm w-full px-2 py-2 mb-10" placeholder="Title" value={InputTitle} onChange={(event) => setInputTitle(event.target.value)} />
 
@@ -707,9 +706,9 @@ const PageDashboard = () => {
           
             {Modal[0] == "UpdatePost"  &&
                 <div className="bg-neutral-900/[.8] fixed w-full h-full top-0 left-0 shadow-lg">
-                    <div className="bg-neutral-800 absolute w-full bottom-0 animate-fadeIn">
-                        <div className="container mx-auto px-3 py-10">
-                            <div className="lg:w-5/12 md:w-8/12 w-full text-white text-center mx-auto">
+                    <div className="bg-neutral-800 absolute w-full bottom-0 animate-fadeIn h-4/6 overflow-y-scroll py-3">
+                        <div className="container mx-auto">
+                            <div className="lg:w-5/12 md:w-8/12 w-full md:px-0 px-3 text-white text-center mx-auto">
                                 <form action="" className="my-10">
                                     <input className="bg-neutral-700 outline-none rounded-sm w-full px-2 py-2 mb-10" value={InputTitle} placeholder="Title" onChange={(event) => setInputTitle(event.target.value)} />
 
