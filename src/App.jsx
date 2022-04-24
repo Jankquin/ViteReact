@@ -7,8 +7,6 @@ import PageRecomended from "./Pages/PageRecomended";
 import PageMostView from "./Pages/PageMostView";
 import IncNavbar from "./Components/IncNavbar";
 
-import PageDashboard from "./Admin/PageDashboard";
-
 const App = () => {
     return (
         <>
@@ -20,10 +18,9 @@ const App = () => {
                     <Route path="/:id" element={<PostDetail />} />
                     <Route path="/recomended" element={<PageRecomended />} />
                     <Route path="/mostview" element={<PageMostView />} />
-                    <Route path="/adminpanel" element={<PageDashboard />} />
                 </Routes>
                 
-                <IncFooter />
+                {/* <IncFooter /> */}
             </BrowserRouter>
         </>
     )
