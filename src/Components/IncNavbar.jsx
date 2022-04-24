@@ -90,8 +90,8 @@ const IncNavbar = () => {
                                     <>
                                         {Found.slice(0, 5).map((value, key) => {
                                             return (
-                                                <a href={`/${value.Id}`} key={value.Id}className="hover:bg-slate-200/50 text-slate-500 font-thin rounded-sm block p-3 mb-1" onClick={ModalSearchClose} >
-                                                    <small>{value.Title} </small>
+                                                <a href={`/${value.Id}`} key={value.Id}className="hover:bg-slate-100 text-slate-500 text-sm font-thin rounded-sm block p-3" onClick={ModalSearchClose} >
+                                                    {value.Title}
                                                 </a>
                                             );
                                         })}

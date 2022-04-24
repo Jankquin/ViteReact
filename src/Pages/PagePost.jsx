@@ -1,10 +1,11 @@
 import React from 'react'
-import { useState } from "react";
+import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import Tb_Post from '../Firebase/Tb_Post'
 import Tb_Recomended from '../Firebase/Tb_Recomended'
 
 const PagePost = () => {
+    const [Carousel, setCarousel] = useState([0, 1]);
     const [LoadMore, setLoadMore] = useState(8);
     const DataPost = Tb_Post().UsePost;
     const DataRecomended = Tb_Recomended().UseRecomended;
@@ -16,25 +17,65 @@ const PagePost = () => {
 
     const sliceData = DataPost.slice(0, LoadMore);
 
+
+
+    const CarouselSlice = DataRecomended.slice(Carousel[0], Carousel[1])
+    
+    const CarouselBtn = (event) => {
+        if(event == 'Next'){
+            if(Carousel[0] >= 2){
+                var Start = 0
+                var End   = 1
+            }else{
+                var Start = Carousel[0] * 1 + 1
+                var End   = Carousel[1] * 1 + 1
+            }
+            setCarousel([Start, End])
+        }else{
+            if(Carousel[0] <= 0){
+                var Start = 2
+                var End   = 3
+            }else{
+                var Start = Carousel[0] * 1 - 1
+                var End   = Carousel[1] * 1 - 1
+            }
+            setCarousel([Start, End])
+        }
+    }
+    
+
     return (
         <>
             <div className="container mx-auto mt-28 px-3 py-5">
                 <div className="flex justify-center mb-10">
                     <div className="lg:basis-5/12 md:basis-8/12 basis-full">
+                        
+                        {/* {Slice.Id} */}
 
-                        {DataRecomended.map(doc => {
+                        {CarouselSlice.map(doc => {
                             return (
-                                <Link to={`/${doc.Id}`} key={doc.Id} className="group hover:drop-shadow-lg relative block w-full rounded-sm overflow-hidden h-48 mb-10">
-                                    <div className="bg-gradient-to-r from-neutral-800 via-neutral-800 absolute flex h-full w-full top-0 z-10">
-                                        <div className="self-end w-2/4 pl-5 pb-5">
-                                            <div className="bg-[url('https://git-covers.pages.dev/images/victorian-maid-maria.jpg')] bg-no-repeat bg-cover bg-center border-2 rounded-full drop-shadow-sm w-12 h-12 mb-3"></div>
-                                            <h2 className="whitespace-nowrap text-ellipsis text-left overflow-hidden text-slate-200 md:text-xl text-sm font-medium">{doc.Title}</h2>
-                                            <p className="text-slate-200 text-xs font-thin text-left">Lorem ipsum dolor sit amet, consectetur.</p>
-                                        </div>
-                                    </div>
+                                <div key={doc.Id}>
+                                    <div key={doc.Id} className="group hover:drop-shadow-lg relative block w-full rounded-sm overflow-hidden h-48 mb-10">
+                                        <div className="bg-gradient-to-r from-neutral-700 via-neutral-700 absolute flex h-full w-full top-0 z-10">
+                                            <div className="self-end w-2/4 pl-5 pb-5 animate-fadeIn">
+                                                <div className="bg-[url('https://git-covers.pages.dev/images/victorian-maid-maria.jpg')] bg-no-repeat bg-cover bg-center border-2 rounded-full drop-shadow-sm w-12 h-12 mb-3"></div>
+                                                <h2 className="whitespace-nowrap text-ellipsis text-left overflow-hidden text-slate-200 md:text-xl text-sm font-medium">{doc.Title}</h2>
+                                                <p className="text-slate-200 text-xs font-thin text-left">{doc.View} - {doc.Id}</p>
+                                            </div>
 
-                                    <div className="bg-[url('https://git-covers.pages.dev/images/victorian-maid-maria.jpg')] bg-cover bg-top group-hover:scale-125 scale-110 duration-500 absolute right-0 h-full top-0 w-2/4 z-0"></div>
-                                </Link>
+                                            <div className='flex self-center justify-between w-2/4 p-3'>
+                                                <button className='bg-neutral-200/50 rounded-full w-8 h-8' onClick={(event) => CarouselBtn('Next')}>
+                                                    <i className='bi-chevron-left'></i>
+                                                </button>
+                                                <button className='bg-neutral-200/50 rounded-full w-8 h-8' onClick={(event) => CarouselBtn('Prev')}>
+                                                    <i className='bi-chevron-right'></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div className="bg-[url('https://git-covers.pages.dev/images/victorian-maid-maria.jpg')] bg-cover bg-top group-hover:scale-125 scale-110 duration-500 absolute right-0 h-full top-0 w-2/4 z-0"></div>
+                                    </div>
+                                </div>
                             )
                         })}
 

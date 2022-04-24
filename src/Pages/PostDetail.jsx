@@ -37,7 +37,7 @@ const PostDetail = () => {
                                             <h3 className='text-slate-500 font-medium'>{GetPostDetail.Title}</h3>
                                             <div className="text-slate-400 flex pb-3">
                                                 <i className="bi-eye-fill text-sm self-center mr-3"></i>
-                                                <div className="text-sm font-thin self-center">{GetPostDetail.View}</div>
+                                                <div className="text-xs font-thin self-center">{GetPostDetail.View}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@ const PostDetail = () => {
                             <>
                                 <div className='flex mb-5'>
                                     <div className='bg-indigo-200 flex rounded-full w-10 h-10 mr-3'>
-                                        <i className='bi-grid-fill text-indigo-500 self-center mx-auto'></i>
+                                        <i className='bi-justify text-indigo-500 self-center mx-auto'></i>
                                     </div>
                                     <h2 className="text-slate-500 self-center font-medium">Related Post</h2>
                                 </div>
