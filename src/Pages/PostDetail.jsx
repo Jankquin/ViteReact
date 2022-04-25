@@ -34,8 +34,8 @@ const PostDetail = () => {
                                     <div className="flex">
                                         <div className="bg-[url('https://git-covers.pages.dev/images/victorian-maid-maria.jpg')] bg-no-repeat bg-cover bg-center self-center border-2 rounded-full drop-shadow-sm w-10 h-10  mr-5"></div>
                                         <div>
-                                            <h3 className='text-slate-500 font-medium'>{GetPostDetail.Title}</h3>
-                                            <div className="text-slate-400 flex pb-3">
+                                            <h3 className='text-slate-800 font-medium'>{GetPostDetail.Title}</h3>
+                                            <div className="text-slate-600 flex pb-3">
                                                 <i className="bi-eye-fill text-sm self-center mr-3"></i>
                                                 <div className="text-xs font-thin self-center">{GetPostDetail.View}</div>
                                             </div>
@@ -48,15 +48,15 @@ const PostDetail = () => {
 
                                 <div className='px-3 pb-3'>
                                     {/* {GetPostDetail.Genre} */}
-                                    <button className="hover:bg-slate-100 text-slate-500 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
-                                    <button className="hover:bg-slate-100 text-slate-500 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
-                                    <button className="hover:bg-slate-100 text-slate-500 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
-                                    <button className="hover:bg-slate-100 text-slate-500 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
-                                    <button className="hover:bg-slate-100 text-slate-500 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
-                                    <button className="hover:bg-slate-100 text-slate-500 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
-                                    <button className="hover:bg-slate-100 text-slate-500 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
-                                    <button className="hover:bg-slate-100 text-slate-500 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
-                                    <button className="hover:bg-slate-100 text-slate-500 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
+                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
+                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
+                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
+                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
+                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
+                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
+                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
+                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
+                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
                                 </div>
                             </div>
                         )}
@@ -75,7 +75,7 @@ const PostDetail = () => {
                                 <div className='bg-white shadow-lg rounded-sm overflow-hidden p-3 mb-10'>
                                     {GetSimilar.map(doc => {
                                         return (
-                                            <Link to={`/${doc.Id}`} key={doc.Id} className="hover:bg-slate-100 text-slate-500 text-sm font-thin rounded-sm block p-3" onClick={OnTop}>
+                                            <Link to={`/${doc.Id}`} key={doc.Id} className="hover:bg-slate-200/50 text-slate-800 text-sm font-thin rounded-sm block p-3" onClick={OnTop}>
                                                 {doc.Title}
                                             </Link>
                                         )

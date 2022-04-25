@@ -51,7 +51,7 @@ const PagePost = () => {
                         {CarouselSlice.map(doc => {
                             return (
                                 <div key={doc.Id} className="relative mb-10">
-                                    <div className="group hover:drop-shadow-lg relative block rounded-sm overflow-hidden w-full h-48 animate-fadeIn">
+                                    <div className="group shadow-lg relative block rounded-sm overflow-hidden w-full h-48 animate-fadeIn">
                                         <div className="bg-gradient-to-r from-neutral-700 via-neutral-700 absolute left-0 top-0 h-full w-full z-10"></div>
                                         <div className="bg-[url('https://git-covers.pages.dev/images/victorian-maid-maria.jpg')] group-hover:scale-125 bg-cover bg-top scale-110 duration-500 absolute right-0 top-0 h-full w-2/4 z-0"></div>
                                     </div>
@@ -88,8 +88,8 @@ const PagePost = () => {
                                 return (
                                     <Link to={`/${doc.Id}`} key={doc.Id} className="group rounded-sm overflow-hidden w-full mb-3">    
                                         <img src="https://git-covers.pages.dev/images/victorian-maid-maria.jpg" className="group-hover:opacity-90 rounded-sm" alt={doc.Title} height="40"/> 
-                                        <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-500 text-sm font-thin px-2 py-1">{doc.Title} Lorem ipsum dolor sit amet.</h3>
-                                        <div className="flex text-slate-400 justify-center pb-3">
+                                        <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-800 text-sm font-thin px-2 py-1">{doc.Title} Lorem ipsum dolor sit amet.</h3>
+                                        <div className="flex text-slate-600 justify-center pb-3">
                                             <i className="bi-eye-fill text-sm self-center mr-3"></i>
                                             <div className="text-xs font-thin self-center">{doc.View}</div>
                                         </div>
@@ -99,7 +99,7 @@ const PagePost = () => {
                         </div>
 
                         {LoadMore < DataPost.length && (
-                            <button className="hover:bg-indigo-600 hover:text-white text-slate-500 text-xs font-medium block uppercase rounded-sm mx-auto px-4 py-2" onClick={LoadMoreBtn} >
+                            <button className="hover:bg-indigo-600 hover:text-white text-slate-800 text-xs font-medium block uppercase rounded-sm mx-auto px-4 py-2" onClick={LoadMoreBtn} >
                                 <span>Load More</span>
                             </button>
                         )}
