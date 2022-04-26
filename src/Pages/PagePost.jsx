@@ -6,7 +6,7 @@ import Tb_Recomended from '../Firebase/Tb_Recomended'
 
 const PagePost = () => {
     const [Carousel, setCarousel] = useState([0, 1]);
-    const [LoadMore, setLoadMore] = useState(8);
+    const [LoadMore, setLoadMore] = useState(20);
     const DataPost = Tb_Post().UsePost;
     const DataRecomended = Tb_Recomended().UseRecomended;
 
@@ -53,13 +53,13 @@ const PagePost = () => {
                                 <div key={doc.Id} className="relative mb-10">
                                     <div className="group shadow-lg relative block rounded-sm overflow-hidden w-full h-48 animate-fadeIn">
                                         <div className="bg-gradient-to-r from-neutral-700 via-neutral-700 absolute left-0 top-0 h-full w-full z-10"></div>
-                                        <div className="bg-[url('https://git-covers.pages.dev/images/victorian-maid-maria.jpg')] group-hover:scale-125 bg-cover bg-top scale-110 duration-500 absolute right-0 top-0 h-full w-2/4 z-0"></div>
+                                        <div style={{ backgroundImage: `url(${doc.Image})` }} className="group-hover:scale-125 bg-cover bg-top scale-110 duration-500 absolute right-0 top-0 h-full w-2/4 z-0"></div>
                                     </div>
 
                                     <div className='absolute flex h-full w-2/4 top-0 z-20 animate-fadeIn'>
-                                        <div className='self-end pl-8 pb-5'>
-                                            <div className="bg-[url('https://git-covers.pages.dev/images/victorian-maid-maria.jpg')] bg-no-repeat bg-cover bg-center border-2 rounded-full drop-shadow-sm w-12 h-12 mb-3"></div>
-                                            <h2 className="whitespace-nowrap text-ellipsis text-left overflow-hidden text-slate-200 md:text-xl text-sm font-medium">{doc.Title}</h2>
+                                        <div className='self-end pl-8 pb-5 overflow-hidden'>
+                                            <div style={{ backgroundImage: `url(${doc.Image})` }} className="bg-no-repeat bg-cover bg-center border-2 rounded-full drop-shadow-sm w-12 h-12 mb-3"></div>
+                                            <h2 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-200 md:text-xl text-sm font-medium">{doc.Title}</h2>
                                             <p className="text-slate-200 text-xs font-thin text-left">{doc.View} - {doc.Id}</p>
                                         </div>
                                     </div>
@@ -87,7 +87,7 @@ const PagePost = () => {
                             {SliceData.map(doc => {
                                 return (
                                     <Link to={`/${doc.Id}`} key={doc.Id} className="group rounded-sm overflow-hidden w-full mb-3">    
-                                        <img src="https://git-covers.pages.dev/images/victorian-maid-maria.jpg" className="group-hover:opacity-90 rounded-sm" alt={doc.Title} height="40"/> 
+                                        <img src={doc.Image} className="group-hover:opacity-90 rounded-sm" alt={doc.Title} height="40"/> 
                                         <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-800 text-sm font-thin px-2 py-1">{doc.Title} Lorem ipsum dolor sit amet.</h3>
                                         <div className="flex text-slate-600 justify-center pb-3">
                                             <i className="bi-eye-fill text-sm self-center mr-3"></i>
