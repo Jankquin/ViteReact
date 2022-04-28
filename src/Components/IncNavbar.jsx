@@ -69,13 +69,13 @@ const IncNavbar = () => {
                 <div className="container mx-auto pt-2">
                     <div className="flex justify-center">
                         <div className="lg:basis-5/12 md:basis-8/12 basis-full flex overflow-x-scroll mx-auto no-scrollbar"> 
-                            <Link to="/" className="hover:bg-slate-200/50 text-slate-800 text-sm font-thin rounded-sm mr-2 px-3 py-1 whitespace-nowrap">Recomended</Link>
-                            <Link to="/" className="hover:bg-slate-200/50 text-slate-800 text-sm font-thin rounded-sm mr-2 px-3 py-1 whitespace-nowrap">New Uploaded</Link>
-                            <Link to="/" className="hover:bg-slate-200/50 text-slate-800 text-sm font-thin rounded-sm mr-2 px-3 py-1 whitespace-nowrap">Most View</Link>
-                            <Link to="/" className="hover:bg-slate-200/50 text-slate-800 text-sm font-thin rounded-sm mr-2 px-3 py-1 whitespace-nowrap">New Uploaded</Link>
-                            <Link to="/" className="hover:bg-slate-200/50 text-slate-800 text-sm font-thin rounded-sm mr-2 px-3 py-1 whitespace-nowrap">New Uploaded</Link>
-                            <Link to="/" className="hover:bg-slate-200/50 text-slate-800 text-sm font-thin rounded-sm mr-2 px-3 py-1 whitespace-nowrap">New Uploaded</Link>
-                            <Link to="/" className="hover:bg-slate-200/50 text-slate-800 text-sm font-thin rounded-sm mr-2 px-3 py-1 whitespace-nowrap">New Uploaded</Link>
+                            <Link to="/" className="hover:bg-slate-200/50 text-slate-800 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">Recomended</Link>
+                            <Link to="/" className="hover:bg-slate-200/50 text-slate-800 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">New Uploaded</Link>
+                            <Link to="/" className="hover:bg-slate-200/50 text-slate-800 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">Most View</Link>
+                            <Link to="/" className="hover:bg-slate-200/50 text-slate-800 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">New Uploaded</Link>
+                            <Link to="/" className="hover:bg-slate-200/50 text-slate-800 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">New Uploaded</Link>
+                            <Link to="/" className="hover:bg-slate-200/50 text-slate-800 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">New Uploaded</Link>
+                            <Link to="/" className="hover:bg-slate-200/50 text-slate-800 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">New Uploaded</Link>
                         </div>
                     </div>
                 </div>
@@ -85,14 +85,12 @@ const IncNavbar = () => {
                 <div className="bg-slate-500/50 fixed w-full h-full top-0 left-0 z-30">
                     <div className="container md:px-0 px-3 py-2 mx-auto mt-28">
                         <div className="flex justify-center">
-                            <div className="lg:basis-5/12 md:basis-8/12 basis-full bg-white shadow-lg rounded-sm px-5 py-10">
+                            <div className="lg:basis-5/12 md:basis-8/12 basis-full bg-white shadow-lg rounded-sm px-5 py-10 overflow-hidden block">
                                 {Found.length !== 0 ?
                                     <>
-                                        {Found.slice(0, 5).map((value, key) => {
+                                        {Found.slice(0, 5).map((doc, key) => {
                                             return (
-                                                <a href={`/${value.Id}`} key={value.Id}className="hover:bg-slate-200/50 text-slate-800 text-sm font-thin rounded-sm block p-3" onClick={ModalSearchClose} >
-                                                    {value.Title}
-                                                </a>
+                                                <a href={`/${doc.Id}`} key={doc.Id} className="whitespace-nowrap text-ellipsis hover:bg-slate-200/50 text-slate-800 text-sm md:font-thin block overflow-hidden p-3">{doc.Title} asdasd ada da sda da d</a>
                                             );
                                         })}
                                     </> 

@@ -22,41 +22,36 @@ const PostDetail = () => {
         <>
             <div className="container mx-auto mt-28 px-3 py-5">
                 <div className="flex justify-center mb-10">
-                    <div className="lg:basis-5/12 md:basis-8/12 basis-full">
+                    <div className="lg:basis-5/12 md:basis-8/12 basis-full overflow-hidden">
                         
                         {GetPostDetail != null && (
-                            <div className="bg-white shadow-lg rounded-sm overflow-hidden mb-10">   
-                                <div className="bg-neutral-700 h-80 mb-3">
-                                    {/* <iframe className='w-full h-full' src={GetPostDetail.embed} scrolling="no" frameborder="0" allowfullscreen="true"></iframe> */}
+                            <div className='bg-white shadow-lg rounded-sm mb-10'>
+                                <div className="bg-neutral-700 rounded-sm h-80 mb-5">
+                                   {/* <iframe className='w-full h-full' src={GetPostDetail.embed} scrolling="no" frameborder="0" allowfullscreen="true"></iframe> */}
                                 </div>
 
-                                <div className="flex justify-between p-3">
-                                    <div className="flex">
-                                        <div className="bg-[url('https://git-covers.pages.dev/images/victorian-maid-maria.jpg')] bg-no-repeat bg-cover bg-center self-center border-2 rounded-full drop-shadow-sm w-10 h-10  mr-5"></div>
-                                        <div>
-                                            <h3 className='text-slate-800 font-medium'>{GetPostDetail.Title}</h3>
-                                            <div className="text-slate-600 flex pb-3">
-                                                <i className="bi-eye-fill text-sm self-center mr-3"></i>
-                                                <div className="text-xs font-thin self-center">{GetPostDetail.View}</div>
-                                            </div>
+                                <div className='flex overflow-hidden px-3 pb-3'>
+                                    <div style={{ backgroundImage: `url(${GetPostDetail.Image})` }} className='bg-no-repeat bg-cover bg-center rounded-full self-start border-slate-500/50 border-2 w-10 h-10 mr-3'></div>
+                                    <div className='md:w-7/12 w-6/12 self-start'>
+                                        <h2 className='whitespace-nowrap text-slate-800 text-ellipsis overflow-hidden'>{GetPostDetail.Title} Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, non?</h2>
+                                        <div className="text-slate-600 flex pb-3">
+                                            <i className="bi-eye-fill text-sm self-center mr-3"></i>
+                                            <div className="text-xs self-center">{GetPostDetail.View}</div>
                                         </div>
                                     </div>
-                                    <div className="flex self-center">
-                                        <a href="#!" className="bg-indigo-600 self-center text-white text-xs font-medium uppercase rounded-sm px-3 py-2">Download</a>
-                                    </div>
+                                    <a href="#!" className="bg-indigo-600 text-white text-xs uppercase rounded-sm self-start px-4 py-2 ml-auto">Download</a>
                                 </div>
 
-                                <div className='px-3 pb-3'>
-                                    {/* {GetPostDetail.Genre} */}
-                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
-                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
-                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
-                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
-                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
-                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
-                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
-                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
-                                    <button className="hover:bg-slate-200/50 text-slate-800 self-center rounded-sm text-xs font-thin px-3 py-1 mr-1 mb-1">aadasd</button>
+                                <div className='grid grid-cols-5 px-3 pb-3'>
+                                    <button className="hover:bg-slate-200/50 text-slate-700 self-center rounded-sm text-xs px-3 py-1 mr-1 mb-1">aadasd</button>
+                                    <button className="hover:bg-slate-200/50 text-slate-700 self-center rounded-sm text-xs px-3 py-1 mr-1 mb-1">aadasd</button>
+                                    <button className="hover:bg-slate-200/50 text-slate-700 self-center rounded-sm text-xs px-3 py-1 mr-1 mb-1">aadasd</button>
+                                    <button className="hover:bg-slate-200/50 text-slate-700 self-center rounded-sm text-xs px-3 py-1 mr-1 mb-1">aadasd</button>
+                                    <button className="hover:bg-slate-200/50 text-slate-700 self-center rounded-sm text-xs px-3 py-1 mr-1 mb-1">aadasd</button>
+                                    <button className="hover:bg-slate-200/50 text-slate-700 self-center rounded-sm text-xs px-3 py-1 mr-1 mb-1">aadasd</button>
+                                    <button className="hover:bg-slate-200/50 text-slate-700 self-center rounded-sm text-xs px-3 py-1 mr-1 mb-1">aadasd</button>
+                                    <button className="hover:bg-slate-200/50 text-slate-700 self-center rounded-sm text-xs px-3 py-1 mr-1 mb-1">aadasd</button>
+                                    <button className="hover:bg-slate-200/50 text-slate-700 self-center rounded-sm text-xs px-3 py-1 mr-1 mb-1">aadasd</button>
                                 </div>
                             </div>
                         )}
@@ -66,16 +61,16 @@ const PostDetail = () => {
                         {GetSimilar.length != 0 && (
                             <>
                                 <div className='flex mb-5'>
-                                    <div className='bg-indigo-200 flex rounded-full w-10 h-10 mr-3'>
+                                    <div className='bg-indigo-200/50 flex rounded-full w-10 h-10 mr-3'>
                                         <i className='bi-justify text-indigo-500 self-center mx-auto'></i>
                                     </div>
-                                    <h2 className="text-slate-500 self-center font-medium">Related Post</h2>
+                                    <h2 className="text-slate-600 self-center font-medium">Related Post</h2>
                                 </div>
 
                                 <div className='bg-white shadow-lg rounded-sm overflow-hidden p-3 mb-10'>
                                     {GetSimilar.map(doc => {
                                         return (
-                                            <Link to={`/${doc.Id}`} key={doc.Id} className="hover:bg-slate-200/50 text-slate-800 text-sm font-thin rounded-sm block p-3" onClick={OnTop}>
+                                            <Link to={`/${doc.Id}`} key={doc.Id} className="whitespace-nowrap text-ellipsis hover:bg-slate-200/50 text-slate-800 text-sm md:font-thin block overflow-hidden p-3" onClick={OnTop}>
                                                 {doc.Title}
                                             </Link>
                                         )
