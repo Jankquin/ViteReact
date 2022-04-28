@@ -45,7 +45,7 @@ const PostDetail = () => {
                                 <div className='grid grid-cols-5 px-3 pb-3'>
                                     {GetPostDetail.Genre.sort().map(doc => {
                                         return(
-                                            <button key={doc.Id} className="hover:bg-slate-200/50 text-slate-700 self-center rounded-sm text-xs px-3 py-1 mr-1 mb-1">
+                                            <button key={doc} className="hover:bg-slate-200/50 text-slate-700 self-center rounded-sm text-xs px-3 py-1 mr-1 mb-1">
                                                 {doc}
                                             </button>
                                         )

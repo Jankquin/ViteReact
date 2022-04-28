@@ -56,46 +56,48 @@ const PagePost = () => {
                                         <div style={{ backgroundImage: `url(${doc.Image})` }} className="group-hover:scale-125 bg-cover bg-top scale-110 duration-500 absolute right-0 top-0 h-full w-2/4 z-0"></div>
                                     </div>
 
-                                    <div className='absolute flex h-full w-2/4 top-0 z-20 animate-fadeIn'>
-                                        <div className='self-end pl-8 pb-5 overflow-hidden'>
-                                            <div style={{ backgroundImage: `url(${doc.Image})` }} className="bg-no-repeat bg-cover bg-center border-2 rounded-full drop-shadow-sm w-12 h-12 mb-3"></div>
-                                            <h2 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-200 md:text-xl text-sm font-medium">{doc.Title}</h2>
-                                            <p className="text-slate-200 text-xs font-thin text-left">{doc.View} - {doc.Id}</p>
+                                    <div className='absolute flex top-0 left-0 w-full h-full z-10'>
+                                        <div className='w-1/12 self-center'>
+                                            <button className='self-center w-8 h-8' onClick={(event) => CarouselBtn('Next')}>
+                                                <i className='bi-chevron-left text-white'></i>
+                                            </button>
                                         </div>
-                                    </div>
-                                   
-                                    <div className='absolute flex justify-between h-full w-full top-0 z-20'>
-                                        <button className='bg-neutral-100 self-center rounded-full shadow-lg w-8 h-8 -ml-4' onClick={(event) => CarouselBtn('Next')}>
-                                            <i className='bi-chevron-left text-indigo-500'></i>
-                                        </button>
-                                        <button className='bg-neutral-100 self-center rounded-full shadow-lg w-8 h-8 -mr-4' onClick={(event) => CarouselBtn('Prev')}>
-                                            <i className='bi-chevron-right text-indigo-500'></i>
-                                        </button>
+                                        <div className='w-5/12 self-end mb-3 ml-3 animate-fadeIn'>
+                                            <div style={{ backgroundImage: `url(${doc.Image})` }} className="bg-no-repeat bg-cover bg-center border-2 rounded-full drop-shadow-sm w-12 h-12 mb-3"></div>
+                                            <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-200 font-medium mb-1">{doc.Title}</h3>
+                                            <div className="flex text-white text-xs">
+                                                <i className="bi-eye-fill text-sm self-center mr-2"></i>
+                                                <div className="self-center">{doc.View}</div>
+                                            </div>
+                                        </div>
+                                        <div className='w-6/12 self-center flex'>
+                                            <button className='self-center ml-auto w-8 h-8' onClick={(event) => CarouselBtn('Prev')}>
+                                                <i className='bi-chevron-right text-white'></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             )
                         })}
 
                         <div className='flex mb-5'>
-                            <div className='bg-indigo-200 flex rounded-full w-10 h-10 mr-3'>
-                                <i className='bi-eye-fill text-indigo-500 self-center mx-auto'></i>
+                            <div className='bg-red-200 flex rounded-full w-10 h-10 mr-3'>
+                                <i className='bi-eye-fill text-red-500 self-center mx-auto'></i>
                             </div>
                             <h2 className="text-slate-500 self-center font-medium">Most View</h2>
                         </div>
                     
-                        <div class="flex overflow-x-scroll mb-10">
+                        <div className="flex overflow-x-scroll no-scrollbar mb-10">
                             {DataMostView.map(doc => {
                                 return (
-                                    <div key={doc.Id} class="flex-none mr-2 first:mr-2 last:mr-0">
-                                        <div class="flex flex-col items-center justify-center overflow-hidden">
-                                            <img src={doc.Image}  class="rounded-sm w-28" />
-                                            <h3 class="whitespace-nowrap text-ellipsis overflow-hidden text-slate-800 text-sm text-center w-28 px-2 py-1">{doc.Title}</h3>
-                                            <div className="flex text-slate-600 text-xs font-thin justify-center pb-3">
-                                                <i className="bi-eye-fill text-sm self-center mr-3"></i>
-                                                <div className="self-center">{doc.View}</div>
-                                            </div>
+                                    <Link to={`/${doc.Id}`} key={doc.Id} className="flex-none group mr-2 first:mr-2 last:mr-0 animate-fadeIn">
+                                        <img src={doc.Image}  className="group-hover:opacity-90 rounded-sm w-28" />
+                                        <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-800 text-sm text-center w-28 px-2 py-1">{doc.Title}</h3>
+                                        <div className="flex text-slate-600 text-xs font-thin justify-center pb-3">
+                                            <i className="bi-eye-fill text-sm self-center mr-2"></i>
+                                            <div className="self-center">{doc.View}</div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 )
                             })}
                         </div>
@@ -107,14 +109,14 @@ const PagePost = () => {
                             <h2 className="text-slate-500 self-center font-medium">New Uploaded</h2>
                         </div>
 
-                        <div className="grid md:grid-cols-4 grid-cols-3 gap-2 bg-white shadow-lg rounded-sm overflow-hidden p-3 mb-10">
+                        <div className="grid md:grid-cols-4 grid-cols-3 gap-2 rounded-sm overflow-hidden mb-10">
                             {SliceData.map(doc => {
                                 return (
                                     <Link to={`/${doc.Id}`} key={doc.Id} className="group rounded-sm overflow-hidden w-full animate-fadeIn">    
                                         <img src={doc.Image} className="group-hover:opacity-90 rounded-sm" alt={doc.Title} height="40"/> 
                                         <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-800 text-sm text-center px-2 py-1">{doc.Title}</h3>
                                         <div className="flex text-slate-600 text-xs font-thin justify-center pb-3">
-                                            <i className="bi-eye-fill text-sm self-center mr-3"></i>
+                                            <i className="bi-eye-fill text-sm self-center mr-2"></i>
                                             <div className="self-center">{doc.View}</div>
                                         </div>
                                     </Link>
