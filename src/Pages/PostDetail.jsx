@@ -22,10 +22,10 @@ const PostDetail = () => {
         <>
             <div className="container mx-auto mt-28 px-3 py-5">
                 <div className="flex justify-center mb-10">
-                    <div className="lg:basis-5/12 md:basis-8/12 basis-full overflow-hidden">
+                    <div className="lg:w-5/12 md:w-8/12 w-full overflow-hidden">
                         
                         {GetPostDetail != null && (
-                            <div className='bg-white shadow-lg rounded-sm mb-10'>
+                            <div className='bg-white shadow-lg rounded-sm mb-10 animate-fadeIn'>
                                 <div className="bg-neutral-700 rounded-sm h-80 mb-5">
                                    {/* <iframe className='w-full h-full' src={GetPostDetail.embed} scrolling="no" frameborder="0" allowfullscreen="true"></iframe> */}
                                 </div>
@@ -57,7 +57,7 @@ const PostDetail = () => {
 
 
                         {GetSimilar.length != 0 && (
-                            <>
+                            <div className='animate-fadeIn'>
                                 <div className='flex mb-5'>
                                     <div className='bg-indigo-200/50 flex rounded-full w-10 h-10 mr-3'>
                                         <i className='bi-justify text-indigo-500 self-center mx-auto'></i>
@@ -74,7 +74,7 @@ const PostDetail = () => {
                                         )
                                     })}
                                 </div>
-                            </>
+                            </div>
                         )}
 
                     </div>

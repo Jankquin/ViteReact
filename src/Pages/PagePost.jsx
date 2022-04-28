@@ -7,10 +7,10 @@ import Tb_Recomended from '../Firebase/Tb_Recomended'
 const PagePost = () => {
     const [Carousel, setCarousel] = useState([0, 1]);
     const [LoadMore, setLoadMore] = useState(12);
-    const DataPost = Tb_Post().UsePost;
+    const DataPost       = Tb_Post().UsePost;
+    const DataMostView   = Tb_Post().UseMostView;
     const DataRecomended = Tb_Recomended().UseRecomended;
-
-    const CarouselSlice = DataRecomended.slice(Carousel[0], Carousel[1])
+    const CarouselSlice  = DataRecomended.slice(Carousel[0], Carousel[1])
     
     const CarouselBtn = (event) => {
         if(event == 'Next'){
@@ -46,7 +46,7 @@ const PagePost = () => {
         <>
             <div className="container mx-auto mt-28 px-3 py-5">
                 <div className="flex justify-center mb-10">
-                    <div className="lg:basis-5/12 md:basis-8/12 basis-full">
+                    <div className="lg:w-5/12 md:w-8/12 w-full">
 
                         {CarouselSlice.map(doc => {
                             return (
@@ -78,6 +78,30 @@ const PagePost = () => {
 
                         <div className='flex mb-5'>
                             <div className='bg-indigo-200 flex rounded-full w-10 h-10 mr-3'>
+                                <i className='bi-eye-fill text-indigo-500 self-center mx-auto'></i>
+                            </div>
+                            <h2 className="text-slate-500 self-center font-medium">Most View</h2>
+                        </div>
+                    
+                        <div class="flex overflow-x-scroll mb-10">
+                            {DataMostView.map(doc => {
+                                return (
+                                    <div key={doc.Id} class="flex-none mr-2 first:mr-2 last:mr-0">
+                                        <div class="flex flex-col items-center justify-center overflow-hidden">
+                                            <img src={doc.Image}  class="rounded-sm w-28" />
+                                            <h3 class="whitespace-nowrap text-ellipsis overflow-hidden text-slate-800 text-sm text-center w-28 px-2 py-1">{doc.Title}</h3>
+                                            <div className="flex text-slate-600 text-xs font-thin justify-center pb-3">
+                                                <i className="bi-eye-fill text-sm self-center mr-3"></i>
+                                                <div className="self-center">{doc.View}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+
+                        <div className='flex mb-5'>
+                            <div className='bg-indigo-200 flex rounded-full w-10 h-10 mr-3'>
                                 <i className='bi-grid-fill text-indigo-500 self-center mx-auto'></i>
                             </div>
                             <h2 className="text-slate-500 self-center font-medium">New Uploaded</h2>
@@ -86,7 +110,7 @@ const PagePost = () => {
                         <div className="grid md:grid-cols-4 grid-cols-3 gap-2 bg-white shadow-lg rounded-sm overflow-hidden p-3 mb-10">
                             {SliceData.map(doc => {
                                 return (
-                                    <Link to={`/${doc.Id}`} key={doc.Id} className="group rounded-sm overflow-hidden w-full">    
+                                    <Link to={`/${doc.Id}`} key={doc.Id} className="group rounded-sm overflow-hidden w-full animate-fadeIn">    
                                         <img src={doc.Image} className="group-hover:opacity-90 rounded-sm" alt={doc.Title} height="40"/> 
                                         <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-800 text-sm text-center px-2 py-1">{doc.Title}</h3>
                                         <div className="flex text-slate-600 text-xs font-thin justify-center pb-3">

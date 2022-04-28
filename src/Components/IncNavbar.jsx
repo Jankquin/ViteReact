@@ -29,16 +29,16 @@ const IncNavbar = () => {
 
     return (
         <>
-            <div className="bg-white shadow fixed w-full top-0 p-3 z-40">
+            <div className="bg-white shadow-lg fixed w-full top-0 p-3 z-40">
                 <div className="container mx-auto">
                     <div className="flex justify-center">
-                        <div className="lg:basis-3/12 md:basis-2/12 md:bg-transparent bg-slate-200/50 flex">
+                        <div className="lg:w-3/12 md:w-2/12 md:bg-transparent bg-slate-200/50 flex">
                             <Link to={`/`}className="flex px-3">
                                 <img src={Logo} alt="Logo" width={'26'} />
                             </Link>
                         </div>
                         
-                        <div className="lg:basis-5/12 md:basis-8/12 basis-full">
+                        <div className="lg:w-5/12 md:w-8/12 w-full">
                             <form className="bg-slate-200/50 relative">
                                 {LabelSearch ? 
                                     <div className="absolute flex text-slate-800 font-medium uppercase h-full w-full">
@@ -58,7 +58,7 @@ const IncNavbar = () => {
                             </form>
                         </div>
 
-                        <div className="lg:basis-3/12 md:basis-2/12 md:bg-transparent bg-slate-200/50 flex justify-end">
+                        <div className="lg:w-3/12 md:w-2/12 md:bg-transparent bg-slate-200/50 flex justify-end">
                             <Link to="/" className="flex px-3">
                                 <i className="bi-list text-xl text-slate-800 self-center"></i>
                             </Link>
@@ -68,7 +68,7 @@ const IncNavbar = () => {
 
                 <div className="container mx-auto pt-2">
                     <div className="flex justify-center">
-                        <div className="lg:basis-5/12 md:basis-8/12 basis-full flex overflow-x-scroll mx-auto no-scrollbar"> 
+                        <div className="lg:w-5/12 md:w-8/12 w-full flex overflow-x-scroll mx-auto no-scrollbar"> 
                             <Link to="/" className="hover:bg-slate-200/50 text-slate-800 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">Recomended</Link>
                             <Link to="/" className="hover:bg-slate-200/50 text-slate-800 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">New Uploaded</Link>
                             <Link to="/" className="hover:bg-slate-200/50 text-slate-800 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">Most View</Link>
