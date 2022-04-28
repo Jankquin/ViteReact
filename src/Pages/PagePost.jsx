@@ -83,15 +83,15 @@ const PagePost = () => {
                             <h2 className="text-slate-500 self-center font-medium">New Uploaded</h2>
                         </div>
 
-                        <div className="grid md:grid-cols-4 grid-cols-3 gap-1 bg-white shadow-lg rounded-sm overflow-hidden p-3 mb-10">
+                        <div className="grid md:grid-cols-4 grid-cols-3 gap-2 bg-white shadow-lg rounded-sm overflow-hidden p-3 mb-10">
                             {SliceData.map(doc => {
                                 return (
-                                    <Link to={`/${doc.Id}`} key={doc.Id} className="group rounded-sm overflow-hidden w-full mb-3">    
+                                    <Link to={`/${doc.Id}`} key={doc.Id} className="group rounded-sm overflow-hidden w-full">    
                                         <img src={doc.Image} className="group-hover:opacity-90 rounded-sm" alt={doc.Title} height="40"/> 
-                                        <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-800 text-sm md:font-thin px-2 py-1">{doc.Title}</h3>
-                                        <div className="flex text-slate-700 justify-center pb-3">
+                                        <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-800 text-sm text-center px-2 py-1">{doc.Title}</h3>
+                                        <div className="flex text-slate-600 text-xs font-thin justify-center pb-3">
                                             <i className="bi-eye-fill text-sm self-center mr-3"></i>
-                                            <div className="text-xs md:font-thin self-center">{doc.View}</div>
+                                            <div className="self-center">{doc.View}</div>
                                         </div>
                                     </Link>
                                 )
