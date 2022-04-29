@@ -2,14 +2,13 @@ import React from 'react'
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import Tb_Post from '../Firebase/Tb_Post'
-import Tb_Recomended from '../Firebase/Tb_Recomended'
 
 const PagePost = () => {
     const [Carousel, setCarousel] = useState([0, 1]);
     const [LoadMore, setLoadMore] = useState(12);
     const DataPost       = Tb_Post().UsePost;
     const DataMostView   = Tb_Post().UseMostView;
-    const DataRecomended = Tb_Recomended().UseRecomended;
+    const DataRecomended = Tb_Post().UseRecomended;
     const CarouselSlice  = DataRecomended.slice(Carousel[0], Carousel[1])
     
     const CarouselBtn = (event) => {
@@ -44,7 +43,7 @@ const PagePost = () => {
 
     return (
         <>
-            <div className="container mx-auto mt-28 px-3 py-5">
+            <div className="container mx-auto mt-28 lg:px-2 px-3 py-5">
                 <div className="flex justify-center mb-10">
                     <div className="lg:w-5/12 md:w-8/12 w-full">
 
@@ -63,7 +62,7 @@ const PagePost = () => {
                                             </button>
                                         </div>
                                         <div className='w-5/12 self-end mb-5 ml-3 animate-fadeIn'>
-                                            <div style={{ backgroundImage: `url(${doc.Image})` }} className="bg-no-repeat bg-cover bg-center border-2 rounded-full drop-shadow-sm w-12 h-12 mb-2"></div>
+                                            <div style={{ backgroundImage: `url(${doc.Image})` }} className="bg-no-repeat bg-cover bg-center border-2 rounded-full drop-shadow-sm w-12 h-12 mb-3"></div>
                                             <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-white text-lg font-medium">{doc.Title}</h3>
                                             <div className="flex text-white text-sm">
                                                 <i className="bi-eye-fill self-center mr-2"></i>
@@ -79,20 +78,20 @@ const PagePost = () => {
                                 </div>
                             )
                         })}
-
+                        
                         <div className='flex mb-5'>
-                            <div className='bg-red-200 flex rounded-full w-10 h-10 mr-3'>
-                                <i className='bi-eye-fill text-red-500 self-center mx-auto'></i>
+                            <div className='bg-slate-200s flex rounded-full w-10 h-10 mr-3'>
+                                <i className='bi-grid-fill text-slate-500 self-center mx-auto'></i>
                             </div>
-                            <h2 className="text-slate-700 self-center text-lg font-bold">Most View</h2>
+                            <h2 className="text-slate-700 self-center text-lg font-medium">New Uploaded</h2>
                         </div>
                     
                         <div className="flex overflow-x-scroll no-scrollbar mb-10">
                             {DataMostView.map(doc => {
                                 return (
-                                    <Link to={`/${doc.Id}`} key={doc.Id} className="flex-none group mr-2 first:mr-2 last:mr-0 animate-fadeIn">
-                                        <img src={doc.Image}  className="group-hover:opacity-90 rounded-sm w-28" />
-                                        <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-700 text-base text-center font-medium w-28 px-2 py-1">{doc.Title}</h3>
+                                    <Link to={`/${doc.Id}`} key={doc.Id} className="bg-white shadow flex-none group m-1 first:ml-0 last:mr-0 animate-fadeIn">
+                                        <img src={doc.Image}  className="group-hover:opacity-90 rounded-sm w-36" />
+                                        <div className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-700 text-sm text-center w-36 px-2 py-1">{doc.Title}</div>
                                         <div className="flex text-slate-500 text-xs justify-center pb-3">
                                             <i className="bi-eye-fill self-center mr-2"></i>
                                             <div className="self-center">{doc.View}</div>
@@ -103,10 +102,10 @@ const PagePost = () => {
                         </div>
 
                         <div className='flex mb-5'>
-                            <div className='bg-indigo-200 flex rounded-full w-10 h-10 mr-3'>
-                                <i className='bi-grid-fill text-indigo-500 self-center mx-auto'></i>
+                            <div className='bg-slate-200s flex rounded-full w-10 h-10 mr-3'>
+                                <i className='bi-lightning-charge-fill text-slate-500 self-center mx-auto'></i>
                             </div>
-                            <h2 className="text-slate-700 self-center text-lg font-bold">New Uploaded</h2>
+                            <h2 className="text-slate-700 self-center text-lg font-medium">New Releases</h2>
                         </div>
 
                         <div className="grid md:grid-cols-4 grid-cols-3 gap-2 rounded-sm overflow-hidden mb-10">
@@ -114,7 +113,7 @@ const PagePost = () => {
                                 return (
                                     <Link to={`/${doc.Id}`} key={doc.Id} className="group rounded-sm overflow-hidden w-full animate-fadeIn">    
                                         <img src={doc.Image} className="group-hover:opacity-90 rounded-sm" alt={doc.Title} height="40"/> 
-                                        <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-700 text-base text-center font-medium px-2 py-1">{doc.Title}</h3>
+                                        <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-700 text-sm text-center px-2 py-1">{doc.Title}</h3>
                                         <div className="flex text-slate-500 text-xs justify-center pb-3">
                                             <i className="bi-eye-fill self-center mr-2"></i>
                                             <div className="self-center">{doc.View}</div>
@@ -125,7 +124,7 @@ const PagePost = () => {
                         </div>
 
                         {LoadMore < DataPost.length && (
-                            <button className="hover:bg-indigo-600 hover:text-white text-slate-800 text-xs font-medium block uppercase rounded-sm mx-auto px-4 py-2" onClick={LoadMoreBtn} >
+                            <button className="hover:bg-indigo-600 hover:text-white text-slate-700 text-xs font-medium block uppercase rounded-sm mx-auto px-4 py-2" onClick={LoadMoreBtn} >
                                 <span>Load More</span>
                             </button>
                         )}
