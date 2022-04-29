@@ -62,11 +62,11 @@ const PagePost = () => {
                                                 <i className='bi-chevron-left text-white'></i>
                                             </button>
                                         </div>
-                                        <div className='w-5/12 self-end mb-3 ml-3 animate-fadeIn'>
-                                            <div style={{ backgroundImage: `url(${doc.Image})` }} className="bg-no-repeat bg-cover bg-center border-2 rounded-full drop-shadow-sm w-12 h-12 mb-3"></div>
-                                            <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-200 font-medium mb-1">{doc.Title}</h3>
-                                            <div className="flex text-white text-xs">
-                                                <i className="bi-eye-fill text-sm self-center mr-2"></i>
+                                        <div className='w-5/12 self-end mb-5 ml-3 animate-fadeIn'>
+                                            <div style={{ backgroundImage: `url(${doc.Image})` }} className="bg-no-repeat bg-cover bg-center border-2 rounded-full drop-shadow-sm w-12 h-12 mb-2"></div>
+                                            <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-white text-lg font-medium">{doc.Title}</h3>
+                                            <div className="flex text-white text-sm">
+                                                <i className="bi-eye-fill self-center mr-2"></i>
                                                 <div className="self-center">{doc.View}</div>
                                             </div>
                                         </div>
@@ -84,7 +84,7 @@ const PagePost = () => {
                             <div className='bg-red-200 flex rounded-full w-10 h-10 mr-3'>
                                 <i className='bi-eye-fill text-red-500 self-center mx-auto'></i>
                             </div>
-                            <h2 className="text-slate-500 self-center font-medium">Most View</h2>
+                            <h2 className="text-slate-700 self-center text-lg font-bold">Most View</h2>
                         </div>
                     
                         <div className="flex overflow-x-scroll no-scrollbar mb-10">
@@ -92,9 +92,9 @@ const PagePost = () => {
                                 return (
                                     <Link to={`/${doc.Id}`} key={doc.Id} className="flex-none group mr-2 first:mr-2 last:mr-0 animate-fadeIn">
                                         <img src={doc.Image}  className="group-hover:opacity-90 rounded-sm w-28" />
-                                        <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-800 text-sm text-center w-28 px-2 py-1">{doc.Title}</h3>
-                                        <div className="flex text-slate-600 text-xs font-thin justify-center pb-3">
-                                            <i className="bi-eye-fill text-sm self-center mr-2"></i>
+                                        <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-700 text-base text-center font-medium w-28 px-2 py-1">{doc.Title}</h3>
+                                        <div className="flex text-slate-500 text-xs justify-center pb-3">
+                                            <i className="bi-eye-fill self-center mr-2"></i>
                                             <div className="self-center">{doc.View}</div>
                                         </div>
                                     </Link>
@@ -106,7 +106,7 @@ const PagePost = () => {
                             <div className='bg-indigo-200 flex rounded-full w-10 h-10 mr-3'>
                                 <i className='bi-grid-fill text-indigo-500 self-center mx-auto'></i>
                             </div>
-                            <h2 className="text-slate-500 self-center font-medium">New Uploaded</h2>
+                            <h2 className="text-slate-700 self-center text-lg font-bold">New Uploaded</h2>
                         </div>
 
                         <div className="grid md:grid-cols-4 grid-cols-3 gap-2 rounded-sm overflow-hidden mb-10">
@@ -114,9 +114,9 @@ const PagePost = () => {
                                 return (
                                     <Link to={`/${doc.Id}`} key={doc.Id} className="group rounded-sm overflow-hidden w-full animate-fadeIn">    
                                         <img src={doc.Image} className="group-hover:opacity-90 rounded-sm" alt={doc.Title} height="40"/> 
-                                        <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-800 text-sm text-center px-2 py-1">{doc.Title}</h3>
-                                        <div className="flex text-slate-600 text-xs font-thin justify-center pb-3">
-                                            <i className="bi-eye-fill text-sm self-center mr-2"></i>
+                                        <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-700 text-base text-center font-medium px-2 py-1">{doc.Title}</h3>
+                                        <div className="flex text-slate-500 text-xs justify-center pb-3">
+                                            <i className="bi-eye-fill self-center mr-2"></i>
                                             <div className="self-center">{doc.View}</div>
                                         </div>
                                     </Link>
