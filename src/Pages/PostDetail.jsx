@@ -42,10 +42,10 @@ const PostDetail = () => {
                                     <a href="#!" className="bg-indigo-600 text-white text-xs uppercase rounded-sm self-start px-4 py-2 ml-auto">Download</a>
                                 </div>
 
-                                <div className='grid grid-cols-5 gap-1 px-3 pb-3'>
+                                <div className='grid md:grid-cols-6 grid-cols-5 gap-1 px-3 pb-3'>
                                     {GetPostDetail.Genre.sort().map(doc => {
                                         return(
-                                            <button key={doc} className="hover:bg-slate-100 text-slate-500 self-center rounded-sm text-xs px-3 py-2 ">
+                                            <button key={doc} className="hover:bg-slate-100 text-slate-500 self-center rounded-sm text-xs px-3 py-2">
                                                 {doc}
                                             </button>
                                         )
