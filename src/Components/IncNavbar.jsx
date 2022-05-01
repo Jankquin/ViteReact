@@ -70,12 +70,8 @@ const IncNavbar = () => {
                     <div className="flex justify-center">
                         <div className="lg:w-5/12 md:w-8/12 w-full flex overflow-x-scroll mx-auto no-scrollbar"> 
                             <Link to="/" className="hover:bg-slate-100 text-slate-700 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">Recomended</Link>
-                            <Link to="/" className="hover:bg-slate-100 text-slate-700 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">New Uploaded</Link>
-                            <Link to="/" className="hover:bg-slate-100 text-slate-700 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">Most View</Link>
-                            <Link to="/" className="hover:bg-slate-100 text-slate-700 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">New Uploaded</Link>
-                            <Link to="/" className="hover:bg-slate-100 text-slate-700 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">New Uploaded</Link>
-                            <Link to="/" className="hover:bg-slate-100 text-slate-700 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">New Uploaded</Link>
-                            <Link to="/" className="hover:bg-slate-100 text-slate-700 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">New Uploaded</Link>
+                            <Link to="/more" className="hover:bg-slate-100 text-slate-700 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">Genre</Link>
+                            <Link to="/more" className="hover:bg-slate-100 text-slate-700 text-sm rounded-sm mr-2 px-3 py-1 whitespace-nowrap">Most View</Link>
                         </div>
                     </div>
                 </div>

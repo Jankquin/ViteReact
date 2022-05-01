@@ -3,7 +3,7 @@ import { BrowserRouter, Routes , Route} from "react-router-dom";
 import IncFooter from "./Components/IncFooter";
 import PagePost from "./Pages/PagePost";
 import PostDetail from "./Pages/PostDetail";
-import PageRecomended from "./Pages/PageRecomended";
+import PageMore from "./Pages/PageMore";
 import PageMostView from "./Pages/PageMostView";
 import IncNavbar from "./Components/IncNavbar";
 
@@ -16,7 +16,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<PagePost  />} />
                     <Route path="/:id" element={<PostDetail />} />
-                    <Route path="/recomended" element={<PageRecomended />} />
+                    <Route path="/more" element={<PageMore />} />
                     <Route path="/mostview" element={<PageMostView />} />
                 </Routes>
                 
