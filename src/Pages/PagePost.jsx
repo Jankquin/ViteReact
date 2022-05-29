@@ -5,7 +5,7 @@ import Tb_Post from '../Firebase/Tb_Post'
 
 const PagePost = () => {
     const [Carousel, setCarousel] = useState([0, 1]);
-    const [LoadMore, setLoadMore] = useState(12);
+    const [LoadMore, setLoadMore] = useState(8);
     const DataPost       = Tb_Post().UsePost;
     const DataMostView   = Tb_Post().UseMostView;
     const DataRecomended = Tb_Post().UseRecomended;
@@ -50,12 +50,12 @@ const PagePost = () => {
                         {CarouselSlice.map(doc => {
                             return (
                                 <div key={doc.Id} className="relative -mx-3 -mt-7 md:mx-0 md:mt-0 mb-10">
-                                    <div className="group shadow-lg relative block rounded-sm overflow-hidden w-full h-56 md:animate-fadeIn">
+                                    <div className="group shadow-lg relative block rounded overflow-hidden w-full h-56 md:animate-fadeIn">
                                         <div className="bg-gradient-to-r from-neutral-700 via-neutral-700 absolute left-0 top-0 h-full w-full z-10"></div>
-                                        <div style={{ backgroundImage: `url(${doc.Image})` }} className="group-hover:scale-125 bg-cover bg-top scale-110 duration-500 absolute right-0 top-0 h-full w-2/4 z-0"></div>
+                                        <div style={{ backgroundImage: `url(${doc.Cover})` }} className="group-hover:scale-125 bg-cover bg-top scale-110 duration-500 absolute right-0 top-0 h-full w-2/4 z-0"></div>
                                         {/* <div className="bg-gradient-to-t from-slate-900/80 via-transparent to-slate-900/80 absolute left-0 top-0 h-full w-full z-10"></div>
-                                        <div style={{ backgroundImage: `url(${doc.Image})` }} className="bg-cover bg-center blur-md w-full h-full z-0"></div>
-                                        <img src={doc.Image} className='absolute rounded-sm shadow-lg -bottom-10 right-8 w-28 z-10' /> */}
+                                        <div style={{ backgroundImage: `url(${doc.Cover})` }} className="bg-cover bg-center blur-sm w-full h-full z-0"></div>
+                                        <img src={doc.Cover} className='absolute rounded-sm shadow-lg -bottom-10 right-8 w-28 z-10' /> */}
                                     </div>
 
                                     <div className='absolute flex top-0 left-0 w-full h-full z-10'>
@@ -93,19 +93,21 @@ const PagePost = () => {
                                 </div>
                             )
                         })}
-                        
-                        <div className='flex text-slate mb-3'>
-                            <i className='bi-grid-fill self-center mr-2'></i>
-                            <h2 className="self-center text-lg font-medium">New Uploaded</h2>
+
+                        <div className="flex mb-5">
+                            <i className="bi bi-grid-fill text-slate-600"></i>
+                            <span className="text-slate-600 font-bold self-center ml-3">New Updated</span>
                         </div>
                     
                         <div className="flex overflow-x-scroll no-scrollbar mb-10">
                             {DataMostView.map(doc => {
                                 return (
-                                    <Link to={`/${doc.Id}`} key={doc.Id} className="flex-none group mr-2 first:ml-0 last:mr-0 animate-fadeIn">
-                                        <img src={doc.Image}  className="group-hover:opacity-90 rounded-sm w-36" />
-                                        <div className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-700 text-sm text-center w-36 px-2 py-1">{doc.Title}</div>
-                                        <div className="flex text-slate-500 text-xs justify-center pb-3">
+                                    <Link to={`/${doc.Id}`} key={doc.Id} className="flex-none group mr-1 first:ml-0 last:mr-0 overflow-hidden">
+                                        <div style={{ backgroundImage: `url(${doc.Cover})` }} className='bg-slate-200 bg-cover bg-top rounded h-52 w-36 animate-fadeIn'></div>
+                                        
+                                        {/* <img src={doc.Cover}  className="group-hover:opacity-90 rounded-sm w-full max-h-48" /> */}
+                                        <div className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-600 text-sm font-medium text-center w-36 px-2 py-1">{doc.Title}</div>
+                                        <div className="flex text-slate-400 text-xs justify-center pb-3">
                                             <i className="bi-eye-fill self-center mr-2"></i>
                                             <div className="self-center">{doc.View}</div>
                                         </div>
@@ -114,18 +116,18 @@ const PagePost = () => {
                             })}
                         </div>
 
-                        <div className='flex text-slate mb-3'>
-                            <i className='bi-lightning-charge-fill self-center mr-2'></i>
-                            <h2 className="self-center text-lg font-medium">New Releases</h2>
+                        <div className="flex mb-5">
+                            <i className="bi bi-lightning-charge-fill text-slate-600"></i>
+                            <span className="text-slate-600 font-bold self-center ml-3">New Updated</span>
                         </div>
 
-                        <div className="grid md:grid-cols-4 grid-cols-3 gap-2 rounded-sm overflow-hidden mb-10">
+                        <div className="grid md:grid-cols-4 grid-cols-3 gap-1 rounded overflow-hidden mb-10">
                             {SliceData.map(doc => {
                                 return (
-                                    <Link to={`/${doc.Id}`} key={doc.Id} className="group rounded-sm overflow-hidden w-full animate-fadeIn">    
-                                        <img src={doc.Image} className="group-hover:opacity-90 rounded-sm" alt={doc.Title} height="40"/> 
-                                        <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-700 text-sm text-center px-2 py-1">{doc.Title}</h3>
-                                        <div className="flex text-slate-500 text-xs justify-center pb-3">
+                                    <Link to={`/${doc.Id}`} key={doc.Id} className="group rounded overflow-hidden w-full animate-fadeIn">    
+                                        <img src={doc.Cover} className="group-hover:opacity-90 rounded w-full h-48" alt={doc.Title}/> 
+                                        <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-600 text-sm font-medium text-center px-2 py-1">{doc.Title}</h3>
+                                        <div className="flex text-slate-400 text-xs justify-center pb-3">
                                             <i className="bi-eye-fill self-center mr-2"></i>
                                             <div className="self-center">{doc.View}</div>
                                         </div>
@@ -135,8 +137,8 @@ const PagePost = () => {
                         </div>
 
                         {LoadMore < DataPost.length && (
-                            <button className="hover:bg-indigo-600 hover:text-white text-slate-700 text-xs font-medium block uppercase rounded-sm mx-auto px-4 py-2" onClick={LoadMoreBtn} >
-                                <span>Load More</span>
+                            <button className="flex hover:bg-indigo-400 hover:text-white text-slate-600 rounded justify-center min-w-[7rem] px-4 py-2 mx-auto" onClick={LoadMoreBtn}>
+                                <span className="text-sm self-center">Load More</span>
                             </button>
                         )}
 

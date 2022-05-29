@@ -10,7 +10,7 @@ const Tb_Post = () => {
     useEffect(() => {
         const QPost           = query(collection(db, "Tb_Post"), orderBy("Id", "desc"));
         const QMostView       = query(collection(db, "Tb_Post"), orderBy("View", "desc"), limit(10));
-        const QRecomended     = query(collection(db, "Tb_Post"), orderBy("Id", "asc"), limit(3));
+        const QRecomended     = query(collection(db, "Tb_Post"), orderBy("Id", "desc"), limit(3));
         
         const FirstLoadAsync  = async () => {       
             const DPost       = await getDocs(QPost);     
