@@ -27,8 +27,7 @@ const PostDetail = () => {
                         {GetPostDetail != null && (
                             <div className='bg-white shadow rounded overflow-hidden mb-10 animate-fadeIn'>
                                 <div className="bg-neutral-700 rounded h-80 mb-5">
-                                    {GetPostDetail.Cover}
-                                   {/* <iframe className='w-full h-full' src={GetPostDetail.Embed} scrolling="no" frameborder="0" allowfullscreen="true"></iframe> */}
+                                   <iframe className='w-full h-full' src={GetPostDetail.Embed} scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
                                 </div>
 
                                 <div className='flex overflow-hidden px-3 pb-3'>
