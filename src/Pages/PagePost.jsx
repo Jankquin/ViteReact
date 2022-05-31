@@ -43,56 +43,55 @@ const PagePost = () => {
 
     return (
         <>
-            <div className="container mx-auto mt-28 lg:px-2 px-3 py-5">
-                <div className="flex justify-center mb-10">
-                    <div className="lg:w-5/12 md:w-8/12 w-full">
+            <div className='mt-16'>
+                {CarouselSlice.map(doc => {
+                    return (
+                        <div key={doc.Id} className="relative -mx-3 -mt-7 md:mx-0 md:mt-0 mb-10">
+                            <div className="group shadow-lg relative block overflow-hidden w-full lg:h-[32rem] md:h-[24rem] h-[16rem] md:animate-fadeIn">
+                                <div className="bg-gradient-to-r from-neutral-700 via-neutral-700 absolute left-0 top-0 h-full w-full z-10"></div>
+                                <div style={{ backgroundImage: `url(${doc.Cover})` }} className="group-hover:scale-125 bg-cover bg-top scale-110 duration-500 absolute right-0 top-0 h-full w-2/4 z-0"></div>
+                            </div>
 
-                        {CarouselSlice.map(doc => {
-                            return (
-                                <div key={doc.Id} className="relative -mx-3 -mt-7 md:mx-0 md:mt-0 mb-10">
-                                    <div className="group shadow-lg relative block rounded overflow-hidden w-full h-56 md:animate-fadeIn">
-                                        <div className="bg-gradient-to-r from-neutral-700 via-neutral-700 absolute left-0 top-0 h-full w-full z-10"></div>
-                                        <div style={{ backgroundImage: `url(${doc.Cover})` }} className="group-hover:scale-125 bg-cover bg-top scale-110 duration-500 absolute right-0 top-0 h-full w-2/4 z-0"></div>
-                                        {/* <div className="bg-gradient-to-t from-slate-900/80 via-transparent to-slate-900/80 absolute left-0 top-0 h-full w-full z-10"></div>
-                                        <div style={{ backgroundImage: `url(${doc.Cover})` }} className="bg-cover bg-center blur-sm w-full h-full z-0"></div>
-                                        <img src={doc.Cover} className='absolute rounded-sm shadow-lg -bottom-10 right-8 w-28 z-10' /> */}
+                            <div className='absolute flex top-0 left-0 w-full h-full z-10'>
+                                <div className='w-1/12 self-center'>
+                                    <button className='self-center w-8 h-8' onClick={(event) => CarouselBtn('Next')}>
+                                        <i className='bi-chevron-left text-white'></i>
+                                    </button>
+                                </div>
+                                <div className='w-7/12 self-end mb-5 animate-fadeIn'>
+                                    <div className='flex text-white text-sm'>
+                                        <div className="flex border rounded-sm px-2 mb-3 mr-3">
+                                            <i className="bi-eye-fill self-center mr-2"></i>
+                                            <div className="self-center">{doc.View}</div>
+                                        </div>
+
+                                        <Link to={`/${doc.Id}`} className="whitespace-nowrap text-ellipsis overflow-hidden font-medium">{doc.Title}</Link>
                                     </div>
 
-                                    <div className='absolute flex top-0 left-0 w-full h-full z-10'>
-                                        <div className='w-1/12 self-center'>
-                                            <button className='self-center w-8 h-8' onClick={(event) => CarouselBtn('Next')}>
-                                                <i className='bi-chevron-left text-white'></i>
-                                            </button>
-                                        </div>
-                                        <div className='w-7/12 self-end mb-5 animate-fadeIn'>
-                                            <div className='flex text-white text-sm'>
-                                                <div className="flex border rounded-sm px-2 mb-3 mr-3">
-                                                    <i className="bi-eye-fill self-center mr-2"></i>
-                                                    <div className="self-center">{doc.View}</div>
+                                    <div className='flex'>
+                                        {doc.Genre.slice(0, 4).map(docs => {
+                                            return (
+                                                <div key={docs} className="text-white self-center rounded-sm text-xs mr-3">
+                                                    {docs}
                                                 </div>
-
-                                                <Link to={`/${doc.Id}`} className="whitespace-nowrap text-ellipsis overflow-hidden font-medium">{doc.Title}</Link>
-                                            </div>
-
-                                            <div className='flex'>
-                                                {doc.Genre.slice(0, 4).map(docs => {
-                                                    return (
-                                                        <div key={docs} className="text-white self-center rounded-sm text-xs mr-3">
-                                                            {docs}
-                                                        </div>
-                                                    )
-                                                })}
-                                            </div>
-                                        </div>
-                                        <div className='w-6/12 self-center flex'>
-                                            <button className='self-center ml-auto w-8 h-8' onClick={(event) => CarouselBtn('Prev')}>
-                                                <i className='bi-chevron-right text-white'></i>
-                                            </button>
-                                        </div>
+                                            )
+                                        })}
                                     </div>
                                 </div>
-                            )
-                        })}
+                                <div className='w-6/12 self-center flex'>
+                                    <button className='self-center ml-auto w-8 h-8' onClick={(event) => CarouselBtn('Prev')}>
+                                        <i className='bi-chevron-right text-white'></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
+
+            <div className="container mx-auto lg:px-2 px-3 py-5">
+                <div className="flex justify-center mb-10">
+                    <div className="lg:w-10/12 md:w-8/12x w-full">
 
                         <div className="flex mb-5">
                             <i className="bi bi-grid-fill text-slate-600"></i>
@@ -121,11 +120,11 @@ const PagePost = () => {
                             <span className="text-slate-600 font-bold self-center ml-3">New Updated</span>
                         </div>
 
-                        <div className="grid md:grid-cols-4 grid-cols-3 gap-1 rounded overflow-hidden mb-10">
+                        <div className="grid md:grid-cols-6 grid-cols-3 gap-2 rounded overflow-hidden mb-10">
                             {SliceData.map(doc => {
                                 return (
                                     <Link to={`/${doc.Id}`} key={doc.Id} className="group rounded overflow-hidden w-full animate-fadeIn">    
-                                        <img src={doc.Cover} className="group-hover:opacity-90 rounded w-full h-48" alt={doc.Title}/> 
+                                        <img src={doc.Cover} className="group-hover:opacity-90 rounded w-full h-72" alt={doc.Title}/> 
                                         <h3 className="whitespace-nowrap text-ellipsis overflow-hidden text-slate-600 text-sm font-medium text-center px-2 py-1">{doc.Title}</h3>
                                         <div className="flex text-slate-400 text-xs justify-center pb-3">
                                             <i className="bi-eye-fill self-center mr-2"></i>
