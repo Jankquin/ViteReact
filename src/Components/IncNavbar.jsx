@@ -10,7 +10,8 @@ const IncNavbar = () => {
     const [Search, setSearch] = useState(""); 
     const [LabelSearch, setLabelSearch] = useState(true);
     const [Found, setFound] = useState([]);   
-
+    const DataPost = Tb_Post().UsePost;
+    
     useEffect(() => {
         if (localStorage.getItem('theme') === 'dark') {
             setDarkMode(true);
@@ -32,8 +33,6 @@ const IncNavbar = () => {
             localStorage.setItem('theme', 'dark');
         }
     }
-    
-    let DataPost = Tb_Post().UsePost;
 
     const Filter = (event) => {
         const SearchWord = event.target.value;  
@@ -58,39 +57,37 @@ const IncNavbar = () => {
             <div className="dark:bg-zinc-900 bg-white shadow fixed w-full top-0 p-3 z-50">
                 <div className="container mx-auto">
                     <div className="flex justify-center">
-                        <div className="lg:w-3/12 md:w-2/12 flex">
+                        <div className="dark:md:bg-transparent dark:bg-zinc-800 lg:w-3/12 md:w-2/12 flex">
                             <Link to={`/`}className="flex px-3">
                                 <img src={Logo} alt="Logo" className="md:w-[24px] w-[46px]" />
                             </Link>
                         </div>
                         
-                        <div className="lg:w-5/12 md:w-8/12 w-full">
-                            <form className="dark:bg-zinc-800 relative md:rounded">
-                                {LabelSearch ? 
-                                    <div className="absolute flex text-zinc-600 text-sm font-medium uppercase h-full w-full">
-                                        <div className="mx-auto self-center">
-                                            <i className="bi-search mr-3"></i> Search
-                                        </div>
+                        <div className="dark:bg-zinc-800 bg-zinc-200 lg:w-5/12 md:w-8/12 relative md:rounded w-full">
+                            {LabelSearch ? 
+                                <div className="absolute flex text-zinc-600 text-sm font-medium uppercase h-full w-full">
+                                    <div className="mx-auto self-center">
+                                        <i className="bi-search mr-3"></i> Search
                                     </div>
-                                    : 
-                                    <div className="absolute flex text-zinc-600 h-full w-full z-30" onClick={ModalSearchClose}>
-                                        <button className="ml-auto self-center p-3">
-                                            <i className="bi-x"></i>
-                                        </button>
-                                    </div>
-                                }
-                                <input className="bg-transparent text-zinc-600 rounded text-sm relative outline-none w-full z-10 p-3" type="text" value={Search} onChange={Filter}/>
-                            </form>
+                                </div>
+                                : 
+                                <div className="absolute flex text-zinc-600 h-full w-full z-30" onClick={ModalSearchClose}>
+                                    <button className="ml-auto self-center p-3">
+                                        <i className="bi-x"></i>
+                                    </button>
+                                </div>
+                            }
+                            <input className="bg-transparent text-zinc-600 rounded font-medium relative outline-none w-full z-10 p-3" type="text" value={Search} onChange={Filter}/>
                         </div>
 
-                        <div className="lg:w-3/12 md:w-2/12 flex justify-end">
-                            <button className="dark:hover:bg-zinc-800 dark:text-zinc-600 flex rounded-full px-3 mr-5" onClick={DarkModBtn}>
+                        <div className="dark:md:bg-transparent dark:bg-zinc-800 lg:w-3/12 md:w-2/12 flex justify-end">
+                            <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-600 lg:flex hidden rounded-full self-center w-10 h-10 mr-5" onClick={DarkModBtn}>
                                 {DarkMode ? 
                                     <i className="bi-moon-stars-fill text-xl self-center"></i> :
                                     <i className="bi-moon-stars text-xl self-center"></i>
                                 }
                             </button>
-                            <button className="dark:hover:bg-zinc-800 dark:text-zinc-600 flex rounded-full px-3" onClick={Modal.Alert == true ? (event) => setModal({Alert: false}) : (event) => setModal({Alert: true})}>
+                            <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-600 rounded-full self-center w-10 h-10" onClick={Modal.Alert == true ? (event) => setModal({Alert: false}) : (event) => setModal({Alert: true})}>
                                 <i className="bi-grid-fill text-xl self-center"></i>
                             </button>
                         </div>
@@ -100,14 +97,14 @@ const IncNavbar = () => {
       
             {Search.length !== 0 && (
                 <div className="bg-zinc-900/50 fixed w-full h-full top-0 left-0 z-30 animate-fadeIn">
-                    <div className="container md:px-0 px-3 py-2 mx-auto mt-16">
+                    <div className="container md:px-0 px-3 py-2 mx-auto mt-20">
                         <div className="flex justify-center">
-                            <div className="lg:basis-5/12 md:basis-8/12 basis-full dark:bg-zinc-900 shadow-lg rounded-sm p-5 overflow-hidden block">
+                            <div className="dark:bg-zinc-900 bg-white shadow-lg lg:w-5/12 md:w-8/12 w-full rounded-sm p-5 overflow-hidden block">
                                 {Found.length !== 0 ?
                                     <>
                                         {Found.slice(0, 5).map((doc, key) => {
                                             return (
-                                                <a href={`/${doc.Id}`} key={doc.Id} className="dark:bg-zinc-800 dark:hover:bg-zinc-700 hover:text-indigo-600 text-zinc-600 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
+                                                <a href={`/${doc.Id}`} key={doc.Id} className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-600 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
                                                     <div style={{ backgroundImage: `url(${doc.Cover})` }} className='bg-no-repeat bg-cover bg-center rounded-full shadow self-center w-10 h-10 mr-3'></div> 
                                                     <span>
                                                         <div className="font-medium">{doc.Title}</div>
@@ -134,36 +131,57 @@ const IncNavbar = () => {
 
             {Modal.Alert == true && (
                 <div className="fixed bg-zinc-900/50 flex top-0 left-0 w-full h-full z-40">
-                    <div className="dark:bg-zinc-900 bg-white lg:w-5/12 w-10/12 rounded self-center mx-auto p-5 animate-fadeIn">
+                    <div className="dark:bg-zinc-900 bg-white lg:w-5/12 md:w-8/12 w-10/12 rounded self-center mx-auto p-5 animate-fadeIn">
                         <div className="flex justify-between mb-5">
-                            <button className="text-zinc-600 text-xl font-medium" onClick={(event) => setModal({Alert: false})}>Valonime</button>
-                            <button className="dark:hover:bg-zinc-800 text-zinc-600 rounded-full px-2 py-1" onClick={(event) => setModal({Alert: false})}>
+                            <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-600 rounded-full w-10 h-10" onClick={DarkModBtn}>
+                                {DarkMode ? 
+                                    <i className="bi-moon-stars-fill text-xl self-center"></i> :
+                                    <i className="bi-moon-stars text-xl self-center"></i>
+                                }
+                            </button>
+                            <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-600 rounded-full w-10 h-10" onClick={(event) => setModal({Alert: false})}>
                                 <i className="bi-x"/>
                             </button>
                         </div>
-
-                        <Link to="/" className="dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-600 hover:text-indigo-600 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
+                        
+                        <div className="grid grid-cols-2 gap-1">
+                            <button className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-600 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
+                                <i className="bi-person-fill text-2xl self-center mr-3"/>    
+                                <span>
+                                    <div className="font-medium">Login</div>
+                                    <div className="text-xs">Insert Username & Password</div>
+                                </span>
+                            </button>
+                            <button className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-600 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
+                                <i className="bi-person-plus-fill text-2xl self-center mr-3"/>    
+                                <span>
+                                    <div className="font-medium">Register</div>
+                                    <div className="text-xs">Make your account</div>
+                                </span>
+                            </button>
+                        </div>
+                        <Link to="/" className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-600 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
                             <i className="bi-star-fill text-2xl self-center mr-3"/>    
                             <span>
                                 <div className="font-medium">Recomended</div>
                                 <div className="text-xs">Most View</div>
                             </span>
                         </Link>
-                        <Link to="/more" className="dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-600 hover:text-indigo-600 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
+                        <Link to="/more" className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-600 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
                             <i className="bi-grid-fill text-2xl self-center mr-3"/>    
                             <span>
                                 <div className="font-medium">Genre</div>
                                 <div className="text-xs">Choose your Genre</div>
                             </span>
                         </Link>
-                        <Link to="/" className="dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-600 hover:text-indigo-600 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
+                        <Link to="/" className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-600 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
                             <i className="bi-star-fill text-2xl self-center mr-3"/>    
                             <span>
                                 <div className="font-medium">Recomended</div>
                                 <div className="text-xs">Most View</div>
                             </span>
                         </Link>
-                        <Link to="/more" className="dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-600 hover:text-indigo-600 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
+                        <Link to="/more" className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-600 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
                             <i className="bi-grid-fill text-2xl self-center mr-3"/>    
                             <span>
                                 <div className="font-medium">Genre</div>

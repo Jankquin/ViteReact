@@ -46,7 +46,7 @@ const PagePost = () => {
             <div className='mt-16'>
                 {CarouselSlice.map(doc => {
                     return (
-                        <div key={doc.Id} className="relative -mx-3 -mt-7 md:mx-0 md:mt-0 mb-10">
+                        <div key={doc.Id} className="relative mb-10">
                             <div className="group shadow-lg relative block overflow-hidden w-full lg:h-[32rem] md:h-[24rem] h-[16rem] md:animate-fadeIn">
                                 <div className="bg-gradient-to-r from-neutral-700 via-neutral-700 absolute left-0 top-0 h-full w-full z-10"></div>
                                 <div style={{ backgroundImage: `url(${doc.Cover})` }} className="group-hover:scale-125 bg-cover bg-top scale-110 duration-500 absolute right-0 top-0 h-full w-2/4 z-0"></div>
