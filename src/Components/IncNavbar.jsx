@@ -57,29 +57,35 @@ const IncNavbar = () => {
         ValidTitle      : { border: InputData.Title ? "1px solid #e5e7eb" : "1px solid #ef4444" }
     }
 
+    const css = `
+        body {
+            overflow: hidden;
+        }
+    `
+
     return (
         <>
             <div className="dark:bg-zinc-900 bg-white fixed w-full top-0 p-3 z-50">
                 <div className="container mx-auto">
-                    <div className="flex justify-center">
-                        <div className="dark:md:bg-transparent dark:bg-zinc-800 lg:w-3/12 md:w-2/12 flex">
-                            <Link to={`/`}className="flex px-3">
-                                <img src={Logo} alt="Logo" className="md:w-[24px] w-[46px]" />
+                    <div className="flex justify-center relative">
+                        <div className="lg:w-3/12 md:w-2/12 w-2/12 md:relative absolute flex left-0 z-10 h-full">
+                            <Link to={`/`}className="self-center px-3">
+                                <img src={Logo} alt="Logo" className="w-[20px]" />
                             </Link>
                         </div>
                         
-                        <div className="lg:w-5/12 md:w-8/12 relative h-12">
+                        <div className="lg:w-5/12 md:w-8/12 w-full relative h-12">
                             <div className="dark:bg-zinc-800  bg-zinc-200 relative rounded w-full min-h-full">
-                                <input id="SearchBar" className="bg-transparent text-zinc-600 relative font-medium outline-none w-full min-h-full z-10 p-3" type="text" value={Search} onChange={Filter}/>
+                                <input id="SearchBar" className="bg-transparent text-zinc-600 relative font-medium outline-none w-full min-h-full z-10 py-3 pl-12 pr-20" type="text" value={Search} onChange={Filter}/>
                                 {LabelSearch ? 
                                     <label htmlFor="SearchBar" className="text-zinc-600 text-sm font-medium uppercase absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4">Search</label>
                                     : 
-                                    <button className="text-zinc-600 absolute top-0 right-0 p-3 z-10" onClick={ModalSearchClose}>
+                                    <button className="text-zinc-600 absolute top-0 md:right-0 right-10 p-3 z-20" onClick={ModalSearchClose}>
                                         <i className="bi-x"></i>
                                     </button>
                                 }
                                 {Search.length !== 0 && (
-                                    <div className="shadow-lg p-3">
+                                    <div className="shadow-lg border-t border-zinc-700/50 p-3">
                                         {Found.length !== 0 ?
                                             <>
                                                 {Found.slice(0, 5).map((doc, key) => {
@@ -107,7 +113,7 @@ const IncNavbar = () => {
                             </div>
                         </div>
 
-                        <div className="dark:md:bg-transparent dark:bg-zinc-800 lg:w-3/12 md:w-2/12 flex justify-end">
+                        <div className="lg:w-3/12 md:w-2/12 w-2/12 md:relative absolute flex justify-end right-0 z-10 h-full">
                             <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-600 lg:block hidden rounded-full self-center w-10 h-10 mr-5" onClick={DarkModBtn}>
                                 {DarkMode ? 
                                     <i className="bi-moon-stars-fill text-xl self-center"></i> :
@@ -130,7 +136,7 @@ const IncNavbar = () => {
             </div>
 
             {Modal.Menu == true && (
-                <div className="fixed bg-zinc-900/50 flex top-0 left-0 w-full h-full z-40">
+                <div className="bg-zinc-900/50 fixed flex top-0 left-0 w-full h-full z-40">
                     <div className="container md:px-0 px-3 py-2 mx-auto mt-20">
                         <div className="dark:bg-zinc-900 bg-white lg:w-5/12 md:w-8/12 w-10/12 rounded self-center mx-auto p-5 animate-fadeIn">
                             <div className="flex justify-between mb-5">
@@ -193,11 +199,13 @@ const IncNavbar = () => {
                             <div className="text-zinc-600 text-xs mt-5">Powered by : Valonime</div>
                         </div>
                     </div>
+
+                    <style>{css}</style>
                 </div>
             )}
 
             {Modal.Login == true && (
-                <div className="fixed bg-zinc-900/50 flex top-0 left-0 w-full h-full z-40">
+                <div className="bg-zinc-900 fixed flex top-0 left-0 w-full h-full z-40">
                     <div className="container md:px-0 px-3 py-2 mx-auto mt-20">
                         <div className="dark:bg-zinc-900 bg-white lg:w-5/12 md:w-8/12 w-10/12 rounded self-center mx-auto p-5 animate-fadeIn">
                             <div className="flex justify-between mb-5">
@@ -232,11 +240,13 @@ const IncNavbar = () => {
                             </button>
                         </div>
                     </div>
+
+                    <style>{css}</style>
                 </div>
             )}
 
             {Modal.Register == true && (
-                <div className="fixed bg-zinc-900/50 flex top-0 left-0 w-full h-full z-40">
+                <div className="bg-zinc-900 fixed flex top-0 left-0 w-full h-full z-40">
                     <div className="container md:px-0 px-3 py-2 mx-auto mt-20">
                         <div className="dark:bg-zinc-900 bg-white lg:w-5/12 md:w-8/12 w-10/12 rounded self-center mx-auto p-5 animate-fadeIn">
                             <div className="flex justify-between mb-5">
@@ -277,6 +287,8 @@ const IncNavbar = () => {
                             </button>
                         </div>
                     </div>
+
+                    <style>{css}</style>
                 </div>
             )}
         </>
