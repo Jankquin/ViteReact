@@ -65,22 +65,23 @@ const IncNavbar = () => {
 
     return (
         <>
-            <div className="dark:bg-zinc-900 bg-white fixed w-full top-0 p-3 z-50">
+            <div className="dark:bg-zinc-900 bg-white shadow-lg fixed w-full top-0 p-3 z-50">
                 <div className="container mx-auto">
                     <div className="flex justify-center relative">
-                        <div className="lg:w-3/12 md:w-2/12 w-2/12 md:relative absolute flex left-0 z-10 h-full">
-                            <Link to={`/`}className="self-center px-3">
-                                <img src={Logo} alt="Logo" className="w-[20px]" />
+                        <div className="absolute flex left-0 z-20 h-full">
+                            <Link to={`/`} className="flex self-center justify-center w-10 h-10 mr-5">
+                                <img src={Logo} alt="Logo" className="self-center w-[20px]" />
                             </Link>
+                            <div className="text-zinc-500 font-medium self-center lg:block hidden">VAsian</div>
                         </div>
                         
                         <div className="lg:w-5/12 md:w-8/12 w-full relative h-12">
                             <div className="dark:bg-zinc-800  bg-zinc-200 relative rounded w-full min-h-full">
-                                <input id="SearchBar" className="bg-transparent text-zinc-600 relative font-medium outline-none w-full min-h-full z-10 py-3 pl-12 pr-20" type="text" value={Search} onChange={Filter}/>
+                                <input id="SearchBar" className="bg-transparent text-zinc-500 relative font-medium outline-none w-full min-h-full z-10 py-3 pl-12 pr-20" type="text" value={Search} onChange={Filter}/>
                                 {LabelSearch ? 
-                                    <label htmlFor="SearchBar" className="text-zinc-600 text-sm font-medium uppercase absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4">Search</label>
+                                    <label htmlFor="SearchBar" className="text-zinc-500 text-sm font-medium uppercase absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4">Search</label>
                                     : 
-                                    <button className="text-zinc-600 absolute top-0 md:right-0 right-10 p-3 z-20" onClick={ModalSearchClose}>
+                                    <button className="text-zinc-500 absolute top-0 md:right-0 right-10 p-3 z-20" onClick={ModalSearchClose}>
                                         <i className="bi-x"></i>
                                     </button>
                                 }
@@ -90,22 +91,22 @@ const IncNavbar = () => {
                                             <>
                                                 {Found.slice(0, 5).map((doc, key) => {
                                                     return (
-                                                        <a href={`/${doc.Id}`} key={doc.Id} className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-600 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({})}>
+                                                        <a href={`/${doc.Id}`} key={doc.Id} className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-500 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({})}>
                                                             <div style={{ backgroundImage: `url(${doc.Cover})` }} className='bg-no-repeat bg-cover bg-center rounded-full shadow self-center w-10 h-10 mr-3'></div> 
-                                                            <span>
-                                                                <div className="font-medium">{doc.Title}</div>
+                                                            <div className="overflow-hidden w-11/12 ml-auto">
+                                                                <h3 className="text-zinc-500 whitespace-nowrap text-ellipsis overflow-hidden text-sm font-medium">{doc.Title}</h3>
                                                                 <div className="flex">
                                                                     <i className="bi-eye-fill self-center mr-3" />
                                                                     <div className="self-center text-xs">{doc.View}</div>
                                                                 </div>
-                                                            </span>
+                                                            </div>
                                                         </a>    
                                                     );
                                                 })}
                                             </> 
                                             :
                                             <>
-                                                <h2 className="text-zinc-600 text-2xl text-center font-medium">Not Found</h2>
+                                                <h2 className="text-zinc-500 text-2xl text-center font-medium">Not Found</h2>
                                             </>
                                         }
                                     </div>
@@ -113,14 +114,14 @@ const IncNavbar = () => {
                             </div>
                         </div>
 
-                        <div className="lg:w-3/12 md:w-2/12 w-2/12 md:relative absolute flex justify-end right-0 z-10 h-full">
-                            <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-600 lg:block hidden rounded-full self-center w-10 h-10 mr-5" onClick={DarkModBtn}>
+                        <div className="absolute flex right-0 z-10 h-full">
+                            <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-500 lg:block hidden rounded-full self-center w-10 h-10 mr-5" onClick={DarkModBtn}>
                                 {DarkMode ? 
                                     <i className="bi-moon-stars-fill text-xl self-center"></i> :
                                     <i className="bi-moon-stars text-xl self-center"></i>
                                 }
                             </button>
-                            <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-600 rounded-full self-center w-10 h-10" 
+                            <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-500 rounded-full self-center w-10 h-10" 
                                 onClick={Modal.Menu == true ? 
                                     (event) => {
                                         setModal({Menu: false})
@@ -136,59 +137,59 @@ const IncNavbar = () => {
             </div>
 
             {Modal.Menu == true && (
-                <div className="bg-zinc-900/50 fixed flex top-0 left-0 w-full h-full z-40">
+                <div className="bg-zinc-700/50 fixed flex top-0 left-0 w-full h-full z-40">
                     <div className="container md:px-0 px-3 py-2 mx-auto mt-20">
-                        <div className="dark:bg-zinc-900 bg-white lg:w-5/12 md:w-8/12 w-10/12 rounded self-center mx-auto p-5 animate-fadeIn">
+                        <div className="dark:bg-zinc-900 bg-white lg:w-5/12 md:w-8/12 w-full rounded self-center mx-auto p-5 animate-fadeIn">
                             <div className="flex justify-between mb-5">
-                                <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-600 rounded-full w-10 h-10" onClick={DarkModBtn}>
+                                <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-500 rounded-full w-10 h-10" onClick={DarkModBtn}>
                                     {DarkMode ? 
                                         <i className="bi-moon-stars-fill text-xl self-center"></i> :
                                         <i className="bi-moon-stars text-xl self-center"></i>
                                     }
                                 </button>
-                                <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-600 rounded-full w-10 h-10" onClick={(event) => setModal({})}>
+                                <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-500 rounded-full w-10 h-10" onClick={(event) => setModal({})}>
                                     <i className="bi-x"/>
                                 </button>
                             </div>
                             
                             <div className="grid grid-cols-2 gap-1">
-                                <button className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-600 text-left flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Login: true})}>
+                                <button className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-500 text-left flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Login: true})}>
                                     <i className="bi-person-fill text-2xl self-center mr-3"/>    
-                                    <span>
+                                    <div className="self-center">
                                         <div className="font-medium">Login</div>
-                                        <div className="text-xs">Insert Username & Password</div>
-                                    </span>
+                                        <div className="md:block hidden text-xs">Insert Username & Password</div>
+                                    </div>
                                 </button>
-                                <button className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-600 text-left flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Register: true})}>
+                                <button className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-500 text-left flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Register: true})}>
                                     <i className="bi-person-plus-fill text-2xl self-center mr-3"/>    
-                                    <span>
+                                    <div className="self-center">
                                         <div className="font-medium">Register</div>
-                                        <div className="text-xs">Make your account</div>
-                                    </span>
+                                        <div className="md:block hidden text-xs">Make your account</div>
+                                    </div>
                                 </button>
                             </div>
-                            <Link to="/" className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-600 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
+                            <Link to="/" className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-500 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
                                 <i className="bi-star-fill text-2xl self-center mr-3"/>    
                                 <span>
                                     <div className="font-medium">Recomended</div>
                                     <div className="text-xs">Most View</div>
                                 </span>
                             </Link>
-                            <Link to="/more" className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-600 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
+                            <Link to="/more" className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-500 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
                                 <i className="bi-grid-fill text-2xl self-center mr-3"/>    
                                 <span>
                                     <div className="font-medium">Genre</div>
                                     <div className="text-xs">Choose your Genre</div>
                                 </span>
                             </Link>
-                            <Link to="/" className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-600 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
+                            <Link to="/" className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-500 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
                                 <i className="bi-star-fill text-2xl self-center mr-3"/>    
                                 <span>
                                     <div className="font-medium">Recomended</div>
                                     <div className="text-xs">Most View</div>
                                 </span>
                             </Link>
-                            <Link to="/more" className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-600 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
+                            <Link to="/more" className="dark:bg-zinc-800 dark:hover:bg-zinc-700/50 bg-zinc-200 hover:bg-zinc-300 text-zinc-500 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
                                 <i className="bi-grid-fill text-2xl self-center mr-3"/>    
                                 <span>
                                     <div className="font-medium">Genre</div>
@@ -196,7 +197,7 @@ const IncNavbar = () => {
                                 </span>
                             </Link>
 
-                            <div className="text-zinc-600 text-xs mt-5">Powered by : Valonime</div>
+                            <div className="text-zinc-500 text-xs text-center mt-5">Powered by : Valonime</div>
                         </div>
                     </div>
 
@@ -207,16 +208,16 @@ const IncNavbar = () => {
             {Modal.Login == true && (
                 <div className="bg-zinc-900 fixed flex top-0 left-0 w-full h-full z-40">
                     <div className="container md:px-0 px-3 py-2 mx-auto mt-20">
-                        <div className="dark:bg-zinc-900 bg-white lg:w-5/12 md:w-8/12 w-10/12 rounded self-center mx-auto p-5 animate-fadeIn">
+                        <div className="dark:bg-zinc-900 bg-white lg:w-5/12 md:w-8/12 w-full rounded self-center mx-auto p-5 animate-fadeIn">
                             <div className="flex justify-between mb-5">
-                                <div className="text-zinc-600 flex px-4 py-2 mb-1">
+                                <div className="text-zinc-500 flex px-4 py-2 mb-1">
                                     <i className="bi-person-fill text-2xl self-center mr-3"/>    
                                     <span>
                                         <div className="font-medium">Login</div>
                                         <div className="text-xs">Insert Username & Password</div>
                                     </span>
                                 </div>
-                                <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-600 rounded-full w-10 h-10" onClick={(event) => setModal({})}>
+                                <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-500 rounded-full w-10 h-10" onClick={(event) => setModal({})}>
                                     <i className="bi-x"/>
                                 </button>
                             </div>
@@ -248,16 +249,16 @@ const IncNavbar = () => {
             {Modal.Register == true && (
                 <div className="bg-zinc-900 fixed flex top-0 left-0 w-full h-full z-40">
                     <div className="container md:px-0 px-3 py-2 mx-auto mt-20">
-                        <div className="dark:bg-zinc-900 bg-white lg:w-5/12 md:w-8/12 w-10/12 rounded self-center mx-auto p-5 animate-fadeIn">
+                        <div className="dark:bg-zinc-900 bg-white lg:w-5/12 md:w-8/12 w-full rounded self-center mx-auto p-5 animate-fadeIn">
                             <div className="flex justify-between mb-5">
-                                <div className="text-zinc-600 flex px-4 py-2 mb-1">
+                                <div className="text-zinc-500 flex px-4 py-2 mb-1">
                                     <i className="bi-person-plus-fill text-2xl self-center mr-3"/>    
                                     <span>
                                         <div className="font-medium">Register</div>
                                         <div className="text-xs">Make your account</div>
                                     </span>
                                 </div>
-                                <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-600 rounded-full w-10 h-10" onClick={(event) => setModal({})}>
+                                <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-500 rounded-full w-10 h-10" onClick={(event) => setModal({})}>
                                     <i className="bi-x"/>
                                 </button>
                             </div>
