@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../Assets/Logo.svg";
+import DLogo from "../Assets/DLogo.svg";
+import DSite from "../Assets/DSite.svg";
+import LLogo from "../Assets/LLogo.svg";
+import LSite from "../Assets/LSite.svg";
 import Tb_Post from "../Firebase/Tb_Post";
 // import useDarkMode from '../Components/useDarkMode';
 
@@ -70,9 +73,17 @@ const IncNavbar = () => {
                     <div className="flex justify-center relative">
                         <div className="absolute flex left-0 z-20 h-full">
                             <Link to={`/`} className="flex self-center justify-center w-10 h-10 mr-5">
-                                <img src={Logo} alt="Logo" className="self-center w-[20px]" />
+                                {DarkMode ?
+                                    <img src={DLogo} alt="Logo" className="self-center w-[20px]" /> :
+                                    <img src={LLogo} alt="Logo" className="self-center w-[20px]" />
+                                }
                             </Link>
-                            <div className="text-zinc-500 font-medium self-center lg:block hidden">VAsian</div>
+                            <div className="text-zinc-500 font-medium self-center lg:block hidden">
+                                {DarkMode ?
+                                    <img src={DSite} alt="Site" className="self-center h-4" /> :
+                                    <img src={LSite} alt="Site" className="self-center h-4" />
+                                }
+                            </div>
                         </div>
                         
                         <div className="lg:w-5/12 md:w-8/12 w-full relative h-12">
@@ -197,7 +208,7 @@ const IncNavbar = () => {
                                 </span>
                             </Link>
 
-                            <div className="text-zinc-500 text-xs text-center mt-5">Powered by : Valonime</div>
+                            <div className="text-zinc-500 text-xs text-center mt-5">Powered by : Beass</div>
                         </div>
                     </div>
 

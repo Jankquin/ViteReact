@@ -94,21 +94,12 @@ const PagePost = () => {
                     <div className="lg:w-10/12 md:w-8/12x w-full">
 
                         <div className="flex justify-between mb-5">
-                            <div className='flex'>
-                                <div className="text-zinc-500 flex mr-5">
-                                    <i className="bi-grid-fill text-2xl self-center mr-3"/>    
-                                    <span>
-                                        <div className="font-medium">Trending</div>
-                                        <div className="text-xs">Most view last week</div>
-                                    </span>
-                                </div>
-                                <div className="text-zinc-500 text-sm text-center md:grid grid-cols-5 hidden divide-x divide-zinc-500 self-center">
-                                    <Link to={`/`} className='dark:hover:bg-zinc-700/50 px-3'>Loli</Link>
-                                    <Link to={`/`} className='dark:hover:bg-zinc-700/50 px-3'>Milf</Link>
-                                    <Link to={`/`} className='dark:hover:bg-zinc-700/50 px-3'>Romance</Link>
-                                    <Link to={`/`} className='dark:hover:bg-zinc-700/50 px-3'>School</Link>
-                                    <Link to={`/`} className='dark:hover:bg-zinc-700/50 px-3'>Vanilla</Link>
-                                </div>
+                            <div className="text-zinc-500 flex">
+                                <i className="bi-grid-fill text-2xl self-center mr-3"/>    
+                                <span>
+                                    <div className="font-medium">New Uploaded</div>
+                                    <div className="text-xs">Repost content</div>
+                                </span>
                             </div>
                             <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-500 self-center rounded-full w-10 h-10">
                                 <i className="bi-arrow-right"/>
@@ -119,8 +110,9 @@ const PagePost = () => {
                             {DataMostView.map(doc => {
                                 return (
                                     <Link to={`/${doc.Id}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex-none group rounded mr-2 first:ml-0 last:mr-0 overflow-hidden">
-                                        <div style={{ backgroundImage: `url(${doc.Cover})` }} className="lg:h-64 lg:w-44 md:h-52 md:w-36 h-44 w-28 bg-cover bg-center rounded"></div>
-                                        <div className="whitespace-nowrap text-ellipsis overflow-hidden text-sm font-medium text-center lg:w-44 md:w-36 w-28 px-2 py-1">{doc.Title}</div>
+                                        {/* <div style={{ backgroundImage: `url(${doc.Cover})` }} className='bg-zinc-700 bg-cover bg-top rounded h-52 w-36 animate-fadeIn'></div> */}
+                                        <img src={doc.Cover} className="lg:h-64 lg:w-44 md:h-52 md:w-36 h-44 w-28 rounded" alt="" />
+                                        {/* <div className="whitespace-nowrap text-ellipsis overflow-hidden text-sm font-medium text-center min-w-36 w-28 px-2 py-1">{doc.Title}</div> */}
                                         <div className="flex text-xs justify-center pb-3">
                                             <i className="bi-eye-fill self-center mr-2"></i>
                                             <div className="self-center">{doc.View}</div>
