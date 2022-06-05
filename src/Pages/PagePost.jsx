@@ -5,8 +5,6 @@ import Tb_Post from '../Firebase/Tb_Post'
 
 const PagePost = () => {
     const [Carousel, setCarousel] = useState([0, 1]);
-    const [LoadMore, setLoadMore] = useState(8);
-    const DataPost       = Tb_Post().UsePost;
     const DataMostView   = Tb_Post().UseMostView;
     const DataRecomended = Tb_Post().UseRecomended;
     const CarouselSlice  = DataRecomended.slice(Carousel[0], Carousel[1])
@@ -33,23 +31,28 @@ const PagePost = () => {
         }
     }
     
-    const LoadMoreBtn = () => {
-        const GetLoadMore = LoadMore + 12;
-        setLoadMore(GetLoadMore);
-    }
-
-    const SliceData = DataPost.slice(0, LoadMore);
-
 
     return (
         <>
-            <div className='mt-16'>
+
+            <div className='container mx-auto'>
+                {CarouselSlice.map(doc => {
+                    return (
+                        <div key={doc.Id} className="relative mb-10 mt-16">
+                            {/* <div className='bg-gradient-to-r from-indigo-50/50 to-indigo-500 absolute top-0 lef-0 w-full h-full'></div> */}
+                            <div style={{ backgroundImage: `url(${doc.Cover})` }} className="bg-cover bg-top w-full mt-16 h-96"></div>
+                        </div>
+                    )}
+                )}
+            </div>
+
+            {/* <div className='mt-16'>
                 {CarouselSlice.map(doc => {
                     return (
                         <div key={doc.Id} className="relative mb-10">
-                            <div className="group shadow-lg relative block overflow-hidden w-full lg:h-[32rem] md:h-[24rem] h-[16rem] md:animate-fadeIn">
+                            <div className="shadow-lg relative block overflow-hidden w-full lg:h-[32rem] md:h-[24rem] h-[16rem] md:animate-fadeIn">
                                 <div className="bg-gradient-to-r from-zinc-900 via-zinc-800 absolute left-0 top-0 h-full w-full z-10"></div>
-                                <div style={{ backgroundImage: `url(${doc.Cover})` }} className="group-hover:scale-125 bg-cover bg-top scale-110 duration-500 absolute right-0 top-0 h-full w-2/4 z-0"></div>
+                                <div style={{ backgroundImage: `url(${doc.Cover})` }} className="bg-cover bg-top absolute right-0 top-0 h-full w-2/4 z-0"></div>
                             </div>
 
                             <div className='absolute flex top-0 left-0 w-full h-full z-10'>
@@ -87,7 +90,7 @@ const PagePost = () => {
                         </div>
                     )
                 })}
-            </div>
+            </div> */}
 
             <div className="container mx-auto lg:px-2 px-3 py-5">
                 <div className="flex justify-center mb-10">
@@ -96,18 +99,75 @@ const PagePost = () => {
                         <div className="flex justify-between mb-5">
                             <div className='flex'>
                                 <div className="text-zinc-500 flex mr-5">
-                                    <i className="bi-grid-fill text-2xl self-center mr-3"/>    
+                                    <i className="bi-clock-fill text-2xl self-center mr-3"/>    
+                                    <span>
+                                        <div className="font-medium">New Release</div>
+                                        <div className="text-xs">21 December 2022</div>
+                                    </span>
+                                </div>
+                                <div className="text-zinc-500 text-sm text-center md:grid grid-cols-5 hidden divide-x divide-zinc-500 self-center">
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Loli</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Milf</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Romace</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>School</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Vanilla</Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-500 self-center rounded-full w-10 h-10">
+                                <i className="bi-arrow-right"/>
+                            </button>
+                        </div>
+                    
+                        <div className="flex overflow-x-scroll no-scrollbar mb-10">
+                            {DataMostView.map(doc => {
+                                return (
+                                    <Link to={`/${doc.Id}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex-none group rounded mr-2 first:ml-0 last:mr-0 overflow-hidden">
+                                        <div style={{ backgroundImage: `url(${doc.Cover})` }} className="lg:h-64 lg:w-44 md:h-52 md:w-36 h-44 w-28 bg-cover bg-center rounded"></div>
+                                        <div className="whitespace-nowrap text-ellipsis overflow-hidden text-sm font-medium text-center lg:w-44 md:w-36 w-28 px-2 py-1">{doc.Title}</div>
+                                        <div className="flex text-xs justify-center pb-3">
+                                            <i className="bi-eye-fill self-center mr-2"></i>
+                                            <div className="self-center">{doc.View}</div>
+                                        </div>
+                                    </Link>
+                                )
+                            })}
+                        </div>
+                        
+                        <div className="flex justify-between mb-5">
+                            <div className='flex'>
+                                <div className="text-zinc-500 flex mr-5">
+                                    <i className="bi-layers-fill text-2xl self-center mr-3"/>    
                                     <span>
                                         <div className="font-medium">Trending</div>
                                         <div className="text-xs">Most view last week</div>
                                     </span>
                                 </div>
                                 <div className="text-zinc-500 text-sm text-center md:grid grid-cols-5 hidden divide-x divide-zinc-500 self-center">
-                                    <Link to={`/`} className='dark:hover:bg-zinc-700/50 px-3'>Loli</Link>
-                                    <Link to={`/`} className='dark:hover:bg-zinc-700/50 px-3'>Milf</Link>
-                                    <Link to={`/`} className='dark:hover:bg-zinc-700/50 px-3'>Romance</Link>
-                                    <Link to={`/`} className='dark:hover:bg-zinc-700/50 px-3'>School</Link>
-                                    <Link to={`/`} className='dark:hover:bg-zinc-700/50 px-3'>Vanilla</Link>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Loli</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Milf</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Romace</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>School</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Vanilla</Link>
+                                    </div>
                                 </div>
                             </div>
                             <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-500 self-center rounded-full w-10 h-10">
@@ -131,24 +191,43 @@ const PagePost = () => {
                         </div>
 
                         <div className="flex justify-between mb-5">
-                            <div className="text-zinc-500 flex">
-                                <i className="bi-lightning-charge-fill text-2xl self-center mr-3"/>    
-                                <span>
-                                    <div className="font-medium">New Updated</div>
-                                    <div className="text-xs">Repost content</div>
-                                </span>
+                            <div className='flex'>
+                                <div className="text-zinc-500 flex mr-5">
+                                    <i className="bi-stars text-2xl self-center mr-3"/>    
+                                    <span>
+                                        <div className="font-medium">Popular</div>
+                                        <div className="text-xs">Most view</div>
+                                    </span>
+                                </div>
+                                <div className="text-zinc-500 text-sm text-center md:grid grid-cols-5 hidden divide-x divide-zinc-500 self-center">
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Loli</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Milf</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Romace</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>School</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Vanilla</Link>
+                                    </div>
+                                </div>
                             </div>
                             <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-500 self-center rounded-full w-10 h-10">
                                 <i className="bi-arrow-right"/>
                             </button>
                         </div>
 
-                        <div className="grid lg:grid-cols-6 md:grid-cols-5 grid-cols-3 gap-1 rounded overflow-hidden mb-10">
-                            {SliceData.map(doc => {
+                        <div className="flex overflow-x-scroll no-scrollbar mb-10">
+                            {DataMostView.map(doc => {
                                 return (
-                                    <Link to={`/${doc.Id}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 group rounded first:ml-0 last:mr-0 overflow-hidden">
-                                        <div style={{ backgroundImage: `url(${doc.Cover})` }} className='bg-zinc-700 bg-cover bg-top rounded lg:h-64 md:h-56 h-52 w-full animate-fadeIn'></div>
-                                        <div className="whitespace-nowrap text-ellipsis overflow-hidden text-sm font-medium text-center w-36 px-2 py-1">{doc.Title}</div>
+                                    <Link to={`/${doc.Id}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex-none group rounded mr-2 first:ml-0 last:mr-0 overflow-hidden">
+                                        <div style={{ backgroundImage: `url(${doc.Cover})` }} className="lg:h-64 lg:w-44 md:h-52 md:w-36 h-44 w-28 bg-cover bg-center rounded"></div>
+                                        <div className="whitespace-nowrap text-ellipsis overflow-hidden text-sm font-medium text-center lg:w-44 md:w-36 w-28 px-2 py-1">{doc.Title}</div>
                                         <div className="flex text-xs justify-center pb-3">
                                             <i className="bi-eye-fill self-center mr-2"></i>
                                             <div className="self-center">{doc.View}</div>
@@ -157,12 +236,53 @@ const PagePost = () => {
                                 )
                             })}
                         </div>
-
-                        {LoadMore < DataPost.length && (
-                            <button className="flex hover:bg-indigo-800 hover:text-white text-zinc-500 rounded justify-center min-w-[7rem] px-4 py-2 mx-auto" onClick={LoadMoreBtn}>
-                                <span className="text-sm self-center">Load More</span>
+                        
+                        <div className="flex justify-between mb-5">
+                            <div className='flex'>
+                                <div className="text-zinc-500 flex mr-5">
+                                    <i className="bi-hearts text-2xl self-center mr-3"/>    
+                                    <span>
+                                        <div className="font-medium">Romace Selection</div>
+                                        <div className="text-xs">Romantic & cute couple</div>
+                                    </span>
+                                </div>
+                                <div className="text-zinc-500 text-sm text-center md:grid grid-cols-5 hidden divide-x divide-zinc-500 self-center">
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Loli</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Milf</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Romace</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>School</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Vanilla</Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-500 self-center rounded-full w-10 h-10">
+                                <i className="bi-arrow-right"/>
                             </button>
-                        )}
+                        </div>
+
+                        <div className="flex overflow-x-scroll no-scrollbar mb-10">
+                            {DataMostView.map(doc => {
+                                return (
+                                    <Link to={`/${doc.Id}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex-none group rounded mr-2 first:ml-0 last:mr-0 overflow-hidden">
+                                        <div style={{ backgroundImage: `url(${doc.Cover})` }} className="lg:h-64 lg:w-44 md:h-52 md:w-36 h-44 w-28 bg-cover bg-center rounded"></div>
+                                        <div className="whitespace-nowrap text-ellipsis overflow-hidden text-sm font-medium text-center lg:w-44 md:w-36 w-28 px-2 py-1">{doc.Title}</div>
+                                        <div className="flex text-xs justify-center pb-3">
+                                            <i className="bi-eye-fill self-center mr-2"></i>
+                                            <div className="self-center">{doc.View}</div>
+                                        </div>
+                                    </Link>
+                                )
+                            })}
+                        </div>
 
                     </div>
                 </div>
