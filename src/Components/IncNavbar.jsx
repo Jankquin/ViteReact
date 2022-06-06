@@ -8,7 +8,7 @@ import Tb_Post from "../Firebase/Tb_Post";
 // import useDarkMode from '../Components/useDarkMode';
 
 const IncNavbar = () => {
-    const [DarkMode, setDarkMode] = useState(false);
+    const [DarkMode, setDarkMode] = useState(true);
     const [Modal, setModal] = useState({})
     const [Search, setSearch] = useState(""); 
     const [LabelSearch, setLabelSearch] = useState(true);
@@ -68,7 +68,7 @@ const IncNavbar = () => {
 
     return (
         <>
-            <div className="dark:bg-zinc-900 bg-white shadow-lg fixed w-full top-0 p-3 z-50">
+            <div className="dark:bg-zinc-900 bg-white shadow-lg fixed w-full top-0 px-3 py-2 z-50">
                 <div className="container mx-auto">
                     <div className="flex justify-center relative">
                         <div className="absolute flex left-0 z-20 h-full">
