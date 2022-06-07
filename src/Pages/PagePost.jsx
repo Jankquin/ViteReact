@@ -39,13 +39,13 @@ const PagePost = () => {
                 {CarouselSlice.map(doc => {
                     return (
                         <div key={doc.Id} className="relative mb-24 mt-16">
-                            <div className="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 overflow-hidden w-full h-64">
-                                <div style={{ backgroundImage: `url(${doc.Cover})` }} className="bg-cover bg-center blur-[70px] w-full h-full"></div>
+                            <div className="bg-gradient-to-l from-pink-300 via-purple-300 to-indigo-400 overflow-hidden w-full h-48">
+                                <div style={{ backgroundImage: `url(${doc.Cover})` }} className="bg-cover bg-center blur-[100px] w-full h-full"></div>
                             </div>
 
-                            <div className='absolute flex w-full h-full top-0'>
-                                <div className='container self-end mx-auto px-3'>
-                                    <div className='flex justify-between'>
+                            <div className='absolute flex w-full h-full top-0 z-10'>
+                                <div className='container flex self-center mx-auto'>
+                                    <div className='lg:w-10/12 w-full flex justify-between mx-auto'>
                                         <button className="text-white self-center rounded-full w-10 h-10" onClick={(event) => CarouselBtn('Prev')}>
                                             <i className="bi-chevron-left text-2xl font-bold"/>
                                         </button>
@@ -53,28 +53,66 @@ const PagePost = () => {
                                             <i className="bi-chevron-right text-2xl font-bold"/>
                                         </button>
                                     </div>
+                                </div>
+                            </div>
+                            
+                            <div className='absolute flex w-full -bottom-12'>
+                                <div className='container mx-auto'>
+                                    <div className='lg:w-8/12 w-10/12 flex justify-between mx-auto'>
+                                        <div className=''>
+                                            <div className='text-white mb-5'>
+                                                <div className='text-xs'>10231 | 22/2/2222</div>
+                                                <div className="whitespace-nowrap text-ellipsis overflow-hidden text-lg font-medium lg:w-44 md:w-36 w-44 mb-3">{doc.Title} asdasdasd</div>
+                                                <div className='text-xs'>{doc.Genre}</div>
+                                            </div>
+                                            <div className="flex mb-3">
+                                                <div className='bg-white md:w-2 md:h-2 w-1 h-1 m-1'></div>
+                                                <div className='bg-white md:w-2 md:h-2 w-1 h-1 m-1'></div>
+                                                <div className='bg-white md:w-2 md:h-2 w-1 h-1 m-1'></div>
+                                            </div>
+                                            <button className="bg-indigo-500 text-white self-center rounded-full w-12 h-12 mr-3">
+                                                <i className="bi-caret-right-fill text-2xl"/>
+                                            </button>
+                                            <button className="bg-white text-zinc-900 self-center rounded-full w-12 h-12">
+                                                <i className="bi-bookmark-plus-fill text-2xl"/>
+                                            </button>
+                                        </div>
 
-                                    <div className='lg:w-10/12 w-full mx-auto'>
-                                        <div className='flex justify-between animate-fadeIn'>
+                                        <div style={{ backgroundImage: `url(${doc.Cover})` }} className="bg-cover rounded shadow-lg bg-top md:h-48 md:w-36 h-40 w-24"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* <div className='absolute flex w-full h-full top-0'>
+                                <div className='container self-end mx-auto px-3'>
+                                    <div className='w-10/12 mx-auto'>
+                                        <div className='flex justify-between'>
                                             <div className='self-end -mb-6'>
                                                 <div className='text-white mb-5'>
-                                                    <div className='font-medium text-2xl'>{doc.Title}</div>
+                                                    <div className='text-xs'>10231 | 22/2/2222</div>
+                                                    <div className='font-medium text-2xl mb-3'>{doc.Title}</div>
                                                     <div className='text-xs'>{doc.Genre}</div>
-                                                    <div className='text-xs'>{doc.Title}</div>
                                                 </div>
                                                 <button className="bg-indigo-500 text-white self-center rounded-full w-12 h-12 mr-3">
                                                     <i className="bi-caret-right-fill text-2xl"/>
                                                 </button>
-                                                <button className="bg-zinc-500 text-zinc-900 self-center rounded-full w-12 h-12">
+                                                <button className="bg-white text-zinc-900 self-center rounded-full w-12 h-12">
                                                     <i className="bi-bookmark-plus-fill text-2xl"/>
                                                 </button>
                                             </div>
 
-                                            <div style={{ backgroundImage: `url(${doc.Cover})` }} className="bg-cover rounded shadow-lg bg-top md:h-52 md:w-36 h-44 w-28 -mb-20 md:mr-28 mr-5"></div>
+                                            <div className='flex'>
+                                                <div style={{ backgroundImage: `url(${doc.Cover})` }} className="bg-cover rounded shadow-lg bg-top md:h-52 md:w-36 h-44 w-28 -mb-20 md:mr-28 mr-5"></div>
+                                                <div className="flex self-end">
+                                                    <div className='bg-white w-2 h-2 m-1'></div>
+                                                    <div className='bg-white w-2 h-2 m-1'></div>
+                                                    <div className='bg-white w-2 h-2 m-1'></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     )}
                 )}
