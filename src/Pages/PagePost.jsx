@@ -1,168 +1,66 @@
+import { setDoc } from 'firebase/firestore';
 import React from 'react'
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import Tb_Post from '../Firebase/Tb_Post'
 
 const PagePost = () => {
-    const [Carousel, setCarousel] = useState([0, 1]);
     const DataMostView   = Tb_Post().UseMostView;
     const DataRecomended = Tb_Post().UseRecomended;
-    const CarouselSlice  = DataRecomended.slice(Carousel[0], Carousel[1])
-    
-    const CarouselBtn = (event) => {
-        if(event == 'Next'){
-            if(Carousel[0] >= 2){
-                var Start = 0
-                var End   = 1
-            }else{
-                var Start = Carousel[0] * 1 + 1
-                var End   = Carousel[1] * 1 + 1
-            }
-            setCarousel([Start, End])
-        }else{
-            if(Carousel[0] <= 0){
-                var Start = 2
-                var End   = 3
-            }else{
-                var Start = Carousel[0] * 1 - 1
-                var End   = Carousel[1] * 1 - 1
-            }
-            setCarousel([Start, End])
-        }
-    }
-    
-    console.log(DataMostView)
+    const [CarouselIndicator, setCarouselIndicator] = useState(0);
+    const Carousel = DataRecomended[CarouselIndicator]
+
+
     return (
         <>
+            <div className="relative my-16 h-48">
+                <div className="absolute bg-gradient-to-l from-pink-300 via-purple-300 to-indigo-400 overflow-hidden w-full h-full">
+                    <div style={{ backgroundImage: `url(${Carousel && (Carousel.Cover)})` }} className="bg-cover bg-center blur-[100px] w-full h-full"></div>
+                </div>
 
-            {/* <div className='container mx-auto'> */}
-                {CarouselSlice.map(doc => {
-                    return (
-                        <div key={doc.Id} className="relative mb-24 mt-16">
-                            <div className="bg-gradient-to-l from-pink-300 via-purple-300 to-indigo-400 overflow-hidden w-full h-48">
-                                <div style={{ backgroundImage: `url(${doc.Cover})` }} className="bg-cover bg-center blur-[100px] w-full h-full"></div>
-                            </div>
-
-                            <div className='absolute flex w-full h-full top-0 z-10'>
-                                <div className='container flex self-center mx-auto'>
-                                    <div className='lg:w-10/12 w-full flex justify-between mx-auto'>
-                                        <button className="text-white self-center rounded-full w-10 h-10" onClick={(event) => CarouselBtn('Prev')}>
-                                            <i className="bi-chevron-left text-2xl font-bold"/>
-                                        </button>
-                                        <button className="text-white self-center rounded-full w-10 h-10" onClick={(event) => CarouselBtn('Next')}>
-                                            <i className="bi-chevron-right text-2xl font-bold"/>
-                                        </button>
-                                    </div>
+                <div className='relative container mx-auto h-full'>
+                    <div className='absolute lg:w-10/12 w-full flex justify-between top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+                        <button className="text-white self-center rounded-full w-10 h-10" onClick={(event) => setCarouselIndicator(CarouselIndicator == 0 ?  2 : CarouselIndicator * 1 - 1)}>
+                            <i className="bi-chevron-left text-2xl font-bold"/>
+                        </button>
+                        <button className="text-white self-center rounded-full w-10 h-10" onClick={(event) => setCarouselIndicator(CarouselIndicator == 2 ?  0 : CarouselIndicator * 1 + 1)}>
+                            <i className="bi-chevron-right text-2xl font-bold"/>
+                        </button>
+                    </div>
+                    
+                    <div className='absolute lg:w-8/12 w-10/12 flex justify-between top-14 left-1/2 -translate-x-1/2'>
+                        <div className=''>
+                            <div className='text-white mb-3'>
+                                <div className='flex text-xs mb-1'>
+                                    <i className="bi-clock-fill self-center mr-2"></i> 
+                                    {Carousel && (Carousel.Release.toDate().toLocaleDateString('sv'))}
+                                </div>
+                                <div className="whitespace-nowrap text-ellipsis overflow-hidden text-lg font-medium lg:w-96 md:w-72 w-44 mb-1">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum, porro molestiae dolorem ratione libero dolor?</div>
+                                <div className='flex'>
+                                    {Carousel && (Carousel.Genre.slice(0, 4).map(doc => {
+                                        return (
+                                            <div key={doc} className="text-xs border rounded-sm px-1 mr-1">{doc}</div>
+                                        )
+                                    }))}
                                 </div>
                             </div>
-                            
-                            <div className='absolute flex w-full -bottom-12'>
-                                <div className='container mx-auto'>
-                                    <div className='lg:w-8/12 w-10/12 flex justify-between mx-auto'>
-                                        <div className=''>
-                                            <div className='text-white mb-5'>
-                                                <div className='text-xs'>10231 | 22/2/2222</div>
-                                                <div className="whitespace-nowrap text-ellipsis overflow-hidden text-lg font-medium lg:w-44 md:w-36 w-44 mb-3">{doc.Title} asdasdasd</div>
-                                                <div className='text-xs'>{doc.Genre}</div>
-                                            </div>
-                                            <div className="flex mb-3">
-                                                <div className='bg-white md:w-2 md:h-2 w-1 h-1 m-1'></div>
-                                                <div className='bg-white md:w-2 md:h-2 w-1 h-1 m-1'></div>
-                                                <div className='bg-white md:w-2 md:h-2 w-1 h-1 m-1'></div>
-                                            </div>
-                                            <button className="bg-indigo-500 text-white self-center rounded-full w-12 h-12 mr-3">
-                                                <i className="bi-caret-right-fill text-2xl"/>
-                                            </button>
-                                            <button className="bg-white text-zinc-900 self-center rounded-full w-12 h-12">
-                                                <i className="bi-bookmark-plus-fill text-2xl"/>
-                                            </button>
-                                        </div>
-
-                                        <div style={{ backgroundImage: `url(${doc.Cover})` }} className="bg-cover rounded shadow-lg bg-top md:h-48 md:w-36 h-40 w-24"></div>
-                                    </div>
-                                </div>
+                            <div className="flex mb-3">
+                                <button className='border md:w-2 md:h-2 w-1 h-1 m-1' style={{ backgroundColor: CarouselIndicator == 0 ? '#ffffff' : '' }} onClick={() => setCarouselIndicator(0)}></button>
+                                <button className='border md:w-2 md:h-2 w-1 h-1 m-1' style={{ backgroundColor: CarouselIndicator == 1 ? '#ffffff' : '' }} onClick={() => setCarouselIndicator(1)}></button>
+                                <button className='border md:w-2 md:h-2 w-1 h-1 m-1' style={{ backgroundColor: CarouselIndicator == 2 ? '#ffffff' : '' }} onClick={() => setCarouselIndicator(2)}></button>
                             </div>
-
-                            {/* <div className='absolute flex w-full h-full top-0'>
-                                <div className='container self-end mx-auto px-3'>
-                                    <div className='w-10/12 mx-auto'>
-                                        <div className='flex justify-between'>
-                                            <div className='self-end -mb-6'>
-                                                <div className='text-white mb-5'>
-                                                    <div className='text-xs'>10231 | 22/2/2222</div>
-                                                    <div className='font-medium text-2xl mb-3'>{doc.Title}</div>
-                                                    <div className='text-xs'>{doc.Genre}</div>
-                                                </div>
-                                                <button className="bg-indigo-500 text-white self-center rounded-full w-12 h-12 mr-3">
-                                                    <i className="bi-caret-right-fill text-2xl"/>
-                                                </button>
-                                                <button className="bg-white text-zinc-900 self-center rounded-full w-12 h-12">
-                                                    <i className="bi-bookmark-plus-fill text-2xl"/>
-                                                </button>
-                                            </div>
-
-                                            <div className='flex'>
-                                                <div style={{ backgroundImage: `url(${doc.Cover})` }} className="bg-cover rounded shadow-lg bg-top md:h-52 md:w-36 h-44 w-28 -mb-20 md:mr-28 mr-5"></div>
-                                                <div className="flex self-end">
-                                                    <div className='bg-white w-2 h-2 m-1'></div>
-                                                    <div className='bg-white w-2 h-2 m-1'></div>
-                                                    <div className='bg-white w-2 h-2 m-1'></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> */}
+                            <button className="bg-indigo-500 text-white self-center rounded-full w-10 h-10 mr-3">
+                                <i className="bi-caret-right-fill text-2xl"/>
+                            </button>
+                            <button className="bg-white text-zinc-900 self-center rounded-full w-10 h-10">
+                                <i className="bi-bookmark-plus-fill text-2xl"/>
+                            </button>
                         </div>
-                    )}
-                )}
-            {/* </div> */}
 
-            {/* <div className='mt-16'>
-                {CarouselSlice.map(doc => {
-                    return (
-                        <div key={doc.Id} className="relative mb-10">
-                            <div className="shadow-lg relative block overflow-hidden w-full lg:h-[32rem] md:h-[24rem] h-[16rem] md:animate-fadeIn">
-                                <div className="bg-gradient-to-r from-zinc-900 via-zinc-800 absolute left-0 top-0 h-full w-full z-10"></div>
-                                <div style={{ backgroundImage: `url(${doc.Cover})` }} className="bg-cover bg-top absolute right-0 top-0 h-full w-2/4 z-0"></div>
-                            </div>
-
-                            <div className='absolute flex top-0 left-0 w-full h-full z-10'>
-                                <div className='w-1/12 self-center'>
-                                    <button className='text-zinc-500 self-center w-8 h-8' onClick={(event) => CarouselBtn('Next')}>
-                                        <i className='bi-chevron-left'></i>
-                                    </button>
-                                </div>
-                                <div className='w-7/12 text-zinc-500  self-end mb-5 animate-fadeIn'>
-                                    <div className='flex text-sm'>
-                                        <div className="flex border border-zinc-500 rounded-sm px-2 mb-3 mr-3">
-                                            <i className="bi-eye-fill self-center mr-2"></i>
-                                            <div className="self-center">{doc.View}</div>
-                                        </div>
-
-                                        <Link to={`/${doc.Id}`} className="whitespace-nowrap text-ellipsis overflow-hidden font-medium">{doc.Title}</Link>
-                                    </div>
-
-                                    <div className='flex'>
-                                        {doc.Genre.slice(0, 4).map(docs => {
-                                            return (
-                                                <div key={docs} className="text-zinc-500 self-center rounded-sm text-xs mr-3">
-                                                    {docs}
-                                                </div>
-                                            )
-                                        })}
-                                    </div>
-                                </div>
-                                <div className='w-6/12 self-center flex'>
-                                    <button className='text-zinc-500 self-center ml-auto w-8 h-8' onClick={(event) => CarouselBtn('Prev')}>
-                                        <i className='bi-chevron-right'></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    )
-                })}
-            </div> */}
+                        <div style={{ backgroundImage: `url(${Carousel && (Carousel.Cover)})` }} className="bg-cover rounded shadow-lg bg-top md:h-48 md:w-36 h-40 w-28"></div>
+                    </div>
+                </div> 
+            </div>
 
             <div className="container mx-auto lg:px-2 px-3 py-5">
                 <div className="flex justify-center mb-10">
