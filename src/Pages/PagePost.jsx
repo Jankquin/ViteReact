@@ -28,7 +28,7 @@ const PagePost = () => {
                         </button>
                     </div>
                     
-                    <div className='absolute lg:w-8/12 w-10/12 flex justify-between top-14 left-1/2 -translate-x-1/2'>
+                    <div className='absolute lg:w-8/12 w-10/12 flex justify-between top-16 left-1/2 -translate-x-1/2'>
                         <div className=''>
                             <div className='text-white mb-3'>
                                 <div className='flex text-xs mb-1'>
@@ -45,9 +45,9 @@ const PagePost = () => {
                                 </div>
                             </div>
                             <div className="flex mb-3">
-                                <button className='border md:w-2 md:h-2 w-1 h-1 m-1' style={{ backgroundColor: CarouselIndicator == 0 ? '#ffffff' : '' }} onClick={() => setCarouselIndicator(0)}></button>
-                                <button className='border md:w-2 md:h-2 w-1 h-1 m-1' style={{ backgroundColor: CarouselIndicator == 1 ? '#ffffff' : '' }} onClick={() => setCarouselIndicator(1)}></button>
-                                <button className='border md:w-2 md:h-2 w-1 h-1 m-1' style={{ backgroundColor: CarouselIndicator == 2 ? '#ffffff' : '' }} onClick={() => setCarouselIndicator(2)}></button>
+                                <button className='border w-2 h-2 m-1' style={{ backgroundColor: CarouselIndicator == 0 ? '#ffffff' : '' }} onClick={() => setCarouselIndicator(0)}></button>
+                                <button className='border w-2 h-2 m-1' style={{ backgroundColor: CarouselIndicator == 1 ? '#ffffff' : '' }} onClick={() => setCarouselIndicator(1)}></button>
+                                <button className='border w-2 h-2 m-1' style={{ backgroundColor: CarouselIndicator == 2 ? '#ffffff' : '' }} onClick={() => setCarouselIndicator(2)}></button>
                             </div>
                             <button className="bg-indigo-500 text-white self-center rounded-full w-10 h-10 mr-3">
                                 <i className="bi-caret-right-fill text-2xl"/>
@@ -119,7 +119,7 @@ const PagePost = () => {
                                     <i className="bi-layers-fill text-2xl self-center mr-3"/>    
                                     <span>
                                         <div className="font-medium">Trending</div>
-                                        <div className="text-xs">Most view last week</div>
+                                        <div className="text-xs">Most View</div>
                                     </span>
                                 </div>
                                 <div className="text-zinc-500 text-sm text-center md:grid grid-cols-5 hidden divide-x divide-zinc-500 self-center">
@@ -166,7 +166,7 @@ const PagePost = () => {
                                     <i className="bi-stars text-2xl self-center mr-3"/>    
                                     <span>
                                         <div className="font-medium">Popular</div>
-                                        <div className="text-xs">Most view</div>
+                                        <div className="text-xs">Most View</div>
                                     </span>
                                 </div>
                                 <div className="text-zinc-500 text-sm text-center md:grid grid-cols-5 hidden divide-x divide-zinc-500 self-center">
@@ -213,7 +213,101 @@ const PagePost = () => {
                                     <i className="bi-hearts text-2xl self-center mr-3"/>    
                                     <span>
                                         <div className="font-medium">Romace Selection</div>
-                                        <div className="text-xs">Romantic & cute couple</div>
+                                        <div className="text-xs">Romantic & Cute Couple</div>
+                                    </span>
+                                </div>
+                                <div className="text-zinc-500 text-sm text-center md:grid grid-cols-5 hidden divide-x divide-zinc-500 self-center">
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Loli</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Milf</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Romace</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>School</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Vanilla</Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-500 self-center rounded-full w-10 h-10">
+                                <i className="bi-arrow-right"/>
+                            </button>
+                        </div>
+
+                        <div className="flex overflow-x-scroll no-scrollbar mb-10">
+                            {DataMostView.map(doc => {
+                                return (
+                                    <Link to={`/${doc.Id}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex-none group rounded mr-2 first:ml-0 last:mr-0 overflow-hidden">
+                                        <div style={{ backgroundImage: `url(${doc.Cover})` }} className="lg:h-64 lg:w-44 md:h-52 md:w-36 h-44 w-28 bg-cover bg-center rounded"></div>
+                                        <div className="whitespace-nowrap text-ellipsis overflow-hidden text-sm font-medium text-center lg:w-44 md:w-36 w-28 px-2 py-1">{doc.Title}</div>
+                                        <div className="flex text-xs justify-center pb-3">
+                                            <i className="bi-eye-fill self-center mr-2"></i>
+                                            <div className="self-center">{doc.View}</div>
+                                        </div>
+                                    </Link>
+                                )
+                            })}
+                        </div>
+
+                        <div className="flex justify-between mb-5">
+                            <div className='flex'>
+                                <div className="text-zinc-500 flex mr-5">
+                                    <i className="bi-camera-reels-fill text-2xl self-center mr-3"/>    
+                                    <span>
+                                        <div className="font-medium">Asian Collection</div>
+                                        <div className="text-xs">Asian Nude Video</div>
+                                    </span>
+                                </div>
+                                <div className="text-zinc-500 text-sm text-center md:grid grid-cols-5 hidden divide-x divide-zinc-500 self-center">
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Loli</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Milf</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Romace</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>School</Link>
+                                    </div>
+                                    <div className='px-1'>
+                                        <Link to={`/`} className='dark:hover:bg-zinc-700/50 rounded-sm px-2 block'>Vanilla</Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-500 self-center rounded-full w-10 h-10">
+                                <i className="bi-arrow-right"/>
+                            </button>
+                        </div>
+
+                        <div className="flex overflow-x-scroll no-scrollbar mb-10">
+                            {DataMostView.map(doc => {
+                                return (
+                                    <Link to={`/${doc.Id}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex-none group rounded mr-2 first:ml-0 last:mr-0 overflow-hidden">
+                                        <div style={{ backgroundImage: `url(${doc.Cover})` }} className="lg:h-64 lg:w-44 md:h-52 md:w-36 h-44 w-28 bg-cover bg-center rounded"></div>
+                                        <div className="whitespace-nowrap text-ellipsis overflow-hidden text-sm font-medium text-center lg:w-44 md:w-36 w-28 px-2 py-1">{doc.Title}</div>
+                                        <div className="flex text-xs justify-center pb-3">
+                                            <i className="bi-eye-fill self-center mr-2"></i>
+                                            <div className="self-center">{doc.View}</div>
+                                        </div>
+                                    </Link>
+                                )
+                            })}
+                        </div>
+
+                        <div className="flex justify-between mb-5">
+                            <div className='flex'>
+                                <div className="text-zinc-500 flex mr-5">
+                                    <i className="bi-image-fill text-2xl self-center mr-3"/>    
+                                    <span>
+                                        <div className="font-medium">Image Collection</div>
+                                        <div className="text-xs">Imageset, Cosplay, Erotic & More</div>
                                     </span>
                                 </div>
                                 <div className="text-zinc-500 text-sm text-center md:grid grid-cols-5 hidden divide-x divide-zinc-500 self-center">

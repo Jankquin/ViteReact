@@ -69,7 +69,7 @@ const IncNavbar = () => {
     return (
         <>
             <div className="dark:bg-zinc-900 bg-white shadow-lg fixed w-full top-0 px-3 py-2 z-50">
-                <div className="container mx-auto">
+                <div className="container lg:w-11/12 mx-auto">
                     <div className="flex justify-center relative">
                         <div className="absolute flex left-0 z-20 h-full">
                             <Link to={`/`} className="flex self-center justify-center w-10 h-10 mr-5">
@@ -78,12 +78,12 @@ const IncNavbar = () => {
                                     <img src={LLogo} alt="Logo" className="self-center w-[20px]" />
                                 }
                             </Link>
-                            <div className="text-zinc-500 font-medium self-center lg:block hidden">
+                            <Link to={`/`} className="text-zinc-500 font-medium self-center lg:block hidden">
                                 {DarkMode ?
                                     <img src={DSite} alt="Site" className="self-center h-4" /> :
                                     <img src={LSite} alt="Site" className="self-center h-4" />
                                 }
-                            </div>
+                            </Link>
                         </div>
                         
                         <div className="lg:w-5/12 md:w-8/12 w-full relative h-12">
