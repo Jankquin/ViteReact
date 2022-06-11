@@ -68,7 +68,7 @@ const IncNavbar = () => {
 
     return (
         <>
-            <div className="dark:bg-zinc-900 bg-white shadow-lg fixed w-full top-0 px-3 py-2 z-50">
+            <div className="dark:bg-zinc-900 bg-white shadow-lg fixed w-full top-0 md:px-0 px-3 py-2 z-50">
                 <div className="container lg:w-11/12 mx-auto">
                     <div className="flex justify-center relative">
                         <div className="absolute flex left-0 z-20 h-full">
@@ -86,7 +86,7 @@ const IncNavbar = () => {
                             </Link>
                         </div>
                         
-                        <div className="lg:w-5/12 md:w-8/12 w-full relative h-12">
+                        <div className="lg:w-4/12 md:w-8/12 w-full relative h-12">
                             <div className="dark:bg-zinc-800  bg-zinc-200 relative rounded w-full min-h-full">
                                 <input id="SearchBar" className="bg-transparent text-zinc-500 relative font-medium outline-none w-full min-h-full z-10 py-3 pl-12 pr-20" type="text" value={Search} onChange={Filter}/>
                                 {LabelSearch ? 

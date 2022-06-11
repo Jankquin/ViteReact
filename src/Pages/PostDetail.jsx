@@ -20,37 +20,102 @@ const PostDetail = () => {
 
     return (
         <>
-            <div className="container lg:w-11/12 mx-auto lg:px-2 px-3 py-5 mt-28">
-                <div className="flex mb-10">
-                    <div className="lg:w-8/12 p-3">
-                        
+            <div className="container lg:w-11/12 mx-auto mt-20 lg:px-0 px-3">
+                <div className="dark:bg-zinc-800 md:flex rounded lg:overflow-hidden block mb-5">
+                    <div className="rounded md:w-8/12 lg:h-[30rem] h-[20rem] w-full"> 
                         {GetPostDetail != null && (
-                            <div className='rounded overflow-hidden mb-10 animate-fadeIn'>
-                                <div className="bg-neutral-800 rounded h-[25rem] mb-5">
-                                   <iframe className='w-full h-full' src={GetPostDetail.Embed} scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
-                                </div>
+                            <iframe className='w-full h-full rounded animate-fadeIn' src={GetPostDetail.Embed} scrolling="no" frameBorder="0" allowFullScreen={true}></iframe>
+                        )}
+                    </div>
 
-                                <div className='flex px-3 pb-3'>
-                                    <div style={{ backgroundImage: `url(${GetPostDetail.Cover})` }} className='bg-no-repeat bg-cover bg-center rounded-full self-start w-10 h-10 mr-3'></div>
-                                    <div className='md:w-7/12 w-6/12 self-start'>
-                                        <h2 className='whitespace-nowrap text-zinc-500 font-medium text-ellipsis text-sm overflow-hidden mb-1'>{GetPostDetail.Title}</h2>
-                                        <div className="flex text-zinc-500 text-xs pb-3">
-                                            <i className="bi-eye-fill self-center mr-2"></i>
-                                            <div className="self-center">{GetPostDetail.View}</div>
+                    <div className="md:w-4/12 lg:h-[30rem] h-[20rem] w-full overflow-hidden p-3">
+                        <div className="h-2/6 md:hidden">
+                            {GetPostDetail != null && (
+                                <div className='rounded overflow-hidden animate-fadeIn'>
+                                    <div className="px-3">
+                                        <div className='flex mb-5'>
+                                            <div style={{ backgroundImage: `url(${GetPostDetail.Cover})` }} className='bg-no-repeat bg-cover bg-center rounded-full self-start w-10 h-10 mr-3'></div>
+                                            <div className='md:w-7/12 w-6/12 self-start'>
+                                                <div className="text-zinc-500 flex text-xs">
+                                                    <i className="bi-clock-fill self-center mr-2"></i>
+                                                    <div className="self-center mr-3">{GetPostDetail.Release.toDate().toLocaleDateString('sv')}</div>
+                                                    <i className="bi-eye-fill self-center mr-2"></i>
+                                                    <div className="self-center mr-3">{GetPostDetail.View}</div>
+                                                </div>
+                                                <div className='text-zinc-500 whitespace-nowrap font-medium text-ellipsis overflow-hidden'>{GetPostDetail.Title}</div>
+                                            </div>
+                                        </div>
+
+                                        <div className='flex flex-wrap gap-1'>
+                                            {GetPostDetail.Genre.sort().map(doc => {
+                                                return(
+                                                    <button key={doc} className="dark:hover:bg-zinc-700/50 text-zinc-500 border-zinc-700/50 border rounded-sm text-xs px-3 py-1">{doc}</button>
+                                                )
+                                            })}
                                         </div>
                                     </div>
-                                    <a href="#!" className="bg-indigo-500 hover:bg-indigo-700/50 text-white text-xs rounded self-start px-4 py-2 ml-auto">Download</a>
                                 </div>
-                                
-                                <div className='flex md:w-7/12 w-6/12 self-start'>
-                                    <h2 className='whitespace-nowrap text-zinc-500 font-medium text-ellipsis text-sm overflow-hidden mb-1 mr-3'>{GetPostDetail.View}</h2>
-                                    <div className="flex text-zinc-500 text-xs pb-3">
-                                        <i className="bi-clock-fill self-center mr-2"></i>
-                                        <div className="self-center">22/22/22</div>
+                            )}
+                        </div>
+
+                        <div className="h-1/6 grid grid-cols-4">
+                            <button className='dark:hover:bg-zinc-700/50 text-zinc-500 rounded'>
+                                <i className="bi-heart-fill text-xl mb-2"/>
+                                <div className='text-sm lg:block hidden'>Like</div>
+                            </button>
+                            <button className='dark:hover:bg-zinc-700/50 text-zinc-500 rounded'>
+                                <i className="bi-bookmark-plus-fill text-xl mb-2"/>
+                                <div className='text-sm lg:block hidden'>Bookmark</div>
+                            </button>
+                            <button className='dark:hover:bg-zinc-700/50 text-zinc-500 rounded'>
+                                <i className="bi-flag-fill text-xl mb-2"/>
+                                <div className='text-sm lg:block hidden'>Report</div>
+                            </button>
+                            <button className='dark:hover:bg-zinc-700/50 text-zinc-500 rounded'>
+                                <i className="bi-cloud-arrow-down-fill text-xl mb-2"/>
+                                <div className='text-sm lg:block hidden'>Download</div>
+                            </button>
+                        </div>
+
+                        <div className="md:h-5/6 h-3/6 overflow-y-scroll">
+                            {GetSimilar.length != 0 && (
+                                <div className='animate-fadeIn'>
+                                    <div className="text-zinc-500 flex my-5">
+                                        <i className="bi-grid-fill text-2xl self-center mr-3"/>    
+                                        <div className="font-medium self-center">Similar Post</div>
+                                    </div>
+
+                                    {GetSimilar.map(doc => {
+                                        return (
+                                            <Link to={`/${doc.Id}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 rounded whitespace-nowrap text-ellipsis text-sm font-medium block p-3" onClick={OnTop}>
+                                                {doc.Title}
+                                            </Link>
+                                        )
+                                    })}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+                
+                <div className="rounded md:w-9/12 w-full h-full bg-zinc-800 md:block hidden">
+                    {GetPostDetail != null && (
+                        <div className='rounded overflow-hidden animate-fadeIn'>
+                            <div className="px-3">
+                                <div className='flex mb-5'>
+                                    <div style={{ backgroundImage: `url(${GetPostDetail.Cover})` }} className='bg-no-repeat bg-cover bg-center rounded-full self-start w-10 h-10 mr-3'></div>
+                                    <div className='md:w-7/12 w-6/12 self-start'>
+                                        <div className="text-zinc-500 flex text-xs">
+                                            <i className="bi-clock-fill self-center mr-2"></i>
+                                            <div className="self-center mr-3">{GetPostDetail.Release.toDate().toLocaleDateString('sv')}</div>
+                                            <i className="bi-eye-fill self-center mr-2"></i>
+                                            <div className="self-center mr-3">{GetPostDetail.View}</div>
+                                        </div>
+                                        <div className='text-zinc-500 whitespace-nowrap font-medium text-ellipsis overflow-hidden'>{GetPostDetail.Title}</div>
                                     </div>
                                 </div>
 
-                                <div className='flex flex-wrap gap-1 px-3 pb-3'>
+                                <div className='flex flex-wrap gap-1'>
                                     {GetPostDetail.Genre.sort().map(doc => {
                                         return(
                                             <button key={doc} className="dark:hover:bg-zinc-700/50 text-zinc-500 border-zinc-700/50 border rounded-sm text-xs px-3 py-1">{doc}</button>
@@ -58,32 +123,8 @@ const PostDetail = () => {
                                     })}
                                 </div>
                             </div>
-                        )}
-
-                    </div>
-
-                    <div className="lg:w-4/12 bg-zinc-800 p-3">
-                        {GetSimilar.length != 0 && (
-                            <div className='animate-fadeIn'>
-                                <div className="text-zinc-500 flex mr-5 mb-5">
-                                    <i className="bi-grid-fill text-2xl self-center mr-3"/>    
-                                    <span>
-                                        <div className="font-medium">Similar Post</div>
-                                        <div className="text-xs">21 December 2022</div>
-                                    </span>
-                                </div>
-
-                                {GetSimilar.map(doc => {
-                                    return (
-                                        <Link to={`/${doc.Id}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 rounded whitespace-nowrap text-ellipsis text-sm block p-3 mb-1" onClick={OnTop}>
-                                            {doc.Title}
-                                        </Link>
-                                    )
-                                })}
-                            </div>
-                        )}
-                    </div>
-
+                        </div>
+                    )}
                 </div>
             </div>
         </>
