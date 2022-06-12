@@ -18,48 +18,47 @@ const PagePost = () => {
                     <div style={{ backgroundImage: `url(${Carousel && (Carousel.Cover)})` }} className="bg-cover bg-center blur-[100px] w-full h-full"></div>
                 </div>
 
-                <div className='relative container mx-auto h-full'>
-                    <div className='absolute lg:w-10/12 w-full flex justify-between top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-                        <button className="text-white self-center rounded-full w-10 h-10" onClick={(event) => setCarouselIndicator(CarouselIndicator == 0 ?  2 : CarouselIndicator * 1 - 1)}>
-                            <i className="bi-chevron-left text-2xl font-bold"/>
-                        </button>
-                        <button className="text-white self-center rounded-full w-10 h-10" onClick={(event) => setCarouselIndicator(CarouselIndicator == 2 ?  0 : CarouselIndicator * 1 + 1)}>
-                            <i className="bi-chevron-right text-2xl font-bold"/>
-                        </button>
-                    </div>
-                    
-                    <div className='absolute lg:w-8/12 w-10/12 flex justify-between top-16 left-1/2 -translate-x-1/2'>
-                        <div className=''>
-                            <div className='text-white mb-3'>
-                                <div className='flex text-xs mb-1'>
-                                    <i className="bi-clock-fill self-center mr-2"></i> 
-                                    {Carousel && (Carousel.Release.toDate().toLocaleDateString('sv'))}
-                                </div>
-                                <div className="whitespace-nowrap text-ellipsis overflow-hidden text-lg font-medium lg:w-96 md:w-72 w-44 mb-1">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum, porro molestiae dolorem ratione libero dolor?</div>
-                                <div className='flex'>
-                                    {Carousel && (Carousel.Genre.slice(0, 4).map(doc => {
-                                        return (
-                                            <div key={doc} className="text-xs border rounded-sm px-1 mr-1">{doc}</div>
-                                        )
-                                    }))}
-                                </div>
-                            </div>
-                            <div className="flex mb-3">
-                                <button className='border w-2 h-2 m-1' style={{ backgroundColor: CarouselIndicator == 0 ? '#ffffff' : '' }} onClick={() => setCarouselIndicator(0)}></button>
-                                <button className='border w-2 h-2 m-1' style={{ backgroundColor: CarouselIndicator == 1 ? '#ffffff' : '' }} onClick={() => setCarouselIndicator(1)}></button>
-                                <button className='border w-2 h-2 m-1' style={{ backgroundColor: CarouselIndicator == 2 ? '#ffffff' : '' }} onClick={() => setCarouselIndicator(2)}></button>
-                            </div>
-                            <button className="bg-indigo-500 text-white self-center rounded-full w-10 h-10 mr-3">
-                                <i className="bi-caret-right-fill text-2xl"/>
+                {Carousel && (
+                    <div className='relative container mx-auto h-full'>
+                        <div className='absolute lg:w-10/12 w-full flex justify-between top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+                            <button className="text-white self-center rounded-full w-10 h-10" onClick={(event) => setCarouselIndicator(CarouselIndicator == 0 ?  2 : CarouselIndicator * 1 - 1)}>
+                                <i className="bi-chevron-left text-2xl font-bold"/>
                             </button>
-                            <button className="bg-white text-zinc-900 self-center rounded-full w-10 h-10">
-                                <i className="bi-bookmark-plus-fill text-2xl"/>
+                            <button className="text-white self-center rounded-full w-10 h-10" onClick={(event) => setCarouselIndicator(CarouselIndicator == 2 ?  0 : CarouselIndicator * 1 + 1)}>
+                                <i className="bi-chevron-right text-2xl font-bold"/>
                             </button>
                         </div>
-
-                        <div style={{ backgroundImage: `url(${Carousel && (Carousel.Cover)})` }} className="bg-cover rounded shadow-lg bg-top md:h-48 md:w-36 h-40 w-28"></div>
-                    </div>
-                </div> 
+                        
+                        <div className='absolute lg:w-8/12 w-10/12 flex justify-between top-14 left-1/2 -translate-x-1/2'>
+                            <span>
+                                <div className='text-white mb-3'>
+                                    <div className='flex text-xs mb-1'>
+                                        <i className="bi-clock-fill self-center mr-2"></i> 
+                                        {Carousel.Release.toDate().toLocaleDateString('sv')}
+                                    </div>
+                                    <div className="whitespace-nowrap text-ellipsis overflow-hidden text-lg font-medium lg:w-96 md:w-72 w-44 mb-1">{Carousel.Title}</div>
+                                    <div className='flex'>
+                                        {Carousel.Genre.slice(0, 4).map(doc => {
+                                            return (
+                                                <div key={doc} className="text-xs border rounded-sm px-1 mr-1">{doc}</div>
+                                            )
+                                        })}
+                                    </div>
+                                </div>
+                                <div className="flex mb-3">
+                                    <button className='border w-2 h-2 m-1' style={{ backgroundColor: CarouselIndicator == 0 ? '#ffffff' : '' }} onClick={() => setCarouselIndicator(0)}></button>
+                                    <button className='border w-2 h-2 m-1' style={{ backgroundColor: CarouselIndicator == 1 ? '#ffffff' : '' }} onClick={() => setCarouselIndicator(1)}></button>
+                                    <button className='border w-2 h-2 m-1' style={{ backgroundColor: CarouselIndicator == 2 ? '#ffffff' : '' }} onClick={() => setCarouselIndicator(2)}></button>
+                                </div>
+                                <Link to={`/${Carousel.Id}`} className="bg-indigo-500 text-white flex justify-center rounded-full w-12 h-12">
+                                    <i className="bi-caret-right-fill self-center text-2xl"/>
+                                </Link>
+                            </span>
+                        
+                            <div style={{ backgroundImage: `url(${Carousel.Cover})` }} className="bg-cover rounded shadow-lg bg-top md:h-48 md:w-36 h-40 w-28"></div>
+                        </div>
+                    </div> 
+                )}
             </div>
 
             <div className="container mx-auto lg:px-2 px-3 py-5">
