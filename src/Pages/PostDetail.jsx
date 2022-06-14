@@ -1,25 +1,22 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Tb_Post from '../Firebase/Tb_Post'
-import Tb_Similar from '../Firebase/Tb_Similar'
 
 
 const PostDetail = () => {
     const {id} = useParams();
     
-    const DataPost          = Tb_Post().UsePost;  
-    const DataNewRelease    = Tb_Post().UseNewRelease;
-    const DataSimilar       = Tb_Similar().UseSimilar;
+    const DataPost          = Tb_Post().UseDataPost;  
+    const DataNewRelease    = Tb_Post().UseDataNewRelease;
+    const DataSimilar       = Tb_Post().UseDataSimilar;
+
     const GetPostDetail     = DataPost.find(doc => doc.Id == id);
-    const SetSimilar        = DataSimilar.slice(0, -4);
-    const GetSimilar        = DataPost.filter(doc => doc.Title.toLowerCase().includes(SetSimilar.toString().toLowerCase()));
+    const GetSimilar        = DataPost.filter(doc => doc.Title.toLowerCase().includes(DataSimilar.toString().toLowerCase()));
 
     const OnTop             = () => {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
     }
-
-    console.log(DataNewRelease)
 
     return (
         <>
@@ -78,7 +75,7 @@ const PostDetail = () => {
                                 <div className="lg:h-[22rem] md:h-[12rem] h-[13rem] overflow-y-scroll overflow-x-hidden px-3 animate-fadeIn">
                                     {GetSimilar.map(doc => {
                                         return (
-                                            <Link to={`/${doc.Id}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex rounded p-3" Title={doc.Title} onClick={OnTop}>
+                                            <Link to={`/${doc.Id}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex rounded p-3" title={doc.Title} onClick={OnTop}>
                                                 <div style={{ backgroundImage: `url(${doc.Cover})` }} className='bg-no-repeat bg-cover bg-center rounded-full self-start w-10 h-10 mr-3'></div>
                                                 <div className='md:w-8/12 w-10/12'>
                                                     <div className='text-zinc-500 self-center whitespace-nowrap text-sm text-ellipsis overflow-hidden'>{doc.Title}</div>
@@ -140,7 +137,7 @@ const PostDetail = () => {
 
                         {DataNewRelease.map(doc => {
                             return (
-                                <Link to={`/${doc.Id}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex rounded p-3" Title={doc.Title} onClick={OnTop}>
+                                <Link to={`/${doc.Id}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex rounded p-3" title={doc.Title} onClick={OnTop}>
                                     <div style={{ backgroundImage: `url(${doc.Cover})` }} className='bg-no-repeat bg-cover bg-center rounded-full self-start w-10 h-10 mr-3'></div>
                                     <div className='md:w-8/12 w-10/12'>
                                         <div className='text-zinc-500 self-center whitespace-nowrap text-sm text-ellipsis overflow-hidden'>{doc.Title}</div>

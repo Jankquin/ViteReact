@@ -18,11 +18,15 @@
   
         /* width */
         ::-webkit-scrollbar {
-        width: 5px;
+            width: 5px;
+            height: 5px;
         }
 
+        ::-webkit-scrollbar-thumb {
+            background: #888; 
+        }
 
-        .toggle-checkbox:checked {
+        /* .toggle-checkbox:checked {
           @apply: right-0 border-green-400;
           right: 0;
           border-color: #68D391;
@@ -30,7 +34,7 @@
         .toggle-checkbox:checked + .toggle-label {
           @apply: bg-green-400;
           background-color: #68D391;
-        }
+        } */
     </style>
   </head>
   <body class="dark:bg-zinc-900 bg-zinc-200/50">
