@@ -19,11 +19,21 @@
         /* width */
         ::-webkit-scrollbar {
             width: 5px;
-            height: 5px;
+            /* height: 5px; */
         }
 
-        ::-webkit-scrollbar-thumb {
+        /* ::-webkit-scrollbar-thumb {
             background: #888; 
+        } */
+
+        #Title {
+            line-height: 1em;
+            max-height: 2em;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+
         }
 
         /* .toggle-checkbox:checked {
