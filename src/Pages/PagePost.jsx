@@ -11,20 +11,48 @@ const PagePost = () => {
 
     const [CarouselIndicator, setCarouselIndicator] = useState(0);
     const Carousel = DataCarousel[CarouselIndicator]
-    
-    const [Filter, setFilter] = useState({});
-    
-    let dodo = [
-        { Genre : 'Anal', Title : 'asd1' },
-        { Genre : 'Anal', Title : 'asd2' },
-        { Genre : 'Ahegao', Title : 'xx' },
-        { Genre : 'Ahegao', Title : 'xx' },
-        { Genre : 'Ahegao', Title : 'xx' }
-    ]
+    const [Modal, setModal] = useState({ Modal: false, Alert: false})
 
-    const dd = dodo.filter(doc => doc.Genre == "Anal" )
+    const [InputType, setInputType] = useState('')
+    const [InputGenre, setInputGenre] = useState([])
 
-    console.log(dd)
+    const [ArrayGenre, setArrayGenre] = useState(['3D','Ahegao','Anal','BDSM','Big Boobs','Blow Job','Bondage','Boob Job','Censored','Comedy','Cosplay','Creampie','Dark Skin','Facial','Fantasy','Filmed','Foot Job','Futanari','Gangbang','Glasses','Hand Job','Harem','HD','Horror','Incest','Inflation','Lactation','Loli','Maid','Masturbation','Milf','Mind Break','Mind Control','Monster','Nekomimi','NTR','Nurse','Orgy','Plot','POV','Pregnant','Public Sex','Rape','Reverse Rape','Rimjob','Scat','School Girl','Shota','Softcore','Swimsuit','Teacher','Tentacle','Threesome','Toys','Trap','Tsundere','Ugly Bastard','Uncensored','Vanilla','Virgin','Watersports','X-Ray','Yaoi','Yuri'])
+
+    const Memek = [];
+
+    const Lela = () => {
+        DataNewRelease.map(doc => {
+            Memek.push({
+                Id          : doc.Id,
+                Title       : doc.Title,
+                Cover       : doc.Cover,
+                Thumbnail   : doc.Thumbnail,
+                Download    : doc.Download,
+                Embed       : doc.Embed,
+                Brand       : doc.Brand,
+                Genre       : doc.Genre,
+                Release     : doc.Release.toDate().toLocaleDateString('sv'),
+                Note        : doc.Note,
+                View        : doc.View,
+                Created_At  : doc.Created_At.toDate().toLocaleDateString('sv'),
+                Updated_At  : doc.Updated_At.toDate().toLocaleDateString('sv'),
+            })
+        })
+    }
+
+    Lela();
+
+    
+    const PostFilter = Memek.filter(( item ) => 
+        // InputType ?
+        //     item.Type == InputType :
+        //     item.Type
+        // &&
+        InputGenre.every((val) => item.Genre.indexOf(val) > -1) 
+    );
+
+    console.log(InputGenre);
+
     return (
         <>
             <div className="relative mt-16 h-72">
@@ -90,25 +118,112 @@ const PagePost = () => {
                 )}
             </div>
 
-            <div className="container mx-auto lg:px-2 px-3 py-5 mb-10 -mt-10">
+            <div className="container mx-auto lg:px-2 px-3 py-5 mb-20 -mt-10">
                 <div className="flex justify-center">
-                    <div className="bg-zinc-800 text-white md:w-10/12 w-full flex justify-between shadow-lg relative rounded p-3 z-10">
-                        <div className="flex">
-                            <button className="hover:bg-zinc-700/50 text-white rounded justify-center min-w-[7rem] px-4 py-2"
-                                onClick={(event) => setFilter((doc) => ({ ...doc, Genre: 'Anal' }) )} >
-                                Anal</button>
+                    <div className="bg-zinc-800 text-white md:w-10/12 w-full shadow-lg relative rounded p-3 z-10">
+                        <div className="flex justify-between">
+                            <div className="flex">
+                                <button className="hover:bg-zinc-700/50 active:bg-zinc-700/50 focus:bg-zinc-700/50 text-white rounded flex justify-center md:min-w-[7rem] px-4 py-2" title='Choose Your Type' onClick={(event) => {
+                                    Modal.Modal == "Type" ?
+                                        setModal((doc) => ({...doc, Modal: false})) :
+                                        setModal((doc) => ({...doc, Modal: "Type"}))
+                                    }}>
+                                    <i className="bi-exclude text-zinc-500 self-center"></i>
+                                    <div className='self-center text-xs font-medium uppercase md:block hidden ml-3'>Type</div>
+                                </button>
+                                <button className="hover:bg-zinc-700/50 active:bg-zinc-700/50 focus:bg-zinc-700/50 text-white rounded flex justify-center md:min-w-[7rem] px-4 py-2" title='Choose Your Genre' onClick={(event) => {
+                                    Modal.Modal == "Genre" ?
+                                        setModal((doc) => ({...doc, Modal: false})) :
+                                        setModal((doc) => ({...doc, Modal: "Genre"}))
+                                    }}>
+                                    <i className="bi-layers-fill text-zinc-500 self-center"></i>
+                                    <div className='self-center text-xs font-medium uppercase md:block hidden ml-3'>Genre</div>
+                                </button>
+                                <button className="hover:bg-zinc-700/50 active:bg-zinc-700/50 focus:bg-zinc-700/50 text-white rounded flex justify-center md:min-w-[7rem] px-4 py-2" title='Choose Your Brand' onClick={(event) => {
+                                    Modal.Modal == "Brand" ?
+                                        setModal((doc) => ({...doc, Modal: false})) :
+                                        setModal((doc) => ({...doc, Modal: "Brand"}))
+                                    }}>
+                                    <i className="bi-exclude text-zinc-500 self-center"></i>
+                                    <div className='self-center text-xs font-medium uppercase md:block hidden ml-3'>Brand</div>
+                                </button>
+                                <button className="hover:bg-zinc-700/50 active:bg-zinc-700/50 focus:bg-zinc-700/50 text-white rounded flex justify-center md:min-w-[7rem] px-4 py-2" title='Order List' onClick={(event) => {
+                                    Modal.Modal == "Order" ?
+                                        setModal((doc) => ({...doc, Modal: false})) :
+                                        setModal((doc) => ({...doc, Modal: "Order"}))
+                                    }}>
+                                    <i className="bi-sort-down text-zinc-500 self-center"></i>
+                                    <div className='self-center text-xs font-medium uppercase md:block hidden ml-3'>Order</div>
+                                </button>
+                            </div>
+
+                            <button className="hover:bg-indigo-700/50 bg-indigo-700 text-white rounded justify-center min-w-[7rem] px-4 py-2" title='Reset List' onClick={(event) => {setModal([]), setInputGenre([])}}>Reset</button>
                         </div>
-                        <button className="bg-indigo-500 hover:bg-indigo-700/50 text-white md:flex hidden rounded justify-center min-w-[7rem] px-4 py-2 mx-1">Advanced Search</button>
+            
+                        <div className="flex justify-center max-h-64 overflow-y-scroll pt-3">
+                            {Modal.Modal == 'Type' &&
+                                <div className="mt-3">
+                                    <div className="text-sm my-5">Genre</div>
+                                    <div className="flex flex-wrap gap-1">
+                                        <button className="hover:bg-zinc-700/50 text-white rounded justify-center min-w-[7rem] px-4 py-2">
+                                            <div className='self-center text-xs'>Hentai Anime</div>
+                                        </button>
+                                        <button className="hover:bg-zinc-700/50 text-white rounded justify-center min-w-[7rem] px-4 py-2">
+                                            <div className='self-center text-xs'>Manga</div>
+                                        </button>
+                                        <button className="hover:bg-zinc-700/50 text-white rounded justify-center min-w-[7rem] px-4 py-2">
+                                            <div className='self-center text-xs'>Asian Video</div>
+                                        </button>
+                                        <button className="hover:bg-zinc-700/50 text-white rounded justify-center min-w-[7rem] px-4 py-2">
+                                            <div className='self-center text-xs'>Asian Image</div>
+                                        </button>
+                                    </div>
+                                </div>
+                            }
+                            
+                            {Modal.Modal == 'Brand' &&
+                                <div className="bg-zinc-800 absolute -bottom-14 left-0 w-full rounded p-3 z-10">
+                                    <button className="hover:bg-zinc-700/50 text-white rounded justify-center min-w-[7rem] px-4 py-2" onClick={(event) => setInputGenre(['Ahegao'])}>Ahegao</button>
+                                    <button className="hover:bg-zinc-700/50 text-white rounded justify-center min-w-[7rem] px-4 py-2" onClick={(event) => setInputGenre(['Anal'])}>Anal</button>
+                                </div>
+                            }
+
+                            {Modal.Modal == 'Genre' &&
+                                <div className="flex flex-wrap gap-1 mt-10">
+                                    {ArrayGenre.map((doc) => 
+                                        <div key={doc}>
+                                            {InputGenre && doc == InputGenre.find((dom) => dom == doc) ?
+                                                <button className="bg-zinc-700 text-white rounded flex justify-center min-w-[7rem] px-4 py-2" onClick={(event) => setInputGenre(InputGenre.filter((dos) => dos !== doc))}>
+                                                    <div className='self-center text-xs'>{doc}</div>
+                                                </button> :
+                                                <button className="hover:bg-zinc-700/50 text-white rounded flex justify-center min-w-[7rem] px-4 py-2" onClick={(event) => setInputGenre((dos) => ([...dos, doc]) )}>
+                                                    <div className='self-center text-xs'>{doc}</div>
+                                                </button>
+                                            }
+                                        </div>
+                                    )}
+                                </div>
+                            }
+                            
+                            {Modal.Modal == 'Order' &&
+                                <div className="bg-zinc-800 absolute -bottom-14 left-0 w-full rounded p-3 z-10">
+                                    <button className="hover:bg-zinc-700/50 text-white rounded justify-center min-w-[7rem] px-4 py-2" onClick={(event) => setInputGenre(['Ahegao'])}>Order</button>
+                                    <button className="hover:bg-zinc-700/50 text-white rounded justify-center min-w-[7rem] px-4 py-2" onClick={(event) => setInputGenre(['Anal'])}>Order</button>
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
+
             </div>
+
 
             <div className="container mx-auto lg:px-2 px-3 py-5 mb-96 -mt-10">
                 <div className="flex justify-center">
                     <div className="bg-zinc-800 text-white md:w-10/12 w-full shadow-lg relative rounded p-3 z-10">
-                        {dodo.map((doc, index) => {
+                        {PostFilter.map((doc, index) => {
                             return (
-                                <div className='mb-1' key={index}>{doc.Title}</div>
+                                <div className='mb-1' key={index}>{doc.View} - {doc.Title} - {doc.Genre}</div>
                             )
                         })}
                    </div>
