@@ -1,14 +1,14 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
-import Tb_Post from '../Firebase/Tb_Post'
+import Database from '../Firebase/Database'
 
 
 const PostDetail = () => {
     const {id} = useParams();
     
-    const DataPost          = Tb_Post().UseDataPost;  
-    const DataNewRelease    = Tb_Post().UseDataNewRelease;
-    const DataSimilar       = Tb_Post().UseDataSimilar;
+    const DataPost          = Database().UseDataPost;  
+    const DataNewRelease    = Database().UseDataNewRelease;
+    const DataSimilar       = Database().UseDataSimilar;
 
     const GetPostDetail     = DataPost.find(doc => doc.Id == id);
     const GetSimilar        = DataPost.filter(doc => doc.Title.toLowerCase().includes(DataSimilar.toString().toLowerCase()));

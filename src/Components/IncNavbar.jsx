@@ -4,7 +4,7 @@ import DLogo from "../Assets/DLogo.svg";
 import DSite from "../Assets/DSite.svg";
 import LLogo from "../Assets/LLogo.svg";
 import LSite from "../Assets/LSite.svg";
-import Tb_Post from "../Firebase/Tb_Post";
+import Database from "../Firebase/Database";
 // import useDarkMode from '../Components/useDarkMode';
 
 const IncNavbar = () => {
@@ -13,7 +13,7 @@ const IncNavbar = () => {
     const [Search, setSearch] = useState(""); 
     const [LabelSearch, setLabelSearch] = useState(true);
     const [Found, setFound] = useState([]);   
-    const DataPost = Tb_Post().UsePost;
+    const DataPost = Database().UsePost;
     const [InputData, setInputData] = useState({ Title: '', Cover: '', Thumbnail: '', Download: '', Embed: '', Brand: '', Genre: [], Release: '', View: '1', Note: '', Created_At: '23', Updated_At: '23', })
  
     

@@ -2,7 +2,6 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../Firebase/Config";
-import { async } from '@firebase/util';
 
 const PageMore = () => {
     const [UsePost, setUsePost] = useState([]);
