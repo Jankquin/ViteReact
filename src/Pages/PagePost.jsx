@@ -55,7 +55,7 @@ const PagePost = () => {
 
     return (
         <>
-            <div className="relative mt-16 h-72">
+            <div id='Carousel' className="relative mt-16 h-72">
                 <div className="absolute bg-gradient-to-r from-indigo-500 via-indigo-500 to-indigo-500 overflow-hidden w-full h-full">
                     {/* <div style={{ backgroundImage: `url(${Carousel && (Carousel.Cover)})` }} className="bg-cover bg-center blur-[50px] w-full h-full"></div> */}
                 </div>
@@ -118,7 +118,7 @@ const PagePost = () => {
                 )}
             </div>
 
-            <div className="container mx-auto lg:px-2 px-3 py-5 -mt-10">
+            <div id='Filter' className="container mx-auto lg:px-2 px-3 py-5 -mt-10">
                 <div className="flex justify-center">
                     <div className="dark:bg-zinc-800 bg-white dark:text-zinc-500 md:w-10/12 w-full shadow-lg relative rounded z-10">
                         <div className="flex justify-between p-3">
@@ -223,7 +223,7 @@ const PagePost = () => {
                 </div>
             </div>
 
-            <div className="container mx-auto lg:px-2 px-3 py-5">
+            <div id='FilterModal' className="container mx-auto lg:px-2 px-3 py-5">
                 <div className="flex justify-center">
                     <div className="dark:bg-zinc-800 bg-white text-zinc-500 md:w-10/12 w-full shadow-lg relative rounded p-3 z-10">
                         {PostFilter.map((doc, index) => {
@@ -235,7 +235,7 @@ const PagePost = () => {
                 </div>
             </div>
 
-            <div className="container mx-auto lg:px-2 px-3 py-5">
+            <div id='Content' className="container mx-auto lg:px-2 px-3 py-5">
                 <div className="flex justify-center mb-10">
                     <div className="lg:w-10/12 md:w-8/12x w-full">
                         <div id="HentaiAnime">
@@ -485,7 +485,6 @@ const PagePost = () => {
                 http://cdnasu.xyz/wp-content/uploads/2022/05/Aware-165.jpg
                 http://cdnasu.xyz/wp-content/uploads/2022/05/Projek-150.jpg */}
             </div>
-
         </>
     )
 }

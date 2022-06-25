@@ -9,8 +9,6 @@ const PostDetail = () => {
     const Tb_Manga      = Database().Tb_Manga;
     const GetTb_Manga   = Tb_Manga.slice(0, Load);
 
-    // console.log(View)
-
 
     return (
         <>
@@ -59,7 +57,7 @@ const PostDetail = () => {
                                     
                                     return (
                                         <Link to={`/manga/${doc.Id}`} key={index} className="hover:bg-zinc-700/50 text-zinc-500 rounded">
-                                            <img  src={doc.Cover} height="245" width="172" className="rounded object-cover min-h-max w-full" />
+                                            <img src={doc.Cover} height="245" width="172" className="rounded object-cover min-h-max w-full" />
                                             <div className="text-ellipsis text-sm font-medium text-center whitespace-nowrap overflow-hidden px-2 py-1">{doc.Title}</div>
                                             <div className="flex text-xs justify-center pb-3">
                                                 <i className="bi-eye-fill self-center mr-2"></i>
