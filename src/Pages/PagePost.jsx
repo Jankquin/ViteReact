@@ -9,6 +9,7 @@ const PagePost = () => {
     const DataNewRelease = Database().UseDataNewRelease;
     const DataPopular    = Database().UseDataPopular;
     const Tb_Manga       = Database().Tb_Manga;
+    const Tb_AsianNude   = Database().Tb_AsianNude;
 
     const [CarouselIndicator, setCarouselIndicator] = useState(0);
     const Carousel = DataCarousel[CarouselIndicator]
@@ -55,7 +56,7 @@ const PagePost = () => {
 
     return (
         <>
-            <div id='Carousel' className="relative mt-16 h-72">
+            <div id='Carousel' className="relative h-64">
                 <div className="absolute bg-gradient-to-r from-indigo-500 via-indigo-500 to-indigo-500 overflow-hidden w-full h-full">
                     {/* <div style={{ backgroundImage: `url(${Carousel && (Carousel.Cover)})` }} className="bg-cover bg-center blur-[50px] w-full h-full"></div> */}
                 </div>
@@ -364,15 +365,15 @@ const PagePost = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-500 self-center rounded-full w-10 h-10">
+                                <Link to={`/asian`} className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-zinc-500 self-center rounded-full w-10 h-10">
                                     <i className="bi-arrow-right"/>
-                                </button>
+                                </Link>
                             </div>
 
                             <div className="flex overflow-x-scroll mb-10 pb-5">
-                                {DataPopular.map(doc => {
+                                {Tb_AsianNude.map((doc, index) => {
                                     return (
-                                        <Link to={`/${doc.Id}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex-none group rounded mr-2 first:ml-0 last:mr-0 overflow-hidden">
+                                        <Link to={`/asian/${doc.Id}`} key={index} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex-none group rounded mr-2 first:ml-0 last:mr-0 overflow-hidden">
                                             <div style={{ backgroundImage: `url(${doc.Cover})` }} className="lg:h-64 lg:w-44 md:h-52 md:w-36 h-44 w-28 bg-cover bg-center rounded"></div>
                                             <div className="whitespace-nowrap text-ellipsis overflow-hidden text-sm font-medium text-center lg:w-44 md:w-36 w-28 px-2 py-1">{doc.Title}</div>
                                             <div className="flex text-xs justify-center pb-3">

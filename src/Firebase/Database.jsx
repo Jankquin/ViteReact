@@ -7,6 +7,7 @@ const Database = () => {
     const {id} = useParams();
 
     const [Tb_Manga, setTb_Manga] = useState([]); 
+    const [Tb_AsianNude, setTb_AsianNude] = useState([]); 
     
     const [UseDataPost, setUseDataPost] = useState([]); 
     const [UseDataCarousel, setUseDataCarousel] = useState([]); 
@@ -18,20 +19,23 @@ const Database = () => {
 
     useEffect(() => {
         const Tb_Manga_Post      = query(collection(db, "Tb_Manga"), orderBy("Id", "desc"));
+        const Tb_AsianNude_Post  = query(collection(db, "Tb_AsianNude"), orderBy("Id", "desc"));
         const QuerryDataPost     = query(collection(db, "Tb_Post"), orderBy("Id", "desc"));
         const QuerryDataCarousel = query(collection(db, "Tb_Post"), orderBy("Id", "desc"), limit(8));
         const QuerryNewRelease   = query(collection(db, "Tb_Post"), orderBy("Release", "desc"), limit(8));
         const QuerryDataPopular  = query(collection(db, "Tb_Post"), orderBy("View", "desc"), limit(8));
 
-        const FirstLoadAsync        = async () => {       
-            const Tb_Manga_DataPost = await getDocs(Tb_Manga_Post);     
-            const DataPost          = await getDocs(QuerryDataPost);     
-            const DataCarousel      = await getDocs(QuerryDataCarousel); 
-            const DataNewRelease    = await getDocs(QuerryNewRelease);  
-            const DataPopular       = await getDocs(QuerryDataPopular);     
-            const DataPostDetail    = DataPost.docs.map((doc) => ({ ...doc.data()})).find(doc => doc.Id == id)
+        const FirstLoadAsync            = async () => {       
+            const Tb_Manga_DataPost     = await getDocs(Tb_Manga_Post);     
+            const Tb_AsianNude_DataPost = await getDocs(Tb_AsianNude_Post);     
+            const DataPost              = await getDocs(QuerryDataPost);     
+            const DataCarousel          = await getDocs(QuerryDataCarousel); 
+            const DataNewRelease        = await getDocs(QuerryNewRelease);  
+            const DataPopular           = await getDocs(QuerryDataPopular);     
+            const DataPostDetail        = DataPost.docs.map((doc) => ({ ...doc.data()})).find(doc => doc.Id == id)
 
             setTb_Manga(Tb_Manga_DataPost.docs.map((doc) => ({ ...doc.data()})));
+            setTb_AsianNude(Tb_AsianNude_DataPost.docs.map((doc) => ({ ...doc.data()})));
             setUseDataPost(DataPost.docs.map((doc) => ({ ...doc.data()})));
             setUseDataCarousel(DataCarousel.docs.map((doc) => ({ ...doc.data()})));
             setUseDataNewRelease(DataNewRelease.docs.map((doc) => ({ ...doc.data()})));
@@ -58,7 +62,7 @@ const Database = () => {
         FirstLoadAsync();
     }, []);
 
-    return {UseDataPost, UseDataCarousel, UseDataNewRelease, UseDataPopular, UseDataSimilar, Tb_Manga}
+    return {UseDataPost, UseDataCarousel, UseDataNewRelease, UseDataPopular, UseDataSimilar, Tb_Manga, Tb_AsianNude}
 }
 
 export default Database;

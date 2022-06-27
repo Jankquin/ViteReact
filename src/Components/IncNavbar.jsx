@@ -66,9 +66,26 @@ const IncNavbar = () => {
         }
     `
 
+    const [Navbar, setNavbar] = useState(false);
+
+    const changeBackground = () => {
+        if (window.scrollY >= 5) {
+            setNavbar(true)
+        } else {
+            setNavbar(false)
+        }
+    }
+
+    useEffect(() => {
+        changeBackground()
+        window.addEventListener("scroll", changeBackground)
+    })
+
+
     return (
         <>
-            <div className="dark:bg-zinc-900 bg-white shadow-lg fixed w-full top-0 lg:px-0 px-3 py-2 z-50">
+            <>
+            {/* <div className="dark:bg-zinc-900 bg-white shadow-lg fixed w-full top-0 lg:px-0 px-3 py-2 z-50">
                 <div className="container lg:w-11/12 mx-auto">
                     <div className="flex justify-center relative">
                         <div className="absolute flex left-0 z-20 h-full">
@@ -143,6 +160,49 @@ const IncNavbar = () => {
                                 <i className="bi-grid-fill text-xl self-center"></i>
                             </button>
                         </div>
+                    </div>
+                </div>
+            </div> */}
+            </>
+
+            <div  style={{ background: Navbar ? 'rgb(24 24 27)' : 'transparent' }} className="fixed flex w-full top-0 left-0 px-3 py-1 z-20 duration-300">
+                <div className="container flex lg:w-10/12 mx-auto">
+                    <div className="lg:w-3/12 flex">
+                        <Link to={`/`} className="flex self-center justify-center w-10 h-10 mr-5">
+                            {DarkMode ?
+                                <img src={DLogo} alt="Logo" className="self-center w-[16px]" /> :
+                                <img src={LLogo} alt="Logo" className="self-center w-[16px]" />
+                            }
+                        </Link>
+                        <Link to={`/`} className="text-zinc-500 font-medium self-center lg:block hidden">
+                            {DarkMode ?
+                                <img src={DSite} alt="Site" className="self-center h-4" /> :
+                                <img src={LSite} alt="Site" className="self-center h-4" />
+                            }
+                        </Link>
+                    </div>
+
+                    <div style={{ background: Navbar ? 'rgb(39 39 42)' : 'rgb(39 39 42 / 80%)' }} className="lg:w-6/12 self-center rounded h-9 px-4">
+                        <input type="text" className="bg-transparent text-zinc-500 text-sm tracking-wide font-thin outline-none h-full w-full" />
+                    </div>
+                    
+                    <div className="lg:w-3/12 flex justify-end">
+                        {/* <button className="dark:hover:bg-zinc-700/50 dark:bg-zinc-900 hover:bg-zinc-300 text-white lg:block hidden rounded-full self-center w-10 h-10 mr-5" onClick={DarkModBtn}>
+                            {DarkMode ? 
+                                <i className="bi-moon-stars-fill text-xl self-center"></i> :
+                                <i className="bi-moon-stars text-xl self-center"></i>
+                            }
+                        </button> */}
+                        <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 text-white border border-zinc-500s rounded-full self-center w-8 h-8" 
+                            onClick={Modal.Menu == true ? 
+                                (event) => {
+                                    setModal({Menu: false})
+                                    ModalSearchClose() } : 
+                                (event) => {
+                                    setModal({Menu: true})
+                                    ModalSearchClose()} }>
+                            <i className="bi-list self-center"></i>
+                        </button>
                     </div>
                 </div>
             </div>
