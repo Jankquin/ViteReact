@@ -5,64 +5,33 @@ import { db } from "./Config";
 
 const Database = () => {
     const {id} = useParams();
-
+    const [Tb_Auth, setTb_Auth] = useState([]); 
+    const [Tb_Hentai, setTb_Hentai] = useState([]); 
     const [Tb_Manga, setTb_Manga] = useState([]); 
     const [Tb_AsianNude, setTb_AsianNude] = useState([]); 
-    
-    const [UseDataPost, setUseDataPost] = useState([]); 
-    const [UseDataCarousel, setUseDataCarousel] = useState([]); 
-    const [UseDataNewRelease, setUseDataNewRelease] = useState([]); 
-    const [UseDataPopular, setUseDataPopular] = useState([]); 
-    const [UseDataSimilar, setUseDataSimilar] = useState([]); 
-    
-    
 
     useEffect(() => {
+        const Tb_Auth_Post       = query(collection(db, "Tb_Auth"), orderBy("Id", "desc"));
+        const Tb_Hentai_Post     = query(collection(db, "Tb_Hentai"), orderBy("Id", "desc"));
         const Tb_Manga_Post      = query(collection(db, "Tb_Manga"), orderBy("Id", "desc"));
         const Tb_AsianNude_Post  = query(collection(db, "Tb_AsianNude"), orderBy("Id", "desc"));
-        const QuerryDataPost     = query(collection(db, "Tb_Post"), orderBy("Id", "desc"));
-        const QuerryDataCarousel = query(collection(db, "Tb_Post"), orderBy("Id", "desc"), limit(8));
-        const QuerryNewRelease   = query(collection(db, "Tb_Post"), orderBy("Release", "desc"), limit(8));
-        const QuerryDataPopular  = query(collection(db, "Tb_Post"), orderBy("View", "desc"), limit(8));
 
         const FirstLoadAsync            = async () => {       
+            const Tb_Auth_Data          = await getDocs(Tb_Auth_Post);     
+            const Tb_Hentai_DataPost    = await getDocs(Tb_Hentai_Post);     
             const Tb_Manga_DataPost     = await getDocs(Tb_Manga_Post);     
             const Tb_AsianNude_DataPost = await getDocs(Tb_AsianNude_Post);     
-            const DataPost              = await getDocs(QuerryDataPost);     
-            const DataCarousel          = await getDocs(QuerryDataCarousel); 
-            const DataNewRelease        = await getDocs(QuerryNewRelease);  
-            const DataPopular           = await getDocs(QuerryDataPopular);     
-            const DataPostDetail        = DataPost.docs.map((doc) => ({ ...doc.data()})).find(doc => doc.Id == id)
 
+            setTb_Auth(Tb_Auth_Data.docs.map((doc) => ({ ...doc.data()})));
+            setTb_Hentai(Tb_Hentai_DataPost.docs.map((doc) => ({ ...doc.data()})));
             setTb_Manga(Tb_Manga_DataPost.docs.map((doc) => ({ ...doc.data()})));
             setTb_AsianNude(Tb_AsianNude_DataPost.docs.map((doc) => ({ ...doc.data()})));
-            setUseDataPost(DataPost.docs.map((doc) => ({ ...doc.data()})));
-            setUseDataCarousel(DataCarousel.docs.map((doc) => ({ ...doc.data()})));
-            setUseDataNewRelease(DataNewRelease.docs.map((doc) => ({ ...doc.data()})));
-            setUseDataPopular(DataPopular.docs.map((doc) => ({ ...doc.data()})));
-
-            if(DataPostDetail){
-                const Data       = DataPostDetail.Title
-                const DataSplit  = Data.split(" ")
-                
-                if(DataSplit.length <= 3){
-                    const DataSplit3 = Data.split(" ", 1)
-                    const DataSplitFinal = DataSplit3.toString()
-                    setUseDataSimilar(DataSplitFinal);
-                }else{
-                    const DataSplit3 = Data.split(" ", 2)
-                    const DataSplitFinal = DataSplit3.toString().split(",").join(" ")
-                    setUseDataSimilar(DataSplitFinal);
-                }
-            }else{
-                setUseDataSimilar('Not Found');
-            }
         };
 
         FirstLoadAsync();
     }, []);
 
-    return {UseDataPost, UseDataCarousel, UseDataNewRelease, UseDataPopular, UseDataSimilar, Tb_Manga, Tb_AsianNude}
+    return {Tb_Auth, Tb_Hentai, Tb_Manga, Tb_AsianNude}
 }
 
 export default Database;

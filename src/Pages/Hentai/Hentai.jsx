@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import Database from "../../Firebase/Database";
 
-const Manga = () => {
-    const Tb_Manga  = Database().Tb_Manga;
+const Hentai = () => {
+    const Tb_Hentai  = Database().Tb_Hentai;
 
     const [Modal, setModal] = useState({});
     const [ArrayBrand, setArrayBrand] = useState(['@ OZ','37c-Binetsu','Almond Collective','Amour','Animac','Arms','Blue Eyes','Bootleg','BreakBottle','BugBug','Bunnywalker','Celeb','Central Park Media','ChiChinoya','ChuChu','Circle Tribute','CoCoans','Collaboration Works','Cosmos','Cranberry','Crimson','D3','Daiei','demodemon','Digital Works','Discovery','EBIMARU-DO','Echo','ECOLONUN','Edge','Erozuki','evee','FINAL FUCK 7','Five Ways','Front Line','fruit','GOLD BEAR','gomasioken','Green Bunny','Hoods Entertainment','Hot Bear','Hykobo','Jellyfish','Jumondo','kate_sai','KENZsoft','King Bee','Knack','Kuril','L.','Lemon Heart','Lilix','Lune Pictures','Magic Bus','Magin Label','Marigold','Mary Jane','Media Blasters','MediaBank','Moon Rock','Moonstone Cherry','MS Pictures','Nihikime no Dozeu','NuTech Digital','Pashmina','Pink Pineapple','Pinkbell','Pixy Soft','Pocomo Premium','PoRO','Project No.9','Queen Bee','Rabbit Gate','sakamotoJ','SANDWICHWORKS','Schoolzone','seismic','SELFISH','Seven','Shadow Prod. Co.','Shinyusha','Showten','Soft on Demand','STARGATE3D','Studio 9 Maiami','Studio Akai Shohosen','Studio Deen','Studio Fantasia','Studio FOW','studio GGB','Studio Zealot','Suzuki Mirano','SYLD','T-Rex','TOHO','Toranoana','TYS Work','Umemaro-3D','Union Cho','Valkyria','Vanilla','White Bear','X City','Y.O.U.C.','yosino','ZIZ']);
@@ -109,14 +109,13 @@ const Manga = () => {
                 </div>
             </div>
 
-
             <div className="w-full min-h-screen">
                 <div className="container md:w-10/12 w-full relative mx-auto md:px-0 px-3 pt-48">
                     <div className="grid md:grid-cols-6 grid-cols-3 gap-2 mb-5">
-                        {Tb_Manga.map(doc => {
+                        {Tb_Hentai.map(doc => {
                             return (
-                                <Link to={`/manga/${doc.Id}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex-none group rounded first:ml-0 last:mr-0 overflow-hidden">
-                                    <div style={{ backgroundImage: `url(${doc.Cover})` }} className="lg:h-64 lg:w-44 md:h-52 md:w-36 h-44 w-28 bg-cover bg-center rounded"></div>
+                                <Link to={`/hentai/${doc.Slug}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex-none group rounded first:ml-0 last:mr-0 overflow-hidden">
+                                    <div style={{ backgroundImage: `url(${doc.Image})` }} className="lg:h-64 lg:w-44 md:h-52 md:w-36 h-44 w-28 bg-cover bg-center rounded"></div>
                                     <div className="whitespace-nowrap text-ellipsis overflow-hidden text-sm font-medium text-center lg:w-36 md:w-36 w-28 px-2 py-1">{doc.Title}</div>
                                     <div className="flex text-xs justify-center pb-3">
                                         <i className="bi-eye-fill self-center mr-2"></i>
@@ -127,7 +126,7 @@ const Manga = () => {
                         })}
                     </div>
                     
-                    {Tb_Manga &&
+                    {Tb_Hentai &&
                         <center>
                             <button className="dark:hover:bg-zinc-700 dark:text-white text-zinc-900 flex gap-2 justify-center rounded w-[7rem] h-9">
                                 <div className="text-sm self-center">More</div>
@@ -140,4 +139,4 @@ const Manga = () => {
     )
 }
 
-export default Manga
+export default Hentai
