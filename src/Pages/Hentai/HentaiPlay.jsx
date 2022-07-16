@@ -27,11 +27,11 @@ const HentaiDetail = () => {
         <>
             {Tb_HentaiDetail &&
                 <div className="w-full min-h-screen">
-                    <div className="container md:w-10/12 md:flex block w-full relative mx-auto md:px-0 px-3 pt-20">
-                        <div className="lg:w-8/12 md:w-8/12 w-full mb-5"> 
-                            <iframe className='bg-zinc-800 w-full lg:h-[26rem] h-[20rem] rounded mb-5 animate-fadeIn delay-500' scrolling="no" frameBorder="0" allowFullScreen={true}></iframe>
+                    <div className="container md:w-10/12 md:flex block w-full relative mx-auto md:px-0 px-3 pt-20 mb-10">
+                        <div className="bg-zinc-800 lg:w-9/12 md:w-8/12 w-full rounded overflow-hidden md:mb-0 mb-5"> 
+                            <iframe className='w-full lg:h-[26rem] h-[20rem] rounded animate-fadeIn delay-500' scrolling="no" frameBorder="0" allowFullScreen={true}></iframe>
 
-                            <div class="rounded overflow-hidden animate-fadeIn">
+                            <div class="animate-fadeIn p-3">
                                 <div class="flex mb-5">
                                     <div style={{ backgroundImage: `url(${Tb_HentaiDetail.Image})` }} class="bg-no-repeat bg-cover bg-center rounded-full self-start w-10 h-10 mr-3"></div>
                                     <div class="w-10/12 self-start">
@@ -47,20 +47,41 @@ const HentaiDetail = () => {
                                     <button class="dark:hover:bg-zinc-700/50 text-zinc-500 border-zinc-700/50 border rounded-sm text-xs px-3 py-1">Ahegao</button>
                                     <button class="dark:hover:bg-zinc-700/50 text-zinc-500 border-zinc-700/50 border rounded-sm text-xs px-3 py-1">Ahegao</button>
                                 </div>
-                             </div>
+                            </div>
                         </div>
 
-                        <div className="lg:w-4/12 md:w-4/12 w-full md:pl-3 p-0">
-                            {Tb_HentaiFilter[0].map((doc, index) => {
-                                return(
-                                    <Link to={`/hentai/${doc.Slug}`} key={index} className="hover:bg-zinc-800 text-white text-xs block rounded p-3">
-                                        {doc.Title}
-                                    </Link>
-                                )
-                            })}
+                        <div className="lg:w-3/12 md:w-4/12 w-full md:pl-3 p-0">
+                            <div className="grid grid-cols-2 gap-1">
+                                <button className='bg-indigo-700 rounded p-5'>asdas</button>
+                                <button className='bg-indigo-700 rounded p-5'>asdas</button>
+                                <button className='bg-indigo-700 rounded p-5'>asdas</button>
+                                <button className='bg-indigo-700 rounded p-5'>asdas</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="container md:w-10/12 md:flex block w-full relative mx-auto md:px-0 px-3">
+                        <div className="lg:w-9/12 md:w-8/12 w-full mb-5">
+                            <div className="rounded grid md:grid-cols-3 grid-cols gap-2 mb-10">
+                                {Tb_HentaiFilter[0].map((doc, index) => {
+                                    return(
+                                        <Link key={index} to={`/hentai/${doc.Slug}`} className="hover:bg-zinc-800 text-white flex gap-3 rounded p-3">     
+                                            <div style={{ backgroundImage: `url(${Tb_HentaiDetail.Image})` }} class="bg-no-repeat bg-cover bg-center rounded-full self-start w-10 h-10"></div>
+                                            <div className="self-center text-sm font-medium">
+                                                {doc.Title}
+                                                <div className="flex gap-2 text-xs font-light">
+                                                    <div className="bi-eye-fill"></div>
+                                                    {doc.View}
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    )
+                                })}
+                            </div>
                         </div>
                     </div>
                 </div>
+                
             }
         </>
     )
