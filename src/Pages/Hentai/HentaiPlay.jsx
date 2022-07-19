@@ -23,7 +23,9 @@ const HentaiDetail = () => {
         Tb_HentaiFilter.push(Tb_HentaiSimilar)
     }
 
+    const css = ` body { overflow: hidden } `
 
+    
     return (
         <>
             {Tb_HentaiDetail &&
@@ -37,45 +39,51 @@ const HentaiDetail = () => {
                             <iframe  className='w-full lg:h-[26rem] h-[20rem] animate-fadeIn delay-500' scrolling="no" frameBorder="0" allowFullScreen={true}></iframe>
 
                             <div className="dark:border-zinc-700 border-zinc-200 border-t relative p-3">
-                                <div className="flex gap-2 justify-between">
-                                    <div className="w-10/12 flex gap-3">
-                                        <div style={{ backgroundImage: `url(${Tb_HentaiDetail.Image})` }} className="bg-no-repeat bg-cover bg-center shadow rounded-full self-center w-12 h-12"></div>
+                                <div class="flex gap-3">
+                                    <div style={{ backgroundImage: `url(${Tb_HentaiDetail.Image})` }} className="flex-none bg-no-repeat bg-cover bg-center shadow rounded-full self-center w-14 h-14"></div>
+
+                                    <div class="flex-auto overflow-hidden">
+                                        <div className="dark:text-zinc-100 text-zinc-700 font-bold whitespace-nowrap text-ellipsis text-lg overflow-hidden">{Tb_HentaiDetail.Title}</div>
                                         
-                                        <div className="w-10/12 grid">
-                                            <div className="dark:text-white text-zinc-900 font-bold whitespace-nowrap text-ellipsis text-lg overflow-hidden mb-2">{Tb_HentaiDetail.Title}</div>
-                                            <div className="dark:text-white text-zinc-900 flex gap-2 h-9">
+                                        <div className="flex justify-between">
+                                            <div className="dark:text-zinc-100 text-zinc-700 flex gap-2">
                                                 <i className='bi-eye-fill self-center'></i>
-                                                <div className="text-sm font-bold self-center whitespace-nowrap text-ellipsis overflow-hidden">{Tb_HentaiDetail.View}</div>
+                                                <div className="whitespace-nowrap text-ellipsis font-bold self-center overflow-hidden">{Tb_HentaiDetail.View}</div>
+                                            </div>
+
+                                            <div className="flex gap-1">
+                                                <button className="dark:hover:bg-zinc-700 dark:text-zinc-100 hover:bg-zinc-200 text-zinc-700 flex gap-2 justify-center rounded h-8 px-3"
+                                                    onClick={(event) => {
+                                                        Modal.Report ? 
+                                                            setModal({}) :
+                                                            setModal({Report: true})
+                                                        }
+                                                    }>
+                                                    <i className='bi-flag-fill self-center'></i>
+                                                    <div className="text-sm font-bold self-center whitespace-nowrap text-ellipsis md:block hidden overflow-hidden">Report</div>
+                                                </button>
+                                                <button className="dark:hover:bg-zinc-700 dark:text-zinc-100 hover:bg-zinc-200 text-zinc-700 flex gap-2 justify-center rounded h-8 px-3">
+                                                    <i className='bi-cloud-arrow-down-fill self-center'></i>
+                                                    <div className="text-sm font-bold self-center whitespace-nowrap text-ellipsis overflow-hidden">Download</div>
+                                                </button>
+                                                <button className="dark:hover:bg-zinc-700 dark:text-zinc-100 hover:bg-zinc-200 text-zinc-700 flex gap-2 justify-center rounded h-8 w-8" 
+                                                    onClick={(event) => {
+                                                        Modal.Detail ? 
+                                                            setModal({}) :
+                                                            setModal({Detail: true})
+                                                        }
+                                                    }>
+                                                    <i className='bi-chevron-down self-center'></i>
+                                                </button>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <button className="dark:hover:bg-zinc-700 dark:text-white hover:bg-zinc-200 text-zinc-900 hover:shadow flex gap-2 justify-center rounded-full h-9 w-9" 
-                                        onClick={(event) => {
-                                            Modal.Genre ? 
-                                                setModal({}) :
-                                                setModal({Genre: true})
-                                            }
-                                        }>
-                                        <i className='bi-chevron-down self-center'></i>
-                                    </button>
-
-                                    <div className="absolute flex gap-1 bottom-3 right-3">
-                                        <button className="dark:hover:bg-zinc-700 dark:text-white hover:bg-zinc-200 text-zinc-900 hover:shadow flex gap-2 justify-center rounded h-9 px-3">
-                                            <i className='bi-flag-fill self-center'></i>
-                                            <div className="text-sm font-bold self-center whitespace-nowrap text-ellipsis md:block hidden overflow-hidden">Report</div>
-                                        </button>
-                                        <button className="dark:hover:bg-zinc-700 dark:text-white hover:bg-zinc-200 text-zinc-900 hover:shadow flex gap-2 justify-center rounded h-9 px-3">
-                                            <i className='bi-cloud-arrow-down-fill self-center'></i>
-                                            <div className="text-sm font-bold self-center whitespace-nowrap text-ellipsis overflow-hidden">Download</div>
-                                        </button>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className={`${!Modal.Genre && 'hidden'} p-3`}>
-                                <div className={`dark:bg-zinc-700 bg-zinc-200 grid grid-cols-2 gap-5 p-5 rounded animate-fadeDown delay-500`}>
-                                    <div className="dark:text-white text-zinc-900 rounded text-left">
+                            <div className={`${!Modal.Detail && 'hidden'} p-3`}>
+                                <div className={`dark:bg-zinc-700 bg-zinc-100 grid grid-cols-2 gap-5 p-5 rounded animate-fadeDown delay-500`}>
+                                    <div className="dark:text-zinc-100 text-zinc-700 rounded text-left">
                                         <div className="flex gap-2">
                                             <i className='bi-person-fill'></i>
                                             <div className="">Brand</div>
@@ -83,7 +91,7 @@ const HentaiDetail = () => {
                                         <div className="font-bold whitespace-nowrap text-ellipsis overflow-hidden animate-fadeDown delay-500">{Tb_HentaiDetail.Brand}</div>
                                     </div>
 
-                                    <div className="dark:text-white text-zinc-900 rounded text-left">
+                                    <div className="dark:text-zinc-100 text-zinc-700 rounded text-left">
                                         <div className="flex gap-2">
                                             <i className='bi-calendar-fill'></i>
                                             <div className="">Released</div>
@@ -91,20 +99,20 @@ const HentaiDetail = () => {
                                         <div className="font-bold whitespace-nowrap text-ellipsis overflow-hidden animate-fadeDown delay-500">{Tb_HentaiDetail.Released.toDate().toLocaleDateString('sv')}</div>
                                     </div>
                                     
-                                    <div className="dark:text-white text-zinc-900 rounded text-left">
+                                    <div className="dark:text-zinc-100 text-zinc-700 rounded text-left">
                                         <div className="flex gap-2">
                                             <i className='bi-eye-fill'></i>
                                             <div className="">Genre</div>
                                         </div>
                                         <div className='flex flex-wrap gap-2 rounded animate-fadeDown delay-500'>
-                                            <button className="dark:text-white text-zinc-900 text-xs font-bold">Ahegao</button>
-                                            <button className="dark:text-white text-zinc-900 text-xs font-bold">Ahegao</button>
-                                            <button className="dark:text-white text-zinc-900 text-xs font-bold">Ahegao</button>
-                                            <button className="dark:text-white text-zinc-900 text-xs font-bold">Ahegao</button>
+                                            <button className="dark:text-zinc-100 text-zinc-700 text-xs font-bold">Ahegao</button>
+                                            <button className="dark:text-zinc-100 text-zinc-700 text-xs font-bold">Ahegao</button>
+                                            <button className="dark:text-zinc-100 text-zinc-700 text-xs font-bold">Ahegao</button>
+                                            <button className="dark:text-zinc-100 text-zinc-700 text-xs font-bold">Ahegao</button>
                                         </div>
                                     </div>
                                     
-                                    <div className="dark:text-white text-zinc-900 rounded text-left">
+                                    <div className="dark:text-zinc-100 text-zinc-700 rounded text-left">
                                         <div className="flex gap-2">
                                             <i className='bi-clock-fill'></i>
                                             <div className="">Uploaded</div>
@@ -115,20 +123,21 @@ const HentaiDetail = () => {
                             </div>
                         </div>
 
-                        <div className="md:w-8/12 overflow-hidden mx-auto">
+
+                        <div className="md:w-8/12 overflow-hidden mx-auto mb-14">
                             <div className="flex gap-5 mb-5 animate-fadeIn delay-500">
-                                <div className="dark:text-white text-zinc-900 flex gap-3">
+                                <div className="dark:text-zinc-100 text-zinc-700 flex gap-3">
                                     <i className="bi-list text-2xl self-center"/>    
                                     <div className="font-bold self-center">Other</div>
                                 </div>
                             </div>
 
-                            <div className="grid md:grid-cols-2 animate-fadeIn delay-500">
+                            <div className="grid md:grid-cols-2 gap-2 animate-fadeIn delay-500 p-1">
                                 {Tb_HentaiFilter[0].slice(0, 5).map((doc, index) => {
                                     return(
-                                        <Link key={index} to={`/hentai/${doc.Slug}`} className="hover:bg-zinc-800 text-white flex gap-3 rounded p-3">     
-                                            <div style={{ backgroundImage: `url(${doc.Image})` }} className="bg-no-repeat bg-cover bg-center rounded-full self-start w-10 h-10"></div>
-                                            <div className="w-10/12 self-center">
+                                        <Link key={index} to={`/hentai/${doc.Slug}`} className="flex dark:bg-zinc-800 bg-white dark:text-zinc-100 text-zinc-700 shadow gap-3 rounded p-3">     
+                                            <div style={{ backgroundImage: `url(${doc.Image})` }} className="flex-none bg-no-repeat bg-cover bg-center rounded-full self-start w-10 h-10"></div>
+                                            <div className="flex-auto self-center overflow-hidden">
                                                 <div className="text-sm text-ellipsis whitespace-nowrap font-bold overflow-hidden">{doc.Title}</div>
 
                                                 <div className="flex gap-2 text-xs">
@@ -142,6 +151,38 @@ const HentaiDetail = () => {
                             </div>
                         </div>
                     </div>
+
+
+                    {Modal.Report == true && (
+                        <div className="fixed flex bg-zinc-800/80 top-0 left-0 w-full h-full z-40">
+                            <div className="container md:px-0 px-3 py-2 m-auto">
+                                <div className="dark:bg-zinc-900 bg-white lg:w-5/12 md:w-8/12 w-full rounded self-center mx-auto p-5 animate-fadeUp">
+                                    <Link to="/" className="dark:bg-zinc-800 dark:hover:bg-zinc-700 bg-zinc-200 hover:bg-zinc-300 dark:text-white text-zinc-900 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
+                                        <i className="bi-star-fill text-2xl self-center mr-3"/>    
+                                        <span>
+                                            <div className="font-medium">Recomended</div>
+                                            <div className="text-xs">Most View</div>
+                                        </span>
+                                    </Link>
+                                    <Link to="/more" className="dark:bg-zinc-800 dark:hover:bg-zinc-700 bg-zinc-200 hover:bg-zinc-300 dark:text-white text-zinc-900 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
+                                        <i className="bi-grid-fill text-2xl self-center mr-3"/>    
+                                        <span>
+                                            <div className="font-medium">Genre</div>
+                                            <div className="text-xs">Choose your Genre</div>
+                                        </span>
+                                    </Link>
+                                    <div className="flex justify-between mb-5">
+                                        <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 dark:text-white text-zinc-900 rounded-full w-10 h-10" onClick={(event) => setModal({})}>
+                                            <i className="bi-x text-xl"/>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <style>{css}</style>
+                        </div>
+                    )}
+
                 </>
             }
         </>

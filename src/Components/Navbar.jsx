@@ -133,8 +133,8 @@ const Navbar = () => {
 
             {Modal.Menu == true && (
                 <div className="bg-zinc-800/80 fixed flex top-0 left-0 w-full h-full z-40">
-                    <div className="container md:px-0 px-3 py-2 mx-auto mt-20">
-                        <div className="dark:bg-zinc-900 bg-white lg:w-5/12 md:w-8/12 w-full rounded self-center mx-auto p-5 animate-fadeIn">
+                    <div className="container md:px-0 px-3 py-2 m-auto">
+                        <div className="dark:bg-zinc-900 bg-white lg:w-5/12 md:w-8/12 w-full rounded self-center mx-auto p-5 animate-fadeUp">
                             <div className="flex justify-between mb-5">
                                 <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 dark:text-white text-zinc-900 rounded-full w-10 h-10" onClick={DarkModBtn}>
                                     {DarkMode ? 
