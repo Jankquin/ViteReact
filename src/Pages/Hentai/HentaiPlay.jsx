@@ -1,16 +1,20 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom'
+import { db } from "../../Firebase/Config";
+import { Timestamp, setDoc, collection } from "firebase/firestore";
 import Database from "../../Firebase/Database";
 
 
 const HentaiDetail = () => {
     const {Slug} = useParams();
-    const Tb_Hentai         = Database().Tb_Hentai; 
+    const Tb_Report            = Database().Tb_Report;
+    const Tb_Hentai            = Database().Tb_Hentai; 
 
-    const [Modal, setModal] = useState({});
-    const Tb_HentaiDetail   = Tb_Hentai.find(doc => doc.Slug == Slug);
-    const Tb_HentaiFilter   = []
+    const [Modal, setModal]    = useState({Alert: false, Report: false,});
+    const [Report, setReport]  = useState({Report: 'Broken'});
+    const Tb_HentaiDetail      = Tb_Hentai.find(doc => doc.Slug == Slug);
+    const Tb_HentaiFilter      = []
     
     
     if(Tb_HentaiDetail && Tb_HentaiDetail.Title.split(' ').length > 3){
@@ -23,9 +27,25 @@ const HentaiDetail = () => {
         Tb_HentaiFilter.push(Tb_HentaiSimilar)
     }
 
+    const Register = () => {
+        event.preventDefault();
+
+        const Data      = doc(collection(db, "Tb_Report"));
+        setDoc(Data, { 
+            Id          : Tb_Report.slice(0, 1).map(doc => doc.Id) * 1 + 1,
+            Url         : window.location.href,
+            Title       : Tb_HentaiDetail.Title,
+            Report      : Report.Report,
+            Comment     : Report.Comment,
+            Created_At  : Timestamp.fromDate(new Date()), 
+            Updated_At  : Timestamp.fromDate(new Date()), 
+        });
+
+        setModal((doc) => ({...doc, Alert: true}))
+    }
+
     const css = ` body { overflow: hidden } `
 
-    
     return (
         <>
             {Tb_HentaiDetail &&
@@ -39,10 +59,10 @@ const HentaiDetail = () => {
                             <iframe  className='w-full lg:h-[26rem] h-[20rem] animate-fadeIn delay-500' scrolling="no" frameBorder="0" allowFullScreen={true}></iframe>
 
                             <div className="dark:border-zinc-700 border-zinc-200 border-t relative p-3">
-                                <div class="flex gap-3">
+                                <div className="flex gap-3">
                                     <div style={{ backgroundImage: `url(${Tb_HentaiDetail.Image})` }} className="flex-none bg-no-repeat bg-cover bg-center shadow rounded-full self-center w-14 h-14"></div>
 
-                                    <div class="flex-auto overflow-hidden">
+                                    <div className="flex-auto overflow-hidden">
                                         <div className="dark:text-zinc-100 text-zinc-700 font-bold whitespace-nowrap text-ellipsis text-lg overflow-hidden">{Tb_HentaiDetail.Title}</div>
                                         
                                         <div className="flex justify-between">
@@ -153,29 +173,81 @@ const HentaiDetail = () => {
                     </div>
 
 
-                    {Modal.Report == true && (
-                        <div className="fixed flex bg-zinc-800/80 top-0 left-0 w-full h-full z-40">
+                    {Modal.Report && (
+                        <div className="fixed flex bg-zinc-900/80 top-0 left-0 w-full h-full z-40">
                             <div className="container md:px-0 px-3 py-2 m-auto">
-                                <div className="dark:bg-zinc-900 bg-white lg:w-5/12 md:w-8/12 w-full rounded self-center mx-auto p-5 animate-fadeUp">
-                                    <Link to="/" className="dark:bg-zinc-800 dark:hover:bg-zinc-700 bg-zinc-200 hover:bg-zinc-300 dark:text-white text-zinc-900 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
-                                        <i className="bi-star-fill text-2xl self-center mr-3"/>    
-                                        <span>
-                                            <div className="font-medium">Recomended</div>
-                                            <div className="text-xs">Most View</div>
-                                        </span>
-                                    </Link>
-                                    <Link to="/more" className="dark:bg-zinc-800 dark:hover:bg-zinc-700 bg-zinc-200 hover:bg-zinc-300 dark:text-white text-zinc-900 flex group rounded px-4 py-2 mb-1" onClick={(event) => setModal({Alert: false})}>
-                                        <i className="bi-grid-fill text-2xl self-center mr-3"/>    
-                                        <span>
-                                            <div className="font-medium">Genre</div>
-                                            <div className="text-xs">Choose your Genre</div>
-                                        </span>
-                                    </Link>
-                                    <div className="flex justify-between mb-5">
-                                        <button className="dark:hover:bg-zinc-700/50 hover:bg-zinc-300 dark:text-white text-zinc-900 rounded-full w-10 h-10" onClick={(event) => setModal({})}>
-                                            <i className="bi-x text-xl"/>
-                                        </button>
-                                    </div>
+                                <div className="dark:bg-zinc-800 bg-white lg:w-5/12 md:w-8/12 w-full rounded self-center mx-auto p-5 animate-fadeUp">
+                                    
+                                    {!Modal.Alert ?
+                                        <form className="grid gap-3" onSubmit={Register}>
+                                            <div className="flex gap-5 mb-5">
+                                                <div className="dark:text-zinc-100 text-zinc-700 flex gap-3">
+                                                    <i className="bi-exclamation-triangle text-2xl self-center"/>    
+                                                    <div className="font-bold self-center">Report</div>
+                                                </div>
+                                            </div>
+
+                                            <div className="flex gap-3">
+                                                <div className={`${Report.Report == 'Broken' && 'bg-zinc-700'} dark:hover:bg-zinc-700 dark:text-zinc-100 hover:bg-zinc-200 text-zinc-700 flex gap-2 justify-center cursor-pointer rounded h-8 px-3`}
+                                                    onClick={(event) => {
+                                                        Report.Report == 'Broken' ?
+                                                            setReport({}) :
+                                                            setReport((doc) => ({...doc, Report: 'Broken'}))
+                                                    }}>
+                                                    <i className={`${Report.Report == 'Broken' ? 'bi-circle-fill' : 'bi-circle'} self-center`}></i>
+                                                    <div className="text-sm font-bold self-center whitespace-nowrap text-ellipsis overflow-hidden">Broken Link</div>
+                                                </div>
+                                                
+                                                <div className={`${Report.Report == 'Other' && 'bg-zinc-700'} dark:hover:bg-zinc-700 dark:text-zinc-100 hover:bg-zinc-200 text-zinc-700 flex gap-2 justify-center cursor-pointer rounded h-8 px-3`}
+                                                    onClick={(event) => {
+                                                        Report.Report == 'Other' ?
+                                                            setReport({}) :
+                                                            setReport((doc) => ({...doc, Report: 'Other'}))
+                                                    }}>
+                                                    <i className={`${Report.Report == 'Other' ? 'bi-circle-fill' : 'bi-circle'} self-center`}></i>
+                                                    <div className="text-sm font-bold self-center whitespace-nowrap text-ellipsis overflow-hidden">Other</div>
+                                                </div>
+                                            </div>
+
+                                            <input defaultValue={Tb_HentaiDetail.Title} className='dark:bg-zinc-700 dark:text-zinc-100 bg-zinc-200 text-zinc-700 rounded outline-none w-full p-3' disabled/>
+
+                                            <textarea className='dark:bg-zinc-700 dark:text-zinc-100 bg-zinc-200 text-zinc-700 rounded outline-none w-full h-32 p-3' 
+                                                defaultValue={Report.Comment} 
+                                                onChange={(event) => 
+                                                    setReport((doc) => ({
+                                                        ...doc, Comment: event.target.value 
+                                                    }) 
+                                                )}>
+                                            </textarea>
+                                            
+                                            <div className="flex gap-2 justify-center">
+                                                <button className="dark:hover:bg-zinc-700 dark:text-zinc-100 hover:bg-zinc-200 text-zinc-700 flex gap-2 justify-center rounded h-8 min-w-[7rem] px-3">
+                                                    <div className="text-sm font-bold self-center whitespace-nowrap text-ellipsis overflow-hidden">Report</div>
+                                                </button>
+
+                                                <button className="dark:hover:bg-zinc-700 dark:text-zinc-100 hover:bg-zinc-200 text-zinc-700 flex gap-2 justify-center rounded h-8 min-w-[7rem] px-3"
+                                                    onClick={(event) => setModal({Alert: false, Report: false})}>
+                                                    <div className="text-sm font-bold self-center whitespace-nowrap text-ellipsis overflow-hidden">Back</div>
+                                                </button>
+                                            </div>
+                                        </form> 
+                                        :
+                                        <center>
+                                            <div className='flex bg-zinc-100 rounded-full mx-auto w-14 h-14 mb-5'>
+                                                <i className='bi bi-check text-zinc-700 text-4xl self-center mx-auto'></i>
+                                            </div>
+                                            <div className="text-zinc-100 text-2xl self-center font-medium mb-5">Succesful</div>
+                                            <div className="text-zinc-100 text-sm font-light mb-5">Report succesfully saved we will fix it soon</div>
+
+                                            <button className="dark:hover:bg-zinc-700 dark:text-zinc-100 hover:bg-zinc-200 text-zinc-700 flex gap-2 justify-center rounded h-8 min-w-[7rem] px-3"
+                                                onClick={(event) => {
+                                                    window.location.href = `/hentai/${Slug}`
+                                                }}>
+                                                <div className="text-sm font-bold self-center whitespace-nowrap text-ellipsis overflow-hidden">Back</div>
+                                            </button>
+                                        </center>
+                                    }
+
                                 </div>
                             </div>
 

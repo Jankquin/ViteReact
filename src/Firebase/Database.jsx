@@ -9,29 +9,33 @@ const Database = () => {
     const [Tb_Hentai, setTb_Hentai] = useState([]); 
     const [Tb_Manga, setTb_Manga] = useState([]); 
     const [Tb_AsianNude, setTb_AsianNude] = useState([]); 
+    const [Tb_Report, setTb_Report] = useState([]); 
 
     useEffect(() => {
-        const Tb_Auth_Post       = query(collection(db, "Tb_Auth"), orderBy("Id", "desc"));
-        const Tb_Hentai_Post     = query(collection(db, "Tb_Hentai"), orderBy("Id", "desc"));
-        const Tb_Manga_Post      = query(collection(db, "Tb_Manga"), orderBy("Id", "desc"));
-        const Tb_AsianNude_Post  = query(collection(db, "Tb_AsianNude"), orderBy("Id", "desc"));
+        const Tb_Auth_Post              = query(collection(db, "Tb_Auth"), orderBy("Id", "desc"));
+        const Tb_Hentai_Post            = query(collection(db, "Tb_Hentai"), orderBy("Id", "desc"));
+        const Tb_Manga_Post             = query(collection(db, "Tb_Manga"), orderBy("Id", "desc"));
+        const Tb_AsianNude_Post         = query(collection(db, "Tb_AsianNude"), orderBy("Id", "desc"));
+        const Tb_Report                 = query(collection(db, "Tb_Report"), orderBy("Id", "desc"));
 
         const FirstLoadAsync            = async () => {       
             const Tb_Auth_Data          = await getDocs(Tb_Auth_Post);     
             const Tb_Hentai_DataPost    = await getDocs(Tb_Hentai_Post);     
             const Tb_Manga_DataPost     = await getDocs(Tb_Manga_Post);     
             const Tb_AsianNude_DataPost = await getDocs(Tb_AsianNude_Post);     
+            const Tb_Report_DataPost    = await getDocs(Tb_Report);     
 
             setTb_Auth(Tb_Auth_Data.docs.map((doc) => ({ ...doc.data()})));
             setTb_Hentai(Tb_Hentai_DataPost.docs.map((doc) => ({ ...doc.data()})));
             setTb_Manga(Tb_Manga_DataPost.docs.map((doc) => ({ ...doc.data()})));
             setTb_AsianNude(Tb_AsianNude_DataPost.docs.map((doc) => ({ ...doc.data()})));
+            setTb_Report(Tb_Report_DataPost.docs.map((doc) => ({ ...doc.data()})));
         };
 
         FirstLoadAsync();
     }, []);
 
-    return {Tb_Auth, Tb_Hentai, Tb_Manga, Tb_AsianNude}
+    return {Tb_Auth, Tb_Hentai, Tb_Manga, Tb_AsianNude, Tb_Report}
 }
 
 export default Database;

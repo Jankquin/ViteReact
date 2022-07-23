@@ -5,7 +5,8 @@ import HomePage from "./HomePage";
 import Hentai from "./Hentai/Hentai";
 import HentaiPlay from "./Hentai/HentaiPlay";
 import Manga from "./Manga/Manga";
-import MangaDetail from "./Manga/MangaInfo";
+import MangaInfo from "./Manga/MangaInfo";
+import MangaRead from "./Manga/MangaRead";
 
 import { db } from "../Firebase/Config";
 import { Timestamp, doc, setDoc, collection } from "firebase/firestore";
@@ -39,7 +40,8 @@ function App() {
                 <Route path="/hentai" element={<Hentai />} />
                 <Route path="/hentai/:Slug" element={<HentaiPlay />} />
                 <Route path="/manga" element={<Manga />} />
-                <Route path="/MangaDetail" element={<MangaDetail />} />
+                <Route path="/mangainfo/:Slug" element={<MangaInfo />} />
+                <Route path="/mangaread/:Slug/:Id" element={<MangaRead />} />
             </Routes>
         </BrowserRouter>
     )

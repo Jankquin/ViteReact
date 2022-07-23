@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import Database from "../../Firebase/Database";
 
 const Manga = () => {
@@ -11,7 +11,7 @@ const Manga = () => {
     const [ArrayGenre, setArrayGenre] = useState(['3D','Ahegao','Anal','BDSM','Big Boobs','Blow Job','Bondage','Boob Job','Censored','Comedy','Cosplay','Creampie','Dark Skin','Facial','Fantasy','Filmed','Foot Job','Futanari','Gangbang','Glasses','Hand Job','Harem','HD','Horror','Incest','Inflation','Lactation','Loli','Maid','Masturbation','Milf','Mind Break','Mind Control','Monster','Nekomimi','NTR','Nurse','Orgy','Plot','POV','Pregnant','Public Sex','Rape','Reverse Rape','Rimjob','Scat','School Girl','Shota','Softcore','Swimsuit','Teacher','Tentacle','Threesome','Toys','Trap','Tsundere','Ugly Bastard','Uncensored','Vanilla','Virgin','Watersports','X-Ray','Yaoi','Yuri'])
 
     return (
-        <>     
+        <>  
             <div className="dark:bg-zinc-900 bg-white fixed w-full shadow-lg top-0 left-0 z-10">
                 <div className="container md:w-10/12 w-full mx-auto md:px-0 px-3 mt-14 py-3">
                     <div className="md:w-6/12 grid grid-cols-5 mx-auto">
@@ -109,13 +109,12 @@ const Manga = () => {
                 </div>
             </div>
 
-
             <div className="w-full min-h-screen">
                 <div className="container md:w-10/12 w-full relative mx-auto md:px-0 px-3 pt-48">
                     <div className="grid md:grid-cols-6 grid-cols-3 gap-2 mb-5">
-                        {Tb_Manga.map(doc => {
+                        {Tb_Manga.map((doc, index) => {
                             return (
-                                <Link to={`/manga/${doc.Id}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex-none group rounded first:ml-0 last:mr-0 overflow-hidden">
+                                <Link to={`/mangainfo/${doc.Slug}`} key={doc.index} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex-none group rounded first:ml-0 last:mr-0 overflow-hidden">
                                     <div style={{ backgroundImage: `url(${doc.Cover})` }} className="lg:h-64 lg:w-44 md:h-52 md:w-36 h-44 w-28 bg-cover bg-center rounded"></div>
                                     <div className="whitespace-nowrap text-ellipsis overflow-hidden text-sm font-medium text-center lg:w-36 md:w-36 w-28 px-2 py-1">{doc.Title}</div>
                                     <div className="flex text-xs justify-center pb-3">

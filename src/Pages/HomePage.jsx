@@ -166,9 +166,9 @@ const HomePage = () => {
                         </div>
 
                         <div className="flex gap-2 overflow-x-scroll mb-10 pb-5">
-                            {Tb_Manga.map(doc => {
+                            {Tb_Manga.map((doc, index) => {
                                 return (
-                                    <Link to={`/manga/${doc.Id}`} key={doc.Id} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex-none group rounded first:ml-0 last:mr-0 overflow-hidden">
+                                    <Link to={`/mangainfo/${doc.Slug}`} key={index} className="dark:hover:bg-zinc-700/50 text-zinc-500 flex-none group rounded first:ml-0 last:mr-0 overflow-hidden">
                                         <div style={{ backgroundImage: `url(${doc.Cover})` }} className="lg:h-64 lg:w-44 md:h-52 md:w-36 h-44 w-28 bg-cover bg-center rounded"></div>
                                         <div className="whitespace-nowrap text-ellipsis overflow-hidden text-sm font-medium text-center lg:w-36 md:w-36 w-28 px-2 py-1">{doc.Title}</div>
                                         <div className="flex text-xs justify-center pb-3">
